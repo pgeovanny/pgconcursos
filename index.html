@@ -7,19 +7,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     :root {
-      --neon: #39ff14;
-      --neon-light: #74ffca;
-      --accent: #12c0f5;
-      --glass: rgba(0, 24, 0, 0.70);
-      --bg: #090d0a;
-      --error: #ff3b3b;
-      --tab-bg: rgba(13,40,18,0.68);
-      --tab-border: #1cffc8aa;
+      --neon: #a259ff;
+      --neon-light: #e0c8ff;
+      --accent: #fff;
+      --glass: rgba(31, 0, 48, 0.81);
+      --bg: #120018;
+      --error: #ff3b8b;
+      --tab-bg: rgba(34,11,58,0.65);
+      --tab-border: #c087ff;
     }
     html, body {
       margin: 0; padding: 0;
       background: var(--bg);
-      color: var(--neon);
+      color: var(--accent);
       font-family: 'Share Tech Mono', 'Courier New', Courier, monospace;
       min-height: 100vh;
       overflow-x: hidden;
@@ -31,7 +31,7 @@
       width: 100vw; height: 100vh;
       pointer-events: none;
       opacity: .7;
-      filter: blur(0.5px) contrast(1.09);
+      filter: blur(0.5px) contrast(1.11);
     }
     header {
       position: fixed;
@@ -43,18 +43,18 @@
       align-items: center;
       gap: .8em;
       padding: 0 2vw;
-      background: linear-gradient(90deg, #092a14 0%, #052323 100%);
-      border-bottom: 2px solid #26ff7b55;
+      background: linear-gradient(90deg, #360053 0%, #191031 100%);
+      border-bottom: 2px solid #b97cff55;
       user-select: none;
-      box-shadow: 0 2px 14px #13be4936;
+      box-shadow: 0 2px 14px #a259ff45;
     }
     .logo-svg {
       height: 35px;
       width: 35px;
       margin-right: 1em;
       border-radius: 7px;
-      box-shadow: 0 0 18px #00ff8058, 0 0 8px #39ff1440 inset;
-      background: #012a11;
+      box-shadow: 0 0 18px #d4c1ff44, 0 0 8px #b97cff40 inset;
+      background: #230032;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -107,13 +107,13 @@
       background: var(--glass);
       border: 1.5px solid var(--neon-light);
       border-radius: 18px;
-      box-shadow: 0 0 18px #1fe06d34, 0 0 44px #11fa7c19;
+      box-shadow: 0 0 20px #a259ff26, 0 0 44px #a259ff11;
       padding: 2.1em 1.5em 2em 1.5em;
       margin-bottom: 1.3em;
       width: 100%;
       max-width: 390px;
-      backdrop-filter: blur(9px);
-      -webkit-backdrop-filter: blur(9px);
+      backdrop-filter: blur(11px);
+      -webkit-backdrop-filter: blur(11px);
       transition: box-shadow .15s, border .15s;
       position: relative;
       overflow: visible;
@@ -129,11 +129,11 @@
     }
     .desc {
       font-size: 1.02rem;
-      color: #baf0cc;
+      color: #fff;
       margin-bottom: 1.4em;
       line-height: 1.5em;
       letter-spacing: 0.7px;
-      text-shadow: 0 0 7px #13be4970;
+      text-shadow: 0 0 7px #c087ff70;
       text-align: center;
     }
     /* Botão */
@@ -146,30 +146,29 @@
     }
     button, .btn {
       font-family: inherit;
-      background: linear-gradient(97deg, #21f279 0%, #24a3ff 100%);
-      color: #00280e;
+      background: linear-gradient(97deg, #a259ff 0%, #fff 100%);
+      color: #230032;
       font-weight: bold;
       border: none;
       border-radius: 13px;
-      box-shadow: 0 2px 20px 0 #13be4970;
+      box-shadow: 0 2px 20px 0 #a259ff70;
       padding: 0.97em 2em;
       font-size: 1.04rem;
       letter-spacing: 1.2px;
       cursor: pointer;
       transition: transform .12s, box-shadow .12s, filter .1s;
-      filter: brightness(1.12) drop-shadow(0 0 6px #2fff85aa);
+      filter: brightness(1.09) drop-shadow(0 0 8px #a259ffbb);
       outline: none;
-      position: relative;
       margin-bottom: 0;
     }
     button:active, .btn:active {
       transform: scale(.96);
-      filter: brightness(0.98);
-      box-shadow: 0 2px 22px 0 #13be49a7;
+      filter: brightness(0.96);
+      box-shadow: 0 2px 22px 0 #a259ffb7;
     }
     button:hover, .btn:hover {
-      filter: brightness(1.15) drop-shadow(0 0 22px #2fff8588);
-      box-shadow: 0 2px 33px 0 #13be49c0;
+      filter: brightness(1.19) drop-shadow(0 0 22px #a259ffd0);
+      box-shadow: 0 2px 33px 0 #c087ffb0;
     }
     /* Abas */
     .tabs-container {
@@ -202,22 +201,22 @@
       text-align: left;
       font-weight: 600;
       letter-spacing: .6px;
-      box-shadow: 0 0 10px #1fe06d34;
+      box-shadow: 0 0 10px #b97cff34;
       transition: background .14s, border .14s, color .12s, box-shadow .14s;
       outline: none;
     }
     .tab-btn.selected, .tab-btn:focus {
-      background: linear-gradient(90deg, #0f6244 0%, #134970 100%);
+      background: linear-gradient(90deg, #58318b 0%, #a259ff 100%);
       border: 1.7px solid var(--neon);
       color: #fff;
-      box-shadow: 0 0 30px #0fffa844;
+      box-shadow: 0 0 30px #a259ff66;
       filter: brightness(1.18);
     }
     .tab-icon {
       font-size: 1.25em;
       display: flex;
       align-items: center;
-      filter: drop-shadow(0 0 2px #12c0f5a0);
+      filter: drop-shadow(0 0 2px #c087ff80);
     }
     .tab-content {
       margin-top: 1.2em;
@@ -251,24 +250,24 @@
       padding: 1em .9em;
       border: 1.5px solid var(--neon-light);
       border-radius: 10px;
-      background: #131c19;
+      background: #1a0a2a;
       color: var(--neon);
       font-size: 1.03rem;
-      box-shadow: 0 0 10px #13be4926;
+      box-shadow: 0 0 10px #c087ff26;
       outline: none;
       letter-spacing: 1.2px;
       text-shadow: 0 0 6px var(--neon-light);
       transition: border .13s, box-shadow .13s;
     }
     input[type=email]:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 18px #4be8f899;
+      border-color: var(--neon);
+      box-shadow: 0 0 18px #c087ff99;
     }
     .input-err {
       color: var(--error);
       font-size: .95em;
       margin-top: -.6em;
-      text-shadow: 0 0 8px #ff3b3b77;
+      text-shadow: 0 0 8px #ff3b8b77;
       text-align: center;
     }
     /* Responsivo */
@@ -291,20 +290,20 @@
 <body>
   <canvas id="matrix-canvas"></canvas>
   <header>
-    <!-- SVG LOGO: Foguete saindo de livros -->
+    <!-- SVG LOGO: Foguete saindo de livros, roxo neon -->
     <span class="logo-svg">
       <svg width="30" height="32" viewBox="0 0 30 32" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g filter="url(#glow)">
-          <rect x="3" y="22" width="24" height="6" rx="2.5" fill="#11fa7c" fill-opacity="0.12" stroke="#39ff14" stroke-width="1.2"/>
-          <rect x="7" y="18" width="16" height="5" rx="2.5" fill="#12c0f5" fill-opacity="0.13" stroke="#12c0f5" stroke-width="1"/>
-          <ellipse cx="15" cy="13.5" rx="4" ry="6.5" fill="#11fa7c" fill-opacity="0.18" stroke="#39ff14" stroke-width="1.5"/>
-          <polygon points="13,12 17,12 15,5" fill="#fff" stroke="#4be8f8" stroke-width="1"/>
-          <ellipse cx="15" cy="5.2" rx="1" ry="1.8" fill="#fff" fill-opacity="0.85"/>
+          <rect x="3" y="22" width="24" height="6" rx="2.5" fill="#fff" fill-opacity="0.10" stroke="#a259ff" stroke-width="1.2"/>
+          <rect x="7" y="18" width="16" height="5" rx="2.5" fill="#fff" fill-opacity="0.13" stroke="#fff" stroke-width="1"/>
+          <ellipse cx="15" cy="13.5" rx="4" ry="6.5" fill="#a259ff" fill-opacity="0.15" stroke="#fff" stroke-width="1.3"/>
+          <polygon points="13,12 17,12 15,5" fill="#fff" stroke="#a259ff" stroke-width="1.3"/>
+          <ellipse cx="15" cy="5.2" rx="1" ry="1.8" fill="#fff" fill-opacity="0.82"/>
         </g>
         <defs>
           <filter id="glow" x="0" y="0" width="30" height="32" filterUnits="userSpaceOnUse">
-            <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#21f279" flood-opacity="0.5"/>
-            <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#39ff14" flood-opacity="0.17"/>
+            <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#a259ff" flood-opacity="0.5"/>
+            <feDropShadow dx="0" dy="0" stdDeviation="7" flood-color="#fff" flood-opacity="0.15"/>
           </filter>
         </defs>
       </svg>
@@ -321,7 +320,7 @@
           Aqui o jogo muda.
         </div>
         <div class="btn-row">
-          <button onclick="nextScreen(2)">Avançar <span style='font-size:1.2em'>→</span></button>
+          <button id="btn-avancar">Avançar <span style='font-size:1.2em'>→</span></button>
         </div>
       </div>
     </section>
@@ -329,15 +328,11 @@
     <section class="screen" id="screen-2">
       <div class="glass">
         <div class="headline">Você vai aprender, de uma vez por todas:</div>
-        <div class="tabs-container" id="tabs">
-          <!-- JS Gera abas aqui -->
-        </div>
-        <div class="tab-content" id="tab-content">
-          <!-- JS mostra conteúdo aqui -->
-        </div>
+        <div class="tabs-container" id="tabs"></div>
+        <div class="tab-content" id="tab-content"></div>
         <div class="btn-row" style="margin-top:1.3em;">
-          <button onclick="nextScreen(3)">Continuar</button>
-          <button class="btn" onclick="nextScreen(1)">Voltar</button>
+          <button id="btn-continuar">Continuar</button>
+          <button class="btn" id="btn-voltar1">Voltar</button>
         </div>
       </div>
     </section>
@@ -355,7 +350,7 @@
           <button type="submit">Entrar para a Lista VIP</button>
         </form>
         <div class="btn-row">
-          <button class="btn" onclick="nextScreen(2)">Voltar</button>
+          <button class="btn" id="btn-voltar2">Voltar</button>
         </div>
       </div>
     </section>
@@ -369,13 +364,13 @@
           Sucesso!
         </div>
         <div class="btn-row">
-          <button onclick="nextScreen(1)">Voltar ao início</button>
+          <button id="btn-inicio">Voltar ao início</button>
         </div>
       </div>
     </section>
   </main>
   <script>
-    // Matrix Rain
+    // Matrix Rain (Roxo)
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;
@@ -392,9 +387,9 @@
     }
     window.addEventListener('resize', resizeMatrix);
     function drawMatrix() {
-      ctx.fillStyle = "rgba(10,16,10,0.19)";
+      ctx.fillStyle = "rgba(31,0,48,0.17)";
       ctx.fillRect(0, 0, width, height);
-      ctx.fillStyle = "#39ff14";
+      ctx.fillStyle = "#a259ff";
       ctx.font = fontSize + "px 'Share Tech Mono', monospace";
       for(let i = 0; i < drops.length; i++) {
         const text = String.fromCharCode(0x30A0 + Math.random() * 96);
@@ -408,13 +403,10 @@
     setInterval(drawMatrix, 41);
 
     // Telas
-    let current = 1;
     function showScreen(n) {
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
       document.getElementById('screen-' + n).classList.add('active');
-      current = n;
     }
-    function nextScreen(n) { showScreen(n); }
 
     // Abas Inteligentes
     const TABS = [
@@ -450,6 +442,7 @@
       tabs.innerHTML = '';
       TABS.forEach((tab, idx) => {
         const btn = document.createElement('button');
+        btn.type = 'button';
         btn.className = 'tab-btn' + (idx === selectedTab ? ' selected' : '');
         btn.onclick = () => { selectedTab = idx; renderTabs(); };
         btn.innerHTML = `<span class="tab-icon">${tab.icon}</span> <span>${tab.label}</span>`;
@@ -457,9 +450,31 @@
       });
       document.getElementById('tab-content').innerHTML = `<span>${TABS[selectedTab].desc}</span>`;
     }
-    // Inicializa abas ao entrar na tela 2
     function openTabs() { selectedTab = 0; renderTabs(); }
-    document.querySelector('button[onclick="nextScreen(2)"]').addEventListener('click', openTabs);
+
+    // Eventos dos botões (depois do DOM)
+    window.onload = function() {
+      showScreen(1);
+      // Avançar
+      document.getElementById('btn-avancar').onclick = function() {
+        showScreen(2);
+        openTabs();
+      };
+      // Tabs continuar/voltar
+      document.getElementById('btn-continuar').onclick = function() {
+        showScreen(3);
+      };
+      document.getElementById('btn-voltar1').onclick = function() {
+        showScreen(1);
+      };
+      document.getElementById('btn-voltar2').onclick = function() {
+        showScreen(2);
+        openTabs();
+      };
+      document.getElementById('btn-inicio').onclick = function() {
+        showScreen(1);
+      };
+    };
 
     // Formulário
     function submitLead(e) {
@@ -473,12 +488,10 @@
         return false;
       }
       err.style.display = 'none';
-      nextScreen(4);
+      showScreen(4);
       // return true; // Se for Netlify real, descomente para enviar.
       return false;
     }
-    // Inicializa tela
-    showScreen(1);
   </script>
 </body>
 </html>
