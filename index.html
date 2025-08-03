@@ -7,21 +7,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --roxo: #9147ff;
-      --roxo-claro: #b88bfa;
-      --bg: #10101a;
-      --panel: rgba(255,255,255,0.13);
-      --glass: rgba(255,255,255,0.23);
+      --roxo-neon: #a259ff;
+      --roxo-bg: #2a1747;
+      --roxo-border: #9147ff;
+      --bg: #120b1a;
       --white: #fff;
-      --tab: #181836;
+      --painel: rgba(42, 23, 71, 0.93);
+      --tab: #1e1033;
+      --tab-sel: #a259ff;
+      --tab-text: #fff;
+      --tab-text-sel: #232030;
+      --shadow: 0 0 28px #a259ff90, 0 0 70px #fff3;
       --error: #ff3572;
-      --yellow: #ffe44a;
     }
     html, body {
       margin: 0; padding: 0;
       background: var(--bg);
       color: var(--white);
-      font-family: 'Space Mono', 'Courier New', monospace;
+      font-family: 'Space Mono', monospace;
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -31,40 +34,38 @@
       left: 0; top: 0;
       width: 100vw; height: 100vh;
       pointer-events: none;
-      opacity: .18;
-      filter: blur(0.4px) brightness(1.07);
+      opacity: .08;
+      filter: blur(0.3px) brightness(1.03);
     }
     header {
       position: fixed;
       z-index: 10;
       top: 0; left: 0;
       width: 100vw;
-      height: 74px;
+      height: 70px;
       display: flex;
       align-items: center;
-      gap: 1.1em;
+      gap: 1em;
       padding: 0 2vw;
-      background: linear-gradient(90deg, #191929 0%, #1c1236 100%);
-      border-bottom: 2px solid var(--roxo-claro);
+      background: var(--roxo-bg);
+      border-bottom: 2px solid var(--roxo-neon);
       user-select: none;
-      box-shadow: 0 4px 18px #9147ff25;
+      box-shadow: 0 4px 16px #a259ff44;
     }
     .logo-png {
-      height: 54px;
+      height: 50px;
       width: auto;
-      border-radius: 13px;
+      border-radius: 11px;
       background: #fff;
       object-fit: contain;
-      box-shadow: 0 0 26px #b88bfa48, 0 0 8px #9147ff40 inset;
       margin-left: 0.2em;
     }
     .header-title {
-      font-size: 1.37rem;
+      font-size: 1.23rem;
       font-weight: bold;
       color: var(--white);
       letter-spacing: 2.5px;
-      text-shadow: 0 0 18px #fff, 0 0 10px var(--roxo);
-      margin-right: .3em;
+      text-shadow: 0 0 12px #fff, 0 0 7px var(--roxo-neon);
     }
     main {
       position: relative;
@@ -72,7 +73,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 90px 0 0 0;
+      padding: 85px 0 0 0;
       z-index: 2;
     }
     .screen {
@@ -81,60 +82,58 @@
       align-items: center;
       justify-content: center;
       position: absolute;
-      top: 74px; left: 0;
+      top: 70px; left: 0;
       width: 100vw;
-      min-height: calc(100vh - 74px);
+      min-height: calc(100vh - 70px);
       opacity: 0;
-      transition: opacity .45s, transform .35s;
-      transform: translateY(16px) scale(.98);
+      transition: opacity .38s, transform .3s;
+      transform: translateY(10px) scale(.97);
       z-index: 2;
       padding: 0 7vw;
-      overflow: visible;
     }
     .screen.active {
       display: flex;
       opacity: 1;
       pointer-events: auto;
       transform: none;
-      animation: fadeInScreen .5s;
+      animation: fadeInScreen .4s;
     }
     @keyframes fadeInScreen {
-      from { opacity: 0; transform: translateY(20px) scale(.94);}
+      from { opacity: 0; transform: translateY(15px) scale(.96);}
       to   { opacity: 1; transform: none;}
     }
     .glass {
-      background: var(--glass);
-      border: 2.2px solid var(--roxo-claro);
+      background: var(--painel);
+      border: 2.1px solid var(--roxo-border);
       border-radius: 18px;
-      box-shadow: 0 0 32px #9147ff2a, 0 0 90px #fff3;
-      padding: 2.7em 2.2em 2.5em 2.2em;
-      margin-bottom: 1.3em;
+      box-shadow: var(--shadow);
+      padding: 2.2em 1.2em 2em 1.2em;
+      margin-bottom: 1.1em;
       width: 100%;
-      max-width: 440px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: box-shadow .15s, border .13s;
+      max-width: 410px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       position: relative;
       overflow: visible;
     }
     .headline {
-      font-size: 1.34rem;
+      font-size: 1.18rem;
       font-weight: bold;
-      margin-bottom: 1.1em;
-      color: var(--roxo);
-      text-shadow: 0 0 20px #fff, 0 0 10px var(--roxo);
-      letter-spacing: 1.5px;
+      margin-bottom: 0.7em;
+      color: var(--roxo-neon);
+      text-shadow: 0 0 11px #fff, 0 0 8px var(--roxo-neon);
+      letter-spacing: 1.2px;
       text-align: center;
     }
     .desc {
-      font-size: 1.12rem;
+      font-size: 1.04rem;
       color: #fff;
-      margin-bottom: 2em;
-      line-height: 1.6em;
-      letter-spacing: 0.4px;
-      text-shadow: 0 0 5px #fff7;
+      margin-bottom: 1.2em;
+      line-height: 1.53em;
       text-align: center;
       font-weight: bold;
+      letter-spacing: 0.2px;
+      text-shadow: 0 0 3px #fff8;
     }
     .btn-row {
       display: flex;
@@ -145,96 +144,90 @@
     }
     button, .btn {
       font-family: inherit;
-      background: linear-gradient(98deg, #9147ff 0%, #fff 80%);
-      color: #232030;
+      background: linear-gradient(97deg, #fff 0%, #a259ff 100%);
+      color: #18122b;
       font-weight: bold;
       border: none;
-      border-radius: 17px;
-      box-shadow: 0 3px 20px 0 #9147ff88;
-      padding: 1.15em 2.6em;
-      font-size: 1.22rem;
-      letter-spacing: 1.6px;
+      border-radius: 13px;
+      box-shadow: 0 3px 16px 0 #a259ff90;
+      padding: 1.05em 2.3em;
+      font-size: 1.08rem;
+      letter-spacing: 1.2px;
       cursor: pointer;
-      transition: transform .14s, box-shadow .13s, filter .14s;
-      filter: brightness(1.12) drop-shadow(0 0 9px #a97fffbb);
+      transition: transform .13s, box-shadow .13s, filter .12s;
+      filter: brightness(1.08);
       outline: none;
-      margin-bottom: 0;
     }
     button:active, .btn:active {
-      transform: scale(.98);
-      filter: brightness(1.04);
-      box-shadow: 0 2px 23px 0 #a97fff77;
+      transform: scale(.97);
+      filter: brightness(0.98);
     }
     button:hover, .btn:hover {
-      filter: brightness(1.17) drop-shadow(0 0 23px #9147ffd0);
-      box-shadow: 0 2px 39px 0 #b88bfae2;
+      filter: brightness(1.12);
+      box-shadow: 0 2px 26px 0 #a259ffcc;
     }
     .tabs-container {
       display: flex;
       width: 100%;
-      max-width: 420px;
-      margin: 0 auto 1.4em auto;
+      max-width: 390px;
+      margin: 0 auto 1.3em auto;
       flex-direction: column;
-      gap: 1em;
+      gap: 0.7em;
     }
-    @media (min-width: 650px) {
+    @media (min-width: 740px) {
+      .glass { max-width: 440px;}
       .tabs-container {
         flex-direction: row;
-        gap: 1.3em;
+        gap: 1em;
       }
     }
     .tab-btn {
       flex: 1;
       display: flex;
       align-items: center;
-      gap: 0.7em;
+      justify-content: center;
       background: var(--tab);
-      border: 2px solid var(--roxo-claro);
-      color: #fff;
-      border-radius: 10px;
-      font-size: 1.12em;
-      padding: 1em .8em;
+      border: 2px solid var(--roxo-neon);
+      color: var(--tab-text);
+      border-radius: 8px;
+      font-size: 1em;
+      padding: 1em .6em;
       cursor: pointer;
       font-weight: 700;
-      letter-spacing: .7px;
-      box-shadow: 0 0 12px #9147ff34;
-      transition: background .13s, border .13s, color .11s, box-shadow .12s;
+      letter-spacing: .5px;
+      box-shadow: 0 0 7px #a259ff44;
+      transition: background .12s, border .13s, color .13s, box-shadow .12s;
       outline: none;
+      min-width: 120px;
+      max-width: 180px;
     }
     .tab-btn.selected, .tab-btn:focus {
-      background: linear-gradient(90deg, #fff 20%, #9147ff 100%);
-      border: 2.6px solid #fff;
-      color: var(--roxo);
-      box-shadow: 0 0 40px #fff6, 0 0 13px #9147ff75;
-      filter: brightness(1.14);
-    }
-    .tab-icon {
-      font-size: 1.38em;
-      display: flex;
-      align-items: center;
-      filter: drop-shadow(0 0 3px #9147ffb5);
+      background: var(--tab-sel);
+      border: 2.4px solid #fff;
+      color: var(--tab-text-sel);
+      box-shadow: 0 0 18px #a259ff99, 0 0 10px #fff;
+      filter: brightness(1.08);
     }
     .tab-content {
-      margin-top: 1.4em;
-      min-height: 56px;
+      margin-top: 1.15em;
+      min-height: 36px;
       text-align: center;
-      color: var(--yellow);
-      font-size: 1.13em;
-      animation: fadeInTab .47s;
+      color: #ffe44a;
+      font-size: 1.06em;
+      animation: fadeInTab .4s;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 52px;
-      line-height: 1.52em;
       font-weight: bold;
       text-shadow: 0 0 4px #fff;
+      letter-spacing: 0.1px;
     }
     @keyframes fadeInTab {
-      from { opacity:0; transform: translateY(13px);}
+      from { opacity:0; transform: translateY(10px);}
       to   { opacity:1; transform: none;}
     }
     .input-row {
-      margin-top: 1.3em;
+      margin-top: 1.1em;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -243,43 +236,42 @@
     }
     input[type=email] {
       width: 97%;
-      max-width: 340px;
-      padding: 1.08em .95em;
-      border: 2.2px solid var(--roxo);
-      border-radius: 12px;
+      max-width: 330px;
+      padding: 1em .9em;
+      border: 2px solid var(--roxo-neon);
+      border-radius: 10px;
       background: #fff;
-      color: #232030;
-      font-size: 1.09rem;
+      color: #18122b;
+      font-size: 1.04rem;
       font-family: inherit;
-      box-shadow: 0 0 10px #9147ff22;
-      outline: none;
-      letter-spacing: 1.1px;
-      text-shadow: 0 0 4px #fff;
-      transition: border .13s, box-shadow .12s;
       font-weight: bold;
+      box-shadow: 0 0 8px #a259ff33;
+      outline: none;
+      letter-spacing: 1px;
+      transition: border .13s, box-shadow .13s;
     }
     input[type=email]:focus {
-      border-color: var(--yellow);
-      box-shadow: 0 0 15px #ffe44a66;
-      color: #9147ff;
+      border-color: #ffe44a;
+      box-shadow: 0 0 12px #ffe44a66;
+      color: var(--roxo-neon);
     }
     .input-err {
       color: var(--error);
       font-size: 1em;
-      margin-top: -.5em;
+      margin-top: -.4em;
       text-shadow: 0 0 8px #ff357277;
       text-align: center;
       font-weight: bold;
     }
-    @media (max-width: 650px) {
-      .glass { max-width: 97vw; padding: 1em 0.3em 1.2em 0.3em; }
-      .headline { font-size: 1.12rem; }
-      .desc { font-size: .99rem; }
-      button, .btn { font-size: 1.03rem; padding: 1em 1.1em;}
-      .tab-btn { font-size: 1em; padding: .8em .5em;}
-      .tab-content { font-size: 1em;}
+    @media (max-width: 600px) {
+      .glass { max-width: 97vw; padding: 1em 0.2em 1.2em 0.2em; }
+      .headline { font-size: 1rem; }
+      .desc { font-size: .95rem; }
+      button, .btn { font-size: .99rem; padding: 1em 1.1em;}
+      .tab-btn { font-size: .98em; padding: .85em .4em; min-width: 98px;}
+      .tab-content { font-size: .98em;}
       main, .screen { padding: 0 1vw; }
-      .logo-png { height: 40px;}
+      .logo-png { height: 38px;}
     }
     ::-webkit-scrollbar { width: 0 !important }
   </style>
@@ -287,7 +279,7 @@
 <body>
   <canvas id="matrix-canvas"></canvas>
   <header>
-    <img src="/mnt/data/be48b5b3-b851-43f3-bfbe-16056ed1ddad.png" alt="PG Concursos Logo" class="logo-png" />
+    <img src="/mnt/data/14c44404-b65a-4532-a8fe-408578ed057c.png" alt="PG Concursos Logo" class="logo-png" />
     <span class="header-title">PG Concursos Públicos</span>
   </header>
   <main>
@@ -300,7 +292,7 @@
           Aqui o jogo muda.
         </div>
         <div class="btn-row">
-          <button id="btn-avancar">Avançar <span style='font-size:1.15em'>→</span></button>
+          <button id="btn-avancar">Avançar <span style='font-size:1em'>→</span></button>
         </div>
       </div>
     </section>
@@ -350,26 +342,26 @@
     </section>
   </main>
   <script>
-    // Matrix Rain (melhor visível, roxo, não polui)
+    // Matrix Rain (sutil)
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
-    let fontSize = window.innerWidth < 600 ? 16 : 20;
+    let fontSize = window.innerWidth < 600 ? 15 : 18;
     let columns = Math.floor(width / fontSize) + 2;
     let drops = Array(columns).fill(1);
     function resizeMatrix() {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-      fontSize = window.innerWidth < 600 ? 16 : 20;
+      fontSize = window.innerWidth < 600 ? 15 : 18;
       columns = Math.floor(width / fontSize) + 2;
       drops = Array(columns).fill(1);
     }
     window.addEventListener('resize', resizeMatrix);
     function drawMatrix() {
-      ctx.fillStyle = "rgba(41,0,80,0.14)";
+      ctx.fillStyle = "rgba(20,8,32,0.13)";
       ctx.fillRect(0, 0, width, height);
-      ctx.fillStyle = "#b88bfa";
+      ctx.fillStyle = "#a259ff";
       ctx.font = fontSize + "px 'Space Mono', monospace";
       for(let i = 0; i < drops.length; i++) {
         const text = String.fromCharCode(0x30A0 + Math.random() * 96);
@@ -390,11 +382,11 @@
 
     // Abas Inteligentes
     const TABS = [
-      { label: "Ciclo Inteligente", icon: "🚀", desc: "Monte ciclos de estudos que aceleram sua evolução, sem perder tempo e sem sobrecarregar sua mente." },
-      { label: "Questões na Medida", icon: "🧠", desc: "Resolva questões no momento certo e na quantidade certa para fixar conteúdo sem decorar à toa." },
-      { label: "Marcação Inteligente", icon: "📚", desc: "Aprenda a marcar o material de forma eficiente, tornando cada revisão mais rápida e produtiva." },
-      { label: "Revisões Poderosas", icon: "🔁", desc: "Implemente revisões de alto impacto, garantindo que nada importante seja esquecido na hora da prova." },
-      { label: "E muito mais...", icon: "✨", desc: "Filtros de prioridade, simulados, dicas práticas e acompanhamento passo a passo." }
+      { label: "Ciclo Inteligente", desc: "Monte ciclos de estudos que aceleram sua evolução, sem perder tempo e sem sobrecarregar sua mente." },
+      { label: "Questões na Medida", desc: "Resolva questões no momento certo e na quantidade certa para fixar conteúdo sem decorar à toa." },
+      { label: "Marcação Inteligente", desc: "Aprenda a marcar o material de forma eficiente, tornando cada revisão mais rápida e produtiva." },
+      { label: "Revisões Poderosas", desc: "Implemente revisões de alto impacto, garantindo que nada importante seja esquecido na hora da prova." },
+      { label: "E muito mais...", desc: "Filtros de prioridade, simulados, dicas práticas e acompanhamento passo a passo." }
     ];
     let selectedTab = 0;
     function renderTabs() {
@@ -404,8 +396,8 @@
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'tab-btn' + (idx === selectedTab ? ' selected' : '');
+        btn.textContent = tab.label;
         btn.onclick = () => { selectedTab = idx; renderTabs(); };
-        btn.innerHTML = `<span class="tab-icon">${tab.icon}</span> <span>${tab.label}</span>`;
         tabs.appendChild(btn);
       });
       document.getElementById('tab-content').innerHTML = `<span>${TABS[selectedTab].desc}</span>`;
