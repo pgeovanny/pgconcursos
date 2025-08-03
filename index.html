@@ -5,29 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Manual do Aprovado - PG Concursos</title>
   <meta name="theme-color" content="#0f0" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     :root {
-      --neon: #36ff69;
-      --neon-dark: #13be49;
-      --bg: #0a0a0a;
-      --glass-bg: rgba(0, 24, 0, 0.6);
-      --accent: #4be8f8;
+      --neon: #39ff14;
+      --neon-light: #60ffb8;
+      --accent: #12c0f5;
+      --glass: rgba(0, 24, 0, 0.74);
+      --bg: #090d0a;
       --error: #ff3b3b;
-      --shadow: 0 4px 32px 0 #13be4955;
     }
     html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       background: var(--bg);
-      font-family: 'Share Tech Mono', 'Courier New', Courier, monospace;
       color: var(--neon);
-      overflow-x: hidden;
+      font-family: 'Share Tech Mono', 'Courier New', Courier, monospace;
+      height: 100%;
       min-height: 100vh;
-      touch-action: manipulation;
-      -webkit-tap-highlight-color: transparent;
+      overflow-x: hidden;
     }
     /* Matrix Rain */
     #matrix-canvas {
@@ -37,95 +32,101 @@
       width: 100vw;
       height: 100vh;
       pointer-events: none;
-      opacity: .7;
-      filter: blur(0.3px);
+      opacity: 0.75;
+      filter: blur(0.6px) contrast(1.15);
     }
-    /* Cabeçalho */
+    /* Header */
     header {
       position: fixed;
-      z-index: 2;
+      z-index: 10;
       top: 0; left: 0;
       width: 100vw;
-      background: linear-gradient(90deg, #051e0d 0%, #062323 100%);
-      box-shadow: 0 2px 12px #13be4933;
+      height: 62px;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 52px;
+      gap: .8em;
       padding: 0 2vw;
-      border-bottom: 1.5px solid var(--neon-dark);
+      background: linear-gradient(90deg, #092a14 0%, #052323 100%);
+      box-shadow: 0 2px 14px #13be4936;
+      border-bottom: 2px solid #26ff7b55;
       user-select: none;
-      font-size: 1.15rem;
-      letter-spacing: 1px;
     }
-    .logo {
+    .logo-png {
+      height: 34px;
+      width: auto;
+      margin-right: 1em;
+      border-radius: 6px;
+      box-shadow: 0 0 18px #00ff8058, 0 0 8px #39ff1440 inset;
+      background: #012a11;
+    }
+    .logo-title {
+      font-size: 1.19rem;
       font-weight: bold;
-      font-size: 1.2rem;
       color: var(--neon);
-      text-shadow: 0 0 14px var(--neon);
-      filter: brightness(1.1) drop-shadow(0 0 3px #13be49aa);
-      margin-right: .6em;
       letter-spacing: 2px;
-      text-transform: uppercase;
+      text-shadow: 0 0 14px var(--neon);
+      margin-right: .5em;
     }
     .header-tag {
-      font-size: .98rem;
+      font-size: 1.06rem;
       color: var(--accent);
-      margin-left: .5em;
       letter-spacing: 1px;
       font-weight: 400;
-      opacity: .86;
+      opacity: .93;
     }
+    /* Layout */
     main {
-      z-index: 1;
       position: relative;
-      width: 100vw;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 60px 0 0 0;
+      padding: 75px 0 0 0;
+      z-index: 2;
     }
     .screen {
       display: none;
-      width: 100vw;
-      min-height: calc(100vh - 70px);
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      transition: opacity .4s, transform .4s;
-      opacity: 0;
-      transform: translateY(24px) scale(.97);
       position: absolute;
-      left: 0; top: 52px;
+      top: 62px; left: 0;
+      width: 100vw;
+      min-height: calc(100vh - 62px);
+      opacity: 0;
+      transition: opacity .55s cubic-bezier(.4,1,.6,1), transform .45s;
+      transform: translateY(30px) scale(.96);
       z-index: 2;
-      padding: 0 8vw;
+      padding: 0 6vw;
+      overflow: visible;
     }
     .screen.active {
       display: flex;
       opacity: 1;
-      transform: none;
       pointer-events: auto;
-      animation: fadeIn .6s;
+      transform: none;
+      animation: fadeInScreen .7s cubic-bezier(.4,1,.6,1);
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px) scale(.94);}
+    @keyframes fadeInScreen {
+      from { opacity: 0; transform: translateY(30px) scale(.96);}
       to   { opacity: 1; transform: none;}
     }
-    /* Painel Glassmorphism */
+    /* Painel central */
     .glass {
-      background: var(--glass-bg);
-      border: 1.5px solid var(--neon-dark);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      padding: 2.2em 1.6em 2em 1.6em;
+      background: var(--glass);
+      border: 1.6px solid var(--neon-light);
+      border-radius: 19px;
+      box-shadow: 0 0 20px #1fe06d38, 0 0 60px #11fa7c13;
+      padding: 2.5em 1.8em 2em 1.8em;
       margin-bottom: 1.4em;
       width: 100%;
-      max-width: 375px;
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      transition: box-shadow .18s;
+      max-width: 380px;
+      backdrop-filter: blur(9px);
+      -webkit-backdrop-filter: blur(9px);
+      transition: box-shadow .17s, border .13s;
+      position: relative;
+      overflow: visible;
     }
     /* Textos */
     .headline {
@@ -135,14 +136,32 @@
       color: var(--neon);
       text-shadow: 0 0 10px var(--neon);
       letter-spacing: 1.5px;
+      text-align: center;
     }
     .desc {
-      font-size: 1.06rem;
+      font-size: 1.09rem;
       color: #baf0cc;
       margin-bottom: 1.8em;
-      line-height: 1.58em;
-      letter-spacing: 0.7px;
-      text-shadow: 0 0 6px #13be4970;
+      line-height: 1.6em;
+      letter-spacing: 0.8px;
+      text-shadow: 0 0 7px #13be4970;
+      text-align: center;
+    }
+    .console-fake {
+      background: rgba(12, 34, 16, 0.33);
+      border: 1px solid #25ff8760;
+      color: #adffb2;
+      font-size: .95em;
+      border-radius: 7px;
+      padding: 1em .7em .8em .7em;
+      margin: 0 auto 1.3em auto;
+      text-align: left;
+      box-shadow: 0 0 10px #13be4923;
+      max-width: 95vw;
+      overflow-x: auto;
+      font-family: inherit;
+      word-break: break-all;
+      line-height: 1.47em;
     }
     /* Botões */
     .btn-row {
@@ -154,32 +173,34 @@
     }
     button, .btn {
       font-family: inherit;
-      background: linear-gradient(98deg, #11fa7c 0%, #1ce1a1 100%);
-      color: #111;
+      background: linear-gradient(97deg, #21f279 0%, #24a3ff 100%);
+      color: #00280e;
       font-weight: bold;
       border: none;
-      border-radius: 12px;
-      box-shadow: 0 2px 18px 0 #13be4940;
-      padding: 0.95em 2.2em;
-      font-size: 1.08rem;
+      border-radius: 13px;
+      box-shadow: 0 2px 20px 0 #13be4970;
+      padding: 0.99em 2.1em;
+      font-size: 1.07rem;
       letter-spacing: 1.5px;
       cursor: pointer;
       transition: transform .13s, box-shadow .13s, filter .1s;
-      filter: brightness(1.1) drop-shadow(0 0 6px #2fff85aa);
+      filter: brightness(1.11) drop-shadow(0 0 6px #2fff85aa);
       outline: none;
+      position: relative;
+      margin-bottom: 0;
     }
     button:active, .btn:active {
       transform: scale(.96);
-      filter: brightness(0.97);
-      box-shadow: 0 2px 18px 0 #13be4955;
+      filter: brightness(0.98);
+      box-shadow: 0 2px 22px 0 #13be49a7;
     }
     button:hover, .btn:hover {
-      filter: brightness(1.2) drop-shadow(0 0 20px #2fff8588);
-      box-shadow: 0 2px 30px 0 #13be49a0;
+      filter: brightness(1.15) drop-shadow(0 0 22px #2fff8588);
+      box-shadow: 0 2px 33px 0 #13be49c0;
     }
     /* Inputs */
     .input-row {
-      margin-top: 1.2em;
+      margin-top: 1.3em;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -187,20 +208,19 @@
       width: 100%;
     }
     input[type=email] {
-      width: 98%;
+      width: 97%;
       max-width: 340px;
       padding: 1em .9em;
-      border: 1.5px solid var(--neon-dark);
+      border: 1.5px solid var(--neon-light);
       border-radius: 10px;
-      background: #141e1b;
+      background: #131c19;
       color: var(--neon);
-      font-size: 1.03rem;
-      box-shadow: 0 0 10px #13be4920;
+      font-size: 1.04rem;
+      box-shadow: 0 0 11px #13be4926;
       outline: none;
-      margin-bottom: 0.2em;
       letter-spacing: 1.2px;
-      text-shadow: 0 0 6px var(--neon-dark);
-      transition: border .18s, box-shadow .14s;
+      text-shadow: 0 0 6px var(--neon-light);
+      transition: border .15s, box-shadow .15s;
     }
     input[type=email]:focus {
       border-color: var(--accent);
@@ -209,29 +229,32 @@
     .input-err {
       color: var(--error);
       font-size: .95em;
-      margin-top: -.7em;
-      text-shadow: 0 0 8px #ff3b3b99;
+      margin-top: -.6em;
+      text-shadow: 0 0 8px #ff3b3b77;
+      text-align: center;
     }
     /* Mobile responsivo */
     @media (max-width: 600px) {
       .glass {
-        max-width: 97vw;
-        padding: 1.2em 0.6em 1.4em 0.6em;
+        max-width: 99vw;
+        padding: 1.1em 0.2em 1.25em 0.2em;
       }
-      .headline { font-size: 1.08rem; }
-      .desc { font-size: .98rem; }
-      button, .btn { font-size: .98rem; padding: .9em 1.7em;}
+      .headline { font-size: 1.06rem; }
+      .desc { font-size: .96rem; }
+      button, .btn { font-size: .98rem; padding: .9em 1.5em;}
       main, .screen { padding: 0 2vw; }
-      header { font-size: .97rem;}
+      header { font-size: .96rem;}
+      .console-fake { font-size: .88em;}
     }
-    /* Esconde scroll, protege UX */
+    /* Esconde scroll */
     ::-webkit-scrollbar { width: 0 !important }
   </style>
 </head>
 <body>
   <canvas id="matrix-canvas"></canvas>
   <header>
-    <span class="logo">PG Concursos</span>
+    <img src="/mnt/data/00f33b14-ea89-4981-ae1c-5132b4bc592b.png" alt="PG Concursos Logo" class="logo-png" />
+    <span class="logo-title">PG CONCURSOS</span>
     <span class="header-tag">| Manual do Aprovado</span>
   </header>
   <main>
@@ -240,8 +263,10 @@
       <div class="glass">
         <div class="headline">BEM-VINDO(A) AO MANUAL DO APROVADO</div>
         <div class="desc">
-          Prepare-se para descobrir como os aprovados realmente estudam.<br/>
-          Método direto, testado, pronto para transformar seu resultado.
+          Prepare-se para desbloquear o método dos aprovados.<br/>
+          100% prático. Sem enrolação.<br/>
+          <br/>
+          <span class="console-fake">root@aprovado:~$ <span style="color:#fff">start_aprovacao --nivel=alto</span></span>
         </div>
         <div class="btn-row">
           <button onclick="nextScreen(2)">Avançar <span style='font-size:1.2em'>→</span></button>
@@ -253,9 +278,11 @@
       <div class="glass">
         <div class="headline">Por que este projeto existe?</div>
         <div class="desc">
-          Depois de anos entre erros, reprovações e finalmente aprovações,<br>
-          percebi que ninguém ensina como estudar de verdade.<br>
-          Aqui, você encontra um método prático, construído por quem viveu cada etapa do caminho.
+          Chega de fórmulas mágicas que não funcionam.<br/>
+          <br/>
+          Após anos de erros e acertos, reprovei, insisti e venci.<br/>
+          Aqui você encontra o caminho real, passo a passo, testado no campo de batalha dos concursos.<br/>
+          <span class="console-fake">root@aprovado:~$ <span style="color:#fff">get_mindset --from=fails --to=success</span></span>
         </div>
         <div class="btn-row">
           <button onclick="nextScreen(3)">Quero aprender como</button>
@@ -269,8 +296,8 @@
         <div class="headline">Você está pronto(a)?</div>
         <div class="desc">
           O próximo passo pode acelerar sua aprovação.<br/>
-          Deixe seu melhor e-mail e receba o passo a passo direto e gratuito.<br>
-          <span style="color:var(--accent)">Nada de enrolação. Só o essencial.</span>
+          Deixe seu melhor e-mail para receber o passo a passo real, exclusivo, direto no seu inbox.<br/>
+          <span class="console-fake">root@aprovado:~$ <span style="color:#fff">add_lead --vip</span></span>
         </div>
         <form class="input-row" id="leadForm" method="POST" data-netlify="true" autocomplete="off" onsubmit="return submitLead(event)">
           <input type="email" id="emailInput" name="email" placeholder="Seu e-mail" required/>
@@ -288,7 +315,8 @@
         <div class="headline">Tudo certo! 🙌</div>
         <div class="desc">
           Você agora faz parte da Lista VIP.<br/>
-          Fique atento(a) ao seu e-mail. O Manual do Aprovado chega em breve!
+          Fique atento(a) ao seu e-mail. O Manual do Aprovado chega em breve!<br/>
+          <span class="console-fake">root@aprovado:~$ <span style="color:#fff">conquista_final --aprovado</span></span>
         </div>
         <div class="btn-row">
           <button onclick="nextScreen(1)">Voltar ao início</button>
@@ -297,7 +325,7 @@
     </section>
   </main>
   <script>
-    // Matrix Rain Effect (suave para mobile)
+    // Matrix Rain Effect
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;
@@ -314,7 +342,7 @@
     }
     window.addEventListener('resize', resizeMatrix);
     function drawMatrix() {
-      ctx.fillStyle = "rgba(10,15,10,0.22)";
+      ctx.fillStyle = "rgba(10,16,10,0.19)";
       ctx.fillRect(0, 0, width, height);
       ctx.fillStyle = "#39ff14";
       ctx.font = fontSize + "px 'Share Tech Mono', monospace";
@@ -329,7 +357,7 @@
     }
     setInterval(drawMatrix, 41);
 
-    // Lógica de telas
+    // Telas & transições
     let current = 1;
     function showScreen(n) {
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -337,7 +365,7 @@
       current = n;
     }
     function nextScreen(n) { showScreen(n); }
-    // Validação e feedback do formulário
+    // Validação do formulário
     function submitLead(e) {
       e.preventDefault();
       const email = document.getElementById('emailInput').value.trim();
@@ -349,18 +377,17 @@
         return false;
       }
       err.style.display = 'none';
-      // Aqui, simulação de envio; se Netlify, remove o return false!
       nextScreen(4);
       // return true; // Se for Netlify real, descomente para enviar.
       return false;
     }
-    // Mobile acessibilidade (Enter = submit, ESC = voltar)
+    // Mobile acessibilidade
     document.addEventListener('keydown', function(e) {
       if (document.activeElement === document.getElementById('emailInput')) {
         if (e.key === 'Escape') nextScreen(2);
       }
     });
-    // Inicializa na tela 1
+    // Inicializa
     showScreen(1);
   </script>
 </body>
