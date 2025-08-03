@@ -7,22 +7,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --roxo-neon: #a259ff;
-      --roxo-bg: #2a1747;
-      --roxo-border: #9147ff;
-      --bg: #120b1a;
+      --roxo-bg: #19132a;
+      --roxo-neon: #9147ff;
+      --roxo-soft: #a07fff;
       --white: #fff;
-      --painel: rgba(42, 23, 71, 0.93);
-      --tab: #1e1033;
-      --tab-sel: #a259ff;
-      --tab-text: #fff;
-      --tab-text-sel: #232030;
-      --shadow: 0 0 28px #a259ff90, 0 0 70px #fff3;
-      --error: #ff3572;
+      --amarelo: #ffe859;
+      --painel: rgba(28, 22, 46, 0.97);
+      --tab-sel: #fff;
+      --tab-bg: #221a37;
+      --tab-border: #a07fff;
+      --shadow: 0 0 26px #9147ff44, 0 0 60px #fff2;
     }
     html, body {
       margin: 0; padding: 0;
-      background: var(--bg);
+      background: var(--roxo-bg);
       color: var(--white);
       font-family: 'Space Mono', monospace;
       min-height: 100vh;
@@ -34,46 +32,43 @@
       left: 0; top: 0;
       width: 100vw; height: 100vh;
       pointer-events: none;
-      opacity: .08;
-      filter: blur(0.3px) brightness(1.03);
+      opacity: .06;
+      filter: blur(0.2px) brightness(1.01);
     }
     header {
       position: fixed;
       z-index: 10;
       top: 0; left: 0;
       width: 100vw;
-      height: 70px;
+      height: 64px;
       display: flex;
       align-items: center;
-      gap: 1em;
+      gap: 1.1em;
       padding: 0 2vw;
       background: var(--roxo-bg);
-      border-bottom: 2px solid var(--roxo-neon);
-      user-select: none;
-      box-shadow: 0 4px 16px #a259ff44;
+      border-bottom: 2px solid var(--roxo-soft);
+      box-shadow: 0 2px 12px #9147ff23;
     }
-    .logo-png {
-      height: 50px;
-      width: auto;
-      border-radius: 11px;
-      background: #fff;
-      object-fit: contain;
+    .logo-svg {
+      width: 44px;
+      height: 44px;
+      display: flex; align-items: center; justify-content: center;
       margin-left: 0.2em;
     }
     .header-title {
-      font-size: 1.23rem;
+      font-size: 1.35rem;
       font-weight: bold;
       color: var(--white);
       letter-spacing: 2.5px;
-      text-shadow: 0 0 12px #fff, 0 0 7px var(--roxo-neon);
+      text-shadow: 0 0 10px #fff, 0 0 8px var(--roxo-neon);
+      margin-right: .3em;
     }
     main {
-      position: relative;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 85px 0 0 0;
+      padding: 72px 0 0 0;
       z-index: 2;
     }
     .screen {
@@ -82,261 +77,156 @@
       align-items: center;
       justify-content: center;
       position: absolute;
-      top: 70px; left: 0;
+      top: 64px; left: 0;
       width: 100vw;
-      min-height: calc(100vh - 70px);
+      min-height: calc(100vh - 64px);
       opacity: 0;
-      transition: opacity .38s, transform .3s;
-      transform: translateY(10px) scale(.97);
+      transition: opacity .36s, transform .25s;
+      transform: translateY(12px) scale(.98);
       z-index: 2;
-      padding: 0 7vw;
+      padding: 0 6vw;
     }
-    .screen.active {
-      display: flex;
-      opacity: 1;
-      pointer-events: auto;
-      transform: none;
-      animation: fadeInScreen .4s;
-    }
-    @keyframes fadeInScreen {
-      from { opacity: 0; transform: translateY(15px) scale(.96);}
-      to   { opacity: 1; transform: none;}
-    }
+    .screen.active { display: flex; opacity: 1; pointer-events: auto; transform: none; }
     .glass {
       background: var(--painel);
-      border: 2.1px solid var(--roxo-border);
-      border-radius: 18px;
+      border: 1.7px solid var(--roxo-soft);
+      border-radius: 16px;
       box-shadow: var(--shadow);
-      padding: 2.2em 1.2em 2em 1.2em;
+      padding: 2em 1.5em 2.1em 1.5em;
       margin-bottom: 1.1em;
       width: 100%;
-      max-width: 410px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      max-width: 390px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       position: relative;
       overflow: visible;
     }
+    /* HEADLINES */
     .headline {
-      font-size: 1.18rem;
+      font-size: 1.37rem;
       font-weight: bold;
-      margin-bottom: 0.7em;
-      color: var(--roxo-neon);
-      text-shadow: 0 0 11px #fff, 0 0 8px var(--roxo-neon);
-      letter-spacing: 1.2px;
+      color: var(--roxo-soft);
+      letter-spacing: 1.1px;
+      text-shadow: 0 0 6px #fff8, 0 0 4px var(--roxo-neon);
       text-align: center;
+      margin-bottom: 0.4em;
     }
-    .desc {
-      font-size: 1.04rem;
-      color: #fff;
-      margin-bottom: 1.2em;
-      line-height: 1.53em;
-      text-align: center;
+    .subtitle {
+      font-size: 1.12rem;
       font-weight: bold;
-      letter-spacing: 0.2px;
-      text-shadow: 0 0 3px #fff8;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 1.7em;
+      letter-spacing: 0.4px;
+      text-shadow: 0 0 3px #fff7;
+    }
+    /* TABS */
+    .tabs-list {
+      display: flex;
+      gap: 0.7em;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 1.4em;
+    }
+    .tab-btn {
+      background: var(--tab-bg);
+      border: 2px solid var(--tab-border);
+      color: var(--white);
+      border-radius: 8px;
+      font-size: 1em;
+      font-family: inherit;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      padding: 1.03em 1.3em;
+      margin-bottom: 0.2em;
+      cursor: pointer;
+      transition: background .13s, color .12s, border .13s;
+      box-shadow: 0 0 8px #9147ff32;
+      min-width: 150px;
+      outline: none;
+    }
+    .tab-btn.selected, .tab-btn:focus {
+      background: var(--tab-sel);
+      color: var(--roxo-bg);
+      border: 2px solid var(--roxo-neon);
+      box-shadow: 0 0 14px #a07fff80;
+      filter: brightness(1.1);
+    }
+    .tab-content {
+      min-height: 36px;
+      text-align: center;
+      color: var(--amarelo);
+      font-size: 1.11em;
+      font-weight: bold;
+      margin-bottom: 1.7em;
+      text-shadow: 0 0 3px #fff6;
+      line-height: 1.5em;
+      letter-spacing: 0.1px;
+      padding: 0 .1em;
     }
     .btn-row {
       display: flex;
       justify-content: center;
       gap: 1em;
-      margin-top: 1em;
+      margin-top: 1.1em;
       flex-wrap: wrap;
     }
     button, .btn {
       font-family: inherit;
-      background: linear-gradient(97deg, #fff 0%, #a259ff 100%);
-      color: #18122b;
+      background: linear-gradient(95deg, #fff 0%, #a07fff 100%);
+      color: #271851;
       font-weight: bold;
       border: none;
-      border-radius: 13px;
-      box-shadow: 0 3px 16px 0 #a259ff90;
-      padding: 1.05em 2.3em;
+      border-radius: 11px;
+      box-shadow: 0 2px 10px 0 #a07fff66;
+      padding: 1em 2em;
       font-size: 1.08rem;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.1px;
       cursor: pointer;
-      transition: transform .13s, box-shadow .13s, filter .12s;
-      filter: brightness(1.08);
+      transition: transform .13s, box-shadow .12s, filter .12s;
+      filter: brightness(1.05);
       outline: none;
     }
-    button:active, .btn:active {
-      transform: scale(.97);
-      filter: brightness(0.98);
-    }
-    button:hover, .btn:hover {
-      filter: brightness(1.12);
-      box-shadow: 0 2px 26px 0 #a259ffcc;
-    }
-    .tabs-container {
-      display: flex;
-      width: 100%;
-      max-width: 390px;
-      margin: 0 auto 1.3em auto;
-      flex-direction: column;
-      gap: 0.7em;
-    }
-    @media (min-width: 740px) {
-      .glass { max-width: 440px;}
-      .tabs-container {
-        flex-direction: row;
-        gap: 1em;
-      }
-    }
-    .tab-btn {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--tab);
-      border: 2px solid var(--roxo-neon);
-      color: var(--tab-text);
-      border-radius: 8px;
-      font-size: 1em;
-      padding: 1em .6em;
-      cursor: pointer;
-      font-weight: 700;
-      letter-spacing: .5px;
-      box-shadow: 0 0 7px #a259ff44;
-      transition: background .12s, border .13s, color .13s, box-shadow .12s;
-      outline: none;
-      min-width: 120px;
-      max-width: 180px;
-    }
-    .tab-btn.selected, .tab-btn:focus {
-      background: var(--tab-sel);
-      border: 2.4px solid #fff;
-      color: var(--tab-text-sel);
-      box-shadow: 0 0 18px #a259ff99, 0 0 10px #fff;
-      filter: brightness(1.08);
-    }
-    .tab-content {
-      margin-top: 1.15em;
-      min-height: 36px;
-      text-align: center;
-      color: #ffe44a;
-      font-size: 1.06em;
-      animation: fadeInTab .4s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      text-shadow: 0 0 4px #fff;
-      letter-spacing: 0.1px;
-    }
-    @keyframes fadeInTab {
-      from { opacity:0; transform: translateY(10px);}
-      to   { opacity:1; transform: none;}
-    }
-    .input-row {
-      margin-top: 1.1em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1em;
-      width: 100%;
-    }
-    input[type=email] {
-      width: 97%;
-      max-width: 330px;
-      padding: 1em .9em;
-      border: 2px solid var(--roxo-neon);
-      border-radius: 10px;
-      background: #fff;
-      color: #18122b;
-      font-size: 1.04rem;
-      font-family: inherit;
-      font-weight: bold;
-      box-shadow: 0 0 8px #a259ff33;
-      outline: none;
-      letter-spacing: 1px;
-      transition: border .13s, box-shadow .13s;
-    }
-    input[type=email]:focus {
-      border-color: #ffe44a;
-      box-shadow: 0 0 12px #ffe44a66;
-      color: var(--roxo-neon);
-    }
-    .input-err {
-      color: var(--error);
-      font-size: 1em;
-      margin-top: -.4em;
-      text-shadow: 0 0 8px #ff357277;
-      text-align: center;
-      font-weight: bold;
-    }
+    button:hover, .btn:hover { filter: brightness(1.12);}
+    button:active, .btn:active { transform: scale(.98);}
     @media (max-width: 600px) {
-      .glass { max-width: 97vw; padding: 1em 0.2em 1.2em 0.2em; }
-      .headline { font-size: 1rem; }
-      .desc { font-size: .95rem; }
-      button, .btn { font-size: .99rem; padding: 1em 1.1em;}
-      .tab-btn { font-size: .98em; padding: .85em .4em; min-width: 98px;}
-      .tab-content { font-size: .98em;}
-      main, .screen { padding: 0 1vw; }
-      .logo-png { height: 38px;}
+      .glass { max-width: 97vw; padding: 1.2em 0.5em 1.5em 0.5em; }
+      .headline { font-size: 1.12rem; }
+      .subtitle { font-size: .98rem;}
+      button, .btn { font-size: .97rem; padding: .97em .6em;}
+      .tab-btn { font-size: .97em; padding: .95em .4em; min-width: 90px;}
     }
-    ::-webkit-scrollbar { width: 0 !important }
   </style>
 </head>
 <body>
   <canvas id="matrix-canvas"></canvas>
   <header>
-    <img src="/mnt/data/14c44404-b65a-4532-a8fe-408578ed057c.png" alt="PG Concursos Logo" class="logo-png" />
+    <!-- Logo SVG moderna -->
+    <span class="logo-svg">
+      <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
+        <g>
+          <rect x="7" y="27" width="24" height="6" rx="2.6" fill="#fff" fill-opacity="0.09" stroke="#a259ff" stroke-width="1.5"/>
+          <rect x="11" y="21" width="16" height="5" rx="2.2" fill="#fff" fill-opacity="0.13" stroke="#fff" stroke-width="1"/>
+          <ellipse cx="19" cy="15.5" rx="5" ry="7" fill="#a259ff" fill-opacity="0.18" stroke="#fff" stroke-width="1.3"/>
+          <polygon points="17,14 21,14 19,4" fill="#fff" stroke="#a259ff" stroke-width="1.3"/>
+          <ellipse cx="19" cy="4.8" rx="1.1" ry="2" fill="#fff" fill-opacity="0.82"/>
+          <rect x="15" y="34" width="8" height="2" rx="1" fill="#fff" fill-opacity="0.22"/>
+        </g>
+      </svg>
+    </span>
     <span class="header-title">PG Concursos Públicos</span>
   </header>
   <main>
-    <!-- Tela 1 -->
-    <section class="screen active" id="screen-1">
-      <div class="glass">
-        <div class="headline">Bem-vindo(a)!</div>
-        <div class="desc">
-          Prepare-se para uma nova mentalidade nos estudos.<br/>
-          Aqui o jogo muda.
-        </div>
-        <div class="btn-row">
-          <button id="btn-avancar">Avançar <span style='font-size:1em'>→</span></button>
-        </div>
-      </div>
-    </section>
     <!-- Tela 2: Abas Inteligentes -->
-    <section class="screen" id="screen-2">
+    <section class="screen active" id="screen-2">
       <div class="glass">
-        <div class="headline">Você vai aprender, de uma vez por todas:</div>
-        <div class="tabs-container" id="tabs"></div>
+        <div class="headline">Você vai aprender de verdade</div>
+        <div class="subtitle">Tudo que você precisa, em uma plataforma direta e sem enrolação.</div>
+        <div class="tabs-list" id="tabs"></div>
         <div class="tab-content" id="tab-content"></div>
-        <div class="btn-row" style="margin-top:1.1em;">
+        <div class="btn-row">
           <button id="btn-continuar">Continuar</button>
           <button class="btn" id="btn-voltar1">Voltar</button>
-        </div>
-      </div>
-    </section>
-    <!-- Tela 3: Interesse -->
-    <section class="screen" id="screen-3">
-      <div class="glass">
-        <div class="headline">Faça parte dos aprovados.</div>
-        <div class="desc">
-          Deixe seu melhor e-mail e receba o passo a passo direto no seu inbox.<br/>
-          Exclusivo, prático, sem enrolação.
-        </div>
-        <form class="input-row" id="leadForm" method="POST" data-netlify="true" autocomplete="off" onsubmit="return submitLead(event)">
-          <input type="email" id="emailInput" name="email" placeholder="Seu e-mail" required/>
-          <div id="errEmail" class="input-err" style="display:none"></div>
-          <button type="submit">Entrar para a Lista VIP</button>
-        </form>
-        <div class="btn-row">
-          <button class="btn" id="btn-voltar2">Voltar</button>
-        </div>
-      </div>
-    </section>
-    <!-- Tela 4: Obrigado -->
-    <section class="screen" id="screen-4">
-      <div class="glass">
-        <div class="headline">Tudo certo! 🙌</div>
-        <div class="desc">
-          Você agora faz parte da Lista VIP.<br/>
-          Fique atento(a) ao seu e-mail.<br/>
-          Sucesso!
-        </div>
-        <div class="btn-row">
-          <button id="btn-inicio">Voltar ao início</button>
         </div>
       </div>
     </section>
@@ -347,19 +237,19 @@
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
-    let fontSize = window.innerWidth < 600 ? 15 : 18;
+    let fontSize = window.innerWidth < 600 ? 15 : 19;
     let columns = Math.floor(width / fontSize) + 2;
     let drops = Array(columns).fill(1);
     function resizeMatrix() {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-      fontSize = window.innerWidth < 600 ? 15 : 18;
+      fontSize = window.innerWidth < 600 ? 15 : 19;
       columns = Math.floor(width / fontSize) + 2;
       drops = Array(columns).fill(1);
     }
     window.addEventListener('resize', resizeMatrix);
     function drawMatrix() {
-      ctx.fillStyle = "rgba(20,8,32,0.13)";
+      ctx.fillStyle = "rgba(30,20,50,0.12)";
       ctx.fillRect(0, 0, width, height);
       ctx.fillStyle = "#a259ff";
       ctx.font = fontSize + "px 'Space Mono', monospace";
@@ -372,13 +262,7 @@
         drops[i]++;
       }
     }
-    setInterval(drawMatrix, 48);
-
-    // Telas
-    function showScreen(n) {
-      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-      document.getElementById('screen-' + n).classList.add('active');
-    }
+    setInterval(drawMatrix, 50);
 
     // Abas Inteligentes
     const TABS = [
@@ -402,35 +286,7 @@
       });
       document.getElementById('tab-content').innerHTML = `<span>${TABS[selectedTab].desc}</span>`;
     }
-    function openTabs() { selectedTab = 0; renderTabs(); }
-
-    window.onload = function() {
-      showScreen(1);
-      document.getElementById('btn-avancar').onclick = function() {
-        showScreen(2); openTabs();
-      };
-      document.getElementById('btn-continuar').onclick = function() { showScreen(3);}
-      document.getElementById('btn-voltar1').onclick = function() { showScreen(1);}
-      document.getElementById('btn-voltar2').onclick = function() { showScreen(2); openTabs(); }
-      document.getElementById('btn-inicio').onclick = function() { showScreen(1);}
-    };
-
-    // Formulário
-    function submitLead(e) {
-      e.preventDefault();
-      const email = document.getElementById('emailInput').value.trim();
-      const err = document.getElementById('errEmail');
-      const regex = /^[\w-.]+@[\w-]+\.[a-z]{2,}$/i;
-      if (!regex.test(email)) {
-        err.innerText = "E-mail inválido. Tente novamente.";
-        err.style.display = 'block';
-        return false;
-      }
-      err.style.display = 'none';
-      showScreen(4);
-      // return true; // Se for Netlify real, descomente para enviar.
-      return false;
-    }
+    renderTabs();
   </script>
 </body>
 </html>
