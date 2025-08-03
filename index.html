@@ -3,86 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Manual do Aprovado - PG Concursos</title>
-  <meta name="theme-color" content="#0f0" />
+  <title>PG Concursos Públicos</title>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     :root {
       --neon: #39ff14;
-      --neon-light: #60ffb8;
+      --neon-light: #74ffca;
       --accent: #12c0f5;
-      --glass: rgba(0, 24, 0, 0.74);
+      --glass: rgba(0, 24, 0, 0.70);
       --bg: #090d0a;
       --error: #ff3b3b;
+      --tab-bg: rgba(13,40,18,0.68);
+      --tab-border: #1cffc8aa;
     }
     html, body {
       margin: 0; padding: 0;
       background: var(--bg);
       color: var(--neon);
       font-family: 'Share Tech Mono', 'Courier New', Courier, monospace;
-      height: 100%;
       min-height: 100vh;
       overflow-x: hidden;
     }
-    /* Matrix Rain */
     #matrix-canvas {
       position: fixed;
       z-index: 0;
       left: 0; top: 0;
-      width: 100vw;
-      height: 100vh;
+      width: 100vw; height: 100vh;
       pointer-events: none;
-      opacity: 0.75;
-      filter: blur(0.6px) contrast(1.15);
+      opacity: .7;
+      filter: blur(0.5px) contrast(1.09);
     }
-    /* Header */
     header {
       position: fixed;
       z-index: 10;
       top: 0; left: 0;
       width: 100vw;
-      height: 62px;
+      height: 60px;
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: .8em;
       padding: 0 2vw;
       background: linear-gradient(90deg, #092a14 0%, #052323 100%);
-      box-shadow: 0 2px 14px #13be4936;
       border-bottom: 2px solid #26ff7b55;
       user-select: none;
+      box-shadow: 0 2px 14px #13be4936;
     }
-    .logo-png {
-      height: 34px;
-      width: auto;
+    .logo-svg {
+      height: 35px;
+      width: 35px;
       margin-right: 1em;
-      border-radius: 6px;
+      border-radius: 7px;
       box-shadow: 0 0 18px #00ff8058, 0 0 8px #39ff1440 inset;
       background: #012a11;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .logo-title {
-      font-size: 1.19rem;
+    .header-title {
+      font-size: 1.22rem;
       font-weight: bold;
       color: var(--neon);
       letter-spacing: 2px;
       text-shadow: 0 0 14px var(--neon);
-      margin-right: .5em;
+      margin-right: .3em;
     }
-    .header-tag {
-      font-size: 1.06rem;
-      color: var(--accent);
-      letter-spacing: 1px;
-      font-weight: 400;
-      opacity: .93;
-    }
-    /* Layout */
     main {
       position: relative;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 75px 0 0 0;
+      padding: 70px 0 0 0;
       z-index: 2;
     }
     .screen {
@@ -91,9 +82,9 @@
       align-items: center;
       justify-content: center;
       position: absolute;
-      top: 62px; left: 0;
+      top: 60px; left: 0;
       width: 100vw;
-      min-height: calc(100vh - 62px);
+      min-height: calc(100vh - 60px);
       opacity: 0;
       transition: opacity .55s cubic-bezier(.4,1,.6,1), transform .45s;
       transform: translateY(30px) scale(.96);
@@ -112,63 +103,45 @@
       from { opacity: 0; transform: translateY(30px) scale(.96);}
       to   { opacity: 1; transform: none;}
     }
-    /* Painel central */
     .glass {
       background: var(--glass);
-      border: 1.6px solid var(--neon-light);
-      border-radius: 19px;
-      box-shadow: 0 0 20px #1fe06d38, 0 0 60px #11fa7c13;
-      padding: 2.5em 1.8em 2em 1.8em;
-      margin-bottom: 1.4em;
+      border: 1.5px solid var(--neon-light);
+      border-radius: 18px;
+      box-shadow: 0 0 18px #1fe06d34, 0 0 44px #11fa7c19;
+      padding: 2.1em 1.5em 2em 1.5em;
+      margin-bottom: 1.3em;
       width: 100%;
-      max-width: 380px;
+      max-width: 390px;
       backdrop-filter: blur(9px);
       -webkit-backdrop-filter: blur(9px);
-      transition: box-shadow .17s, border .13s;
+      transition: box-shadow .15s, border .15s;
       position: relative;
       overflow: visible;
     }
-    /* Textos */
     .headline {
-      font-size: 1.3rem;
+      font-size: 1.19rem;
       font-weight: bold;
-      margin-bottom: .9em;
+      margin-bottom: .7em;
       color: var(--neon);
       text-shadow: 0 0 10px var(--neon);
-      letter-spacing: 1.5px;
+      letter-spacing: 1.3px;
       text-align: center;
     }
     .desc {
-      font-size: 1.09rem;
+      font-size: 1.02rem;
       color: #baf0cc;
-      margin-bottom: 1.8em;
-      line-height: 1.6em;
-      letter-spacing: 0.8px;
+      margin-bottom: 1.4em;
+      line-height: 1.5em;
+      letter-spacing: 0.7px;
       text-shadow: 0 0 7px #13be4970;
       text-align: center;
     }
-    .console-fake {
-      background: rgba(12, 34, 16, 0.33);
-      border: 1px solid #25ff8760;
-      color: #adffb2;
-      font-size: .95em;
-      border-radius: 7px;
-      padding: 1em .7em .8em .7em;
-      margin: 0 auto 1.3em auto;
-      text-align: left;
-      box-shadow: 0 0 10px #13be4923;
-      max-width: 95vw;
-      overflow-x: auto;
-      font-family: inherit;
-      word-break: break-all;
-      line-height: 1.47em;
-    }
-    /* Botões */
+    /* Botão */
     .btn-row {
       display: flex;
       justify-content: center;
       gap: 1em;
-      margin-top: .4em;
+      margin-top: .5em;
       flex-wrap: wrap;
     }
     button, .btn {
@@ -179,12 +152,12 @@
       border: none;
       border-radius: 13px;
       box-shadow: 0 2px 20px 0 #13be4970;
-      padding: 0.99em 2.1em;
-      font-size: 1.07rem;
-      letter-spacing: 1.5px;
+      padding: 0.97em 2em;
+      font-size: 1.04rem;
+      letter-spacing: 1.2px;
       cursor: pointer;
-      transition: transform .13s, box-shadow .13s, filter .1s;
-      filter: brightness(1.11) drop-shadow(0 0 6px #2fff85aa);
+      transition: transform .12s, box-shadow .12s, filter .1s;
+      filter: brightness(1.12) drop-shadow(0 0 6px #2fff85aa);
       outline: none;
       position: relative;
       margin-bottom: 0;
@@ -198,7 +171,72 @@
       filter: brightness(1.15) drop-shadow(0 0 22px #2fff8588);
       box-shadow: 0 2px 33px 0 #13be49c0;
     }
-    /* Inputs */
+    /* Abas */
+    .tabs-container {
+      display: flex;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto 1.2em auto;
+      flex-direction: column;
+      gap: 0.8em;
+    }
+    @media (min-width: 650px) {
+      .tabs-container {
+        flex-direction: row;
+        gap: 1em;
+      }
+    }
+    .tab-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.6em;
+      background: var(--tab-bg);
+      border: 1.2px solid var(--tab-border);
+      color: var(--neon);
+      border-radius: 9px;
+      font-size: 1.01em;
+      padding: .82em .7em;
+      cursor: pointer;
+      filter: brightness(1.1);
+      text-align: left;
+      font-weight: 600;
+      letter-spacing: .6px;
+      box-shadow: 0 0 10px #1fe06d34;
+      transition: background .14s, border .14s, color .12s, box-shadow .14s;
+      outline: none;
+    }
+    .tab-btn.selected, .tab-btn:focus {
+      background: linear-gradient(90deg, #0f6244 0%, #134970 100%);
+      border: 1.7px solid var(--neon);
+      color: #fff;
+      box-shadow: 0 0 30px #0fffa844;
+      filter: brightness(1.18);
+    }
+    .tab-icon {
+      font-size: 1.25em;
+      display: flex;
+      align-items: center;
+      filter: drop-shadow(0 0 2px #12c0f5a0);
+    }
+    .tab-content {
+      margin-top: 1.2em;
+      min-height: 54px;
+      text-align: center;
+      color: var(--accent);
+      font-size: 1.03em;
+      animation: fadeInTab .5s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      line-height: 1.4em;
+    }
+    @keyframes fadeInTab {
+      from { opacity:0; transform: translateY(20px);}
+      to   { opacity:1; transform: none;}
+    }
+    /* Formulário */
     .input-row {
       margin-top: 1.3em;
       display: flex;
@@ -209,18 +247,18 @@
     }
     input[type=email] {
       width: 97%;
-      max-width: 340px;
+      max-width: 320px;
       padding: 1em .9em;
       border: 1.5px solid var(--neon-light);
       border-radius: 10px;
       background: #131c19;
       color: var(--neon);
-      font-size: 1.04rem;
-      box-shadow: 0 0 11px #13be4926;
+      font-size: 1.03rem;
+      box-shadow: 0 0 10px #13be4926;
       outline: none;
       letter-spacing: 1.2px;
       text-shadow: 0 0 6px var(--neon-light);
-      transition: border .15s, box-shadow .15s;
+      transition: border .13s, box-shadow .13s;
     }
     input[type=email]:focus {
       border-color: var(--accent);
@@ -233,71 +271,83 @@
       text-shadow: 0 0 8px #ff3b3b77;
       text-align: center;
     }
-    /* Mobile responsivo */
+    /* Responsivo */
     @media (max-width: 600px) {
       .glass {
-        max-width: 99vw;
-        padding: 1.1em 0.2em 1.25em 0.2em;
+        max-width: 98vw;
+        padding: 1.1em 0.5em 1.3em 0.5em;
       }
-      .headline { font-size: 1.06rem; }
+      .headline { font-size: 1.05rem; }
       .desc { font-size: .96rem; }
-      button, .btn { font-size: .98rem; padding: .9em 1.5em;}
+      button, .btn { font-size: .97rem; padding: .85em 1.3em;}
       main, .screen { padding: 0 2vw; }
-      header { font-size: .96rem;}
-      .console-fake { font-size: .88em;}
+      header { font-size: .97rem;}
+      .tab-btn { font-size: .98em; padding: .7em .6em;}
+      .tab-content { font-size: .99em;}
     }
-    /* Esconde scroll */
     ::-webkit-scrollbar { width: 0 !important }
   </style>
 </head>
 <body>
   <canvas id="matrix-canvas"></canvas>
   <header>
-    <img src="/mnt/data/00f33b14-ea89-4981-ae1c-5132b4bc592b.png" alt="PG Concursos Logo" class="logo-png" />
-    <span class="logo-title">PG CONCURSOS</span>
-    <span class="header-tag">| Manual do Aprovado</span>
+    <!-- SVG LOGO: Foguete saindo de livros -->
+    <span class="logo-svg">
+      <svg width="30" height="32" viewBox="0 0 30 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g filter="url(#glow)">
+          <rect x="3" y="22" width="24" height="6" rx="2.5" fill="#11fa7c" fill-opacity="0.12" stroke="#39ff14" stroke-width="1.2"/>
+          <rect x="7" y="18" width="16" height="5" rx="2.5" fill="#12c0f5" fill-opacity="0.13" stroke="#12c0f5" stroke-width="1"/>
+          <ellipse cx="15" cy="13.5" rx="4" ry="6.5" fill="#11fa7c" fill-opacity="0.18" stroke="#39ff14" stroke-width="1.5"/>
+          <polygon points="13,12 17,12 15,5" fill="#fff" stroke="#4be8f8" stroke-width="1"/>
+          <ellipse cx="15" cy="5.2" rx="1" ry="1.8" fill="#fff" fill-opacity="0.85"/>
+        </g>
+        <defs>
+          <filter id="glow" x="0" y="0" width="30" height="32" filterUnits="userSpaceOnUse">
+            <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#21f279" flood-opacity="0.5"/>
+            <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#39ff14" flood-opacity="0.17"/>
+          </filter>
+        </defs>
+      </svg>
+    </span>
+    <span class="header-title">PG Concursos Públicos</span>
   </header>
   <main>
     <!-- Tela 1 -->
     <section class="screen active" id="screen-1">
       <div class="glass">
-        <div class="headline">BEM-VINDO(A) AO MANUAL DO APROVADO</div>
+        <div class="headline">Bem-vindo(a)!</div>
         <div class="desc">
-          Prepare-se para desbloquear o método dos aprovados.<br/>
-          100% prático. Sem enrolação.<br/>
-          <br/>
-          <span class="console-fake">root@aprovado:~$ <span style="color:#fff">start_aprovacao --nivel=alto</span></span>
+          Prepare-se para uma nova mentalidade nos estudos.<br/>
+          Aqui o jogo muda.
         </div>
         <div class="btn-row">
           <button onclick="nextScreen(2)">Avançar <span style='font-size:1.2em'>→</span></button>
         </div>
       </div>
     </section>
-    <!-- Tela 2 -->
+    <!-- Tela 2: Abas Inteligentes -->
     <section class="screen" id="screen-2">
       <div class="glass">
-        <div class="headline">Por que este projeto existe?</div>
-        <div class="desc">
-          Chega de fórmulas mágicas que não funcionam.<br/>
-          <br/>
-          Após anos de erros e acertos, reprovei, insisti e venci.<br/>
-          Aqui você encontra o caminho real, passo a passo, testado no campo de batalha dos concursos.<br/>
-          <span class="console-fake">root@aprovado:~$ <span style="color:#fff">get_mindset --from=fails --to=success</span></span>
+        <div class="headline">Você vai aprender, de uma vez por todas:</div>
+        <div class="tabs-container" id="tabs">
+          <!-- JS Gera abas aqui -->
         </div>
-        <div class="btn-row">
-          <button onclick="nextScreen(3)">Quero aprender como</button>
+        <div class="tab-content" id="tab-content">
+          <!-- JS mostra conteúdo aqui -->
+        </div>
+        <div class="btn-row" style="margin-top:1.3em;">
+          <button onclick="nextScreen(3)">Continuar</button>
           <button class="btn" onclick="nextScreen(1)">Voltar</button>
         </div>
       </div>
     </section>
-    <!-- Tela 3 -->
+    <!-- Tela 3: Interesse -->
     <section class="screen" id="screen-3">
       <div class="glass">
-        <div class="headline">Você está pronto(a)?</div>
+        <div class="headline">Faça parte dos aprovados.</div>
         <div class="desc">
-          O próximo passo pode acelerar sua aprovação.<br/>
-          Deixe seu melhor e-mail para receber o passo a passo real, exclusivo, direto no seu inbox.<br/>
-          <span class="console-fake">root@aprovado:~$ <span style="color:#fff">add_lead --vip</span></span>
+          Deixe seu melhor e-mail e receba o passo a passo direto no seu inbox.<br/>
+          Exclusivo, prático, sem enrolação.
         </div>
         <form class="input-row" id="leadForm" method="POST" data-netlify="true" autocomplete="off" onsubmit="return submitLead(event)">
           <input type="email" id="emailInput" name="email" placeholder="Seu e-mail" required/>
@@ -315,8 +365,8 @@
         <div class="headline">Tudo certo! 🙌</div>
         <div class="desc">
           Você agora faz parte da Lista VIP.<br/>
-          Fique atento(a) ao seu e-mail. O Manual do Aprovado chega em breve!<br/>
-          <span class="console-fake">root@aprovado:~$ <span style="color:#fff">conquista_final --aprovado</span></span>
+          Fique atento(a) ao seu e-mail.<br/>
+          Sucesso!
         </div>
         <div class="btn-row">
           <button onclick="nextScreen(1)">Voltar ao início</button>
@@ -325,7 +375,7 @@
     </section>
   </main>
   <script>
-    // Matrix Rain Effect
+    // Matrix Rain
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;
@@ -357,7 +407,7 @@
     }
     setInterval(drawMatrix, 41);
 
-    // Telas & transições
+    // Telas
     let current = 1;
     function showScreen(n) {
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -365,7 +415,53 @@
       current = n;
     }
     function nextScreen(n) { showScreen(n); }
-    // Validação do formulário
+
+    // Abas Inteligentes
+    const TABS = [
+      {
+        label: "Ciclo Inteligente",
+        icon: "🚀",
+        desc: "Monte ciclos de estudos que aceleram sua evolução, sem perder tempo e sem sobrecarregar sua mente."
+      },
+      {
+        label: "Questões na Medida",
+        icon: "🧠",
+        desc: "Resolva questões no momento certo e na quantidade certa para fixar conteúdo sem decorar à toa."
+      },
+      {
+        label: "Marcação Inteligente",
+        icon: "📚",
+        desc: "Aprenda a marcar o material de forma eficiente, tornando cada revisão mais rápida e produtiva."
+      },
+      {
+        label: "Revisões Poderosas",
+        icon: "🔁",
+        desc: "Implemente revisões de alto impacto, garantindo que nada importante seja esquecido na hora da prova."
+      },
+      {
+        label: "E muito mais...",
+        icon: "✨",
+        desc: "Filtros de prioridade, simulados, dicas práticas e acompanhamento passo a passo."
+      }
+    ];
+    let selectedTab = 0;
+    function renderTabs() {
+      const tabs = document.getElementById('tabs');
+      tabs.innerHTML = '';
+      TABS.forEach((tab, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'tab-btn' + (idx === selectedTab ? ' selected' : '');
+        btn.onclick = () => { selectedTab = idx; renderTabs(); };
+        btn.innerHTML = `<span class="tab-icon">${tab.icon}</span> <span>${tab.label}</span>`;
+        tabs.appendChild(btn);
+      });
+      document.getElementById('tab-content').innerHTML = `<span>${TABS[selectedTab].desc}</span>`;
+    }
+    // Inicializa abas ao entrar na tela 2
+    function openTabs() { selectedTab = 0; renderTabs(); }
+    document.querySelector('button[onclick="nextScreen(2)"]').addEventListener('click', openTabs);
+
+    // Formulário
     function submitLead(e) {
       e.preventDefault();
       const email = document.getElementById('emailInput').value.trim();
@@ -381,13 +477,7 @@
       // return true; // Se for Netlify real, descomente para enviar.
       return false;
     }
-    // Mobile acessibilidade
-    document.addEventListener('keydown', function(e) {
-      if (document.activeElement === document.getElementById('emailInput')) {
-        if (e.key === 'Escape') nextScreen(2);
-      }
-    });
-    // Inicializa
+    // Inicializa tela
     showScreen(1);
   </script>
 </body>
