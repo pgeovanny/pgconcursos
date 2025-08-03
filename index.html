@@ -4,23 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PG Concursos Públicos</title>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #18122b;
-      --panel: #22184aee;
-      --accent: #fff;
-      --primary: #9147ff;
-      --secondary: #ffc800;
-      --error: #ff3b8b;
-      --tab: #251d3a;
-      --tab-border: #a97fff;
+      --roxo: #9147ff;
+      --roxo-claro: #b88bfa;
+      --bg: #10101a;
+      --panel: rgba(255,255,255,0.13);
+      --glass: rgba(255,255,255,0.23);
+      --white: #fff;
+      --tab: #181836;
+      --error: #ff3572;
+      --yellow: #ffe44a;
     }
     html, body {
       margin: 0; padding: 0;
       background: var(--bg);
-      color: var(--accent);
-      font-family: 'Share Tech Mono', 'Courier New', Courier, monospace;
+      color: var(--white);
+      font-family: 'Space Mono', 'Courier New', monospace;
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -30,38 +31,39 @@
       left: 0; top: 0;
       width: 100vw; height: 100vh;
       pointer-events: none;
-      opacity: .22;
-      filter: blur(0.4px) brightness(1.08);
+      opacity: .18;
+      filter: blur(0.4px) brightness(1.07);
     }
     header {
       position: fixed;
       z-index: 10;
       top: 0; left: 0;
       width: 100vw;
-      height: 62px;
+      height: 74px;
       display: flex;
       align-items: center;
-      gap: 1em;
+      gap: 1.1em;
       padding: 0 2vw;
-      background: linear-gradient(90deg, #23144a 0%, #2d1e61 100%);
-      border-bottom: 2px solid #a97fff88;
+      background: linear-gradient(90deg, #191929 0%, #1c1236 100%);
+      border-bottom: 2px solid var(--roxo-claro);
       user-select: none;
-      box-shadow: 0 2px 16px #9147ff28;
+      box-shadow: 0 4px 18px #9147ff25;
     }
-    .logo-svg {
-      width: 38px; height: 38px;
-      display: flex; align-items: center; justify-content: center;
-      background: transparent;
-      margin-right: 1em;
-      border-radius: 8px;
-      flex-shrink: 0;
+    .logo-png {
+      height: 54px;
+      width: auto;
+      border-radius: 13px;
+      background: #fff;
+      object-fit: contain;
+      box-shadow: 0 0 26px #b88bfa48, 0 0 8px #9147ff40 inset;
+      margin-left: 0.2em;
     }
     .header-title {
-      font-size: 1.22rem;
+      font-size: 1.37rem;
       font-weight: bold;
-      color: var(--primary);
-      letter-spacing: 2px;
-      text-shadow: 0 0 12px #fff8, 0 0 6px var(--primary);
+      color: var(--white);
+      letter-spacing: 2.5px;
+      text-shadow: 0 0 18px #fff, 0 0 10px var(--roxo);
       margin-right: .3em;
     }
     main {
@@ -70,7 +72,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 74px 0 0 0;
+      padding: 90px 0 0 0;
       z-index: 2;
     }
     .screen {
@@ -79,14 +81,14 @@
       align-items: center;
       justify-content: center;
       position: absolute;
-      top: 62px; left: 0;
+      top: 74px; left: 0;
       width: 100vw;
-      min-height: calc(100vh - 62px);
+      min-height: calc(100vh - 74px);
       opacity: 0;
-      transition: opacity .44s, transform .4s;
-      transform: translateY(24px) scale(.97);
+      transition: opacity .45s, transform .35s;
+      transform: translateY(16px) scale(.98);
       z-index: 2;
-      padding: 0 6vw;
+      padding: 0 7vw;
       overflow: visible;
     }
     .screen.active {
@@ -97,87 +99,88 @@
       animation: fadeInScreen .5s;
     }
     @keyframes fadeInScreen {
-      from { opacity: 0; transform: translateY(30px) scale(.94);}
+      from { opacity: 0; transform: translateY(20px) scale(.94);}
       to   { opacity: 1; transform: none;}
     }
     .glass {
-      background: var(--panel);
-      border: 2px solid var(--primary);
+      background: var(--glass);
+      border: 2.2px solid var(--roxo-claro);
       border-radius: 18px;
-      box-shadow: 0 0 22px #9147ff27, 0 0 44px #fff3;
-      padding: 2.2em 1.4em 2em 1.4em;
-      margin-bottom: 1.4em;
+      box-shadow: 0 0 32px #9147ff2a, 0 0 90px #fff3;
+      padding: 2.7em 2.2em 2.5em 2.2em;
+      margin-bottom: 1.3em;
       width: 100%;
-      max-width: 410px;
-      backdrop-filter: blur(11px);
-      -webkit-backdrop-filter: blur(11px);
-      transition: box-shadow .15s, border .12s;
+      max-width: 440px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: box-shadow .15s, border .13s;
       position: relative;
       overflow: visible;
     }
     .headline {
-      font-size: 1.2rem;
+      font-size: 1.34rem;
       font-weight: bold;
-      margin-bottom: 0.7em;
-      color: #fff;
-      text-shadow: 0 0 12px #fff8, 0 0 8px var(--primary);
-      letter-spacing: 1.1px;
+      margin-bottom: 1.1em;
+      color: var(--roxo);
+      text-shadow: 0 0 20px #fff, 0 0 10px var(--roxo);
+      letter-spacing: 1.5px;
       text-align: center;
     }
     .desc {
-      font-size: 1.08rem;
+      font-size: 1.12rem;
       color: #fff;
-      margin-bottom: 1.2em;
-      line-height: 1.55em;
-      letter-spacing: 0.6px;
-      text-shadow: 0 0 3px #fff7;
+      margin-bottom: 2em;
+      line-height: 1.6em;
+      letter-spacing: 0.4px;
+      text-shadow: 0 0 5px #fff7;
       text-align: center;
+      font-weight: bold;
     }
     .btn-row {
       display: flex;
       justify-content: center;
       gap: 1em;
-      margin-top: .5em;
+      margin-top: 1em;
       flex-wrap: wrap;
     }
     button, .btn {
       font-family: inherit;
-      background: linear-gradient(97deg, #9147ff 0%, #fff 100%);
-      color: #2d1e61;
+      background: linear-gradient(98deg, #9147ff 0%, #fff 80%);
+      color: #232030;
       font-weight: bold;
       border: none;
-      border-radius: 13px;
-      box-shadow: 0 2px 18px 0 #a97fff58;
-      padding: 1.1em 2.15em;
-      font-size: 1.13rem;
-      letter-spacing: 1.3px;
+      border-radius: 17px;
+      box-shadow: 0 3px 20px 0 #9147ff88;
+      padding: 1.15em 2.6em;
+      font-size: 1.22rem;
+      letter-spacing: 1.6px;
       cursor: pointer;
-      transition: transform .13s, box-shadow .13s, filter .12s;
-      filter: brightness(1.08) drop-shadow(0 0 8px #a97fffbb);
+      transition: transform .14s, box-shadow .13s, filter .14s;
+      filter: brightness(1.12) drop-shadow(0 0 9px #a97fffbb);
       outline: none;
       margin-bottom: 0;
     }
     button:active, .btn:active {
-      transform: scale(.97);
-      filter: brightness(0.99);
-      box-shadow: 0 2px 22px 0 #a97fff78;
+      transform: scale(.98);
+      filter: brightness(1.04);
+      box-shadow: 0 2px 23px 0 #a97fff77;
     }
     button:hover, .btn:hover {
-      filter: brightness(1.18) drop-shadow(0 0 22px #a97fffd0);
-      box-shadow: 0 2px 36px 0 #c087ffb0;
+      filter: brightness(1.17) drop-shadow(0 0 23px #9147ffd0);
+      box-shadow: 0 2px 39px 0 #b88bfae2;
     }
     .tabs-container {
       display: flex;
       width: 100%;
-      max-width: 400px;
-      margin: 0 auto 1.2em auto;
+      max-width: 420px;
+      margin: 0 auto 1.4em auto;
       flex-direction: column;
-      gap: 0.7em;
+      gap: 1em;
     }
     @media (min-width: 650px) {
       .tabs-container {
         flex-direction: row;
-        gap: 1em;
+        gap: 1.3em;
       }
     }
     .tab-btn {
@@ -186,46 +189,48 @@
       align-items: center;
       gap: 0.7em;
       background: var(--tab);
-      border: 1.5px solid var(--tab-border);
+      border: 2px solid var(--roxo-claro);
       color: #fff;
-      border-radius: 9px;
-      font-size: 1.05em;
-      padding: .89em .7em;
+      border-radius: 10px;
+      font-size: 1.12em;
+      padding: 1em .8em;
       cursor: pointer;
-      font-weight: 600;
-      letter-spacing: .6px;
-      box-shadow: 0 0 10px #a97fff22;
+      font-weight: 700;
+      letter-spacing: .7px;
+      box-shadow: 0 0 12px #9147ff34;
       transition: background .13s, border .13s, color .11s, box-shadow .12s;
       outline: none;
     }
     .tab-btn.selected, .tab-btn:focus {
-      background: linear-gradient(90deg, #502b86 0%, #9147ff 100%);
-      border: 2px solid #fff;
-      color: var(--secondary);
-      box-shadow: 0 0 28px #fff5, 0 0 13px #a97fff75;
-      filter: brightness(1.11);
+      background: linear-gradient(90deg, #fff 20%, #9147ff 100%);
+      border: 2.6px solid #fff;
+      color: var(--roxo);
+      box-shadow: 0 0 40px #fff6, 0 0 13px #9147ff75;
+      filter: brightness(1.14);
     }
     .tab-icon {
-      font-size: 1.35em;
+      font-size: 1.38em;
       display: flex;
       align-items: center;
-      filter: drop-shadow(0 0 2px #a97fff);
+      filter: drop-shadow(0 0 3px #9147ffb5);
     }
     .tab-content {
-      margin-top: 1.3em;
+      margin-top: 1.4em;
       min-height: 56px;
       text-align: center;
-      color: var(--secondary);
+      color: var(--yellow);
       font-size: 1.13em;
-      animation: fadeInTab .45s;
+      animation: fadeInTab .47s;
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 52px;
-      line-height: 1.5em;
+      line-height: 1.52em;
+      font-weight: bold;
+      text-shadow: 0 0 4px #fff;
     }
     @keyframes fadeInTab {
-      from { opacity:0; transform: translateY(16px);}
+      from { opacity:0; transform: translateY(13px);}
       to   { opacity:1; transform: none;}
     }
     .input-row {
@@ -239,38 +244,42 @@
     input[type=email] {
       width: 97%;
       max-width: 340px;
-      padding: 1em .9em;
-      border: 2px solid var(--primary);
-      border-radius: 10px;
-      background: #181035;
-      color: #fff;
-      font-size: 1.05rem;
-      box-shadow: 0 0 10px #a97fff21;
+      padding: 1.08em .95em;
+      border: 2.2px solid var(--roxo);
+      border-radius: 12px;
+      background: #fff;
+      color: #232030;
+      font-size: 1.09rem;
+      font-family: inherit;
+      box-shadow: 0 0 10px #9147ff22;
       outline: none;
       letter-spacing: 1.1px;
       text-shadow: 0 0 4px #fff;
-      transition: border .12s, box-shadow .11s;
+      transition: border .13s, box-shadow .12s;
+      font-weight: bold;
     }
     input[type=email]:focus {
-      border-color: var(--secondary);
-      box-shadow: 0 0 14px #ffc80077;
-      color: var(--secondary);
+      border-color: var(--yellow);
+      box-shadow: 0 0 15px #ffe44a66;
+      color: #9147ff;
     }
     .input-err {
       color: var(--error);
-      font-size: .98em;
+      font-size: 1em;
       margin-top: -.5em;
-      text-shadow: 0 0 8px #ff3b8b77;
+      text-shadow: 0 0 8px #ff357277;
       text-align: center;
+      font-weight: bold;
     }
-    @media (max-width: 600px) {
-      .glass { max-width: 99vw; padding: 1.1em 0.5em 1.3em 0.5em; }
-      .headline { font-size: 1.05rem; }
+    @media (max-width: 650px) {
+      .glass { max-width: 97vw; padding: 1em 0.3em 1.2em 0.3em; }
+      .headline { font-size: 1.12rem; }
       .desc { font-size: .99rem; }
-      button, .btn { font-size: .99rem; padding: 1em 1.1em;}
-      .tab-btn { font-size: .99em; padding: .8em .6em;}
+      button, .btn { font-size: 1.03rem; padding: 1em 1.1em;}
+      .tab-btn { font-size: 1em; padding: .8em .5em;}
       .tab-content { font-size: 1em;}
       main, .screen { padding: 0 1vw; }
+      .logo-png { height: 40px;}
     }
     ::-webkit-scrollbar { width: 0 !important }
   </style>
@@ -278,17 +287,7 @@
 <body>
   <canvas id="matrix-canvas"></canvas>
   <header>
-    <span class="logo-svg">
-      <!-- Foguete saindo dos livros, em roxo/branco -->
-      <svg width="36" height="36" viewBox="0 0 38 38" fill="none">
-        <rect x="7" y="26" width="24" height="5.5" rx="2.6" fill="#fff" fill-opacity="0.09" stroke="#9147ff" stroke-width="1.5"/>
-        <rect x="11" y="21" width="16" height="5" rx="2.3" fill="#fff" fill-opacity="0.13" stroke="#fff" stroke-width="1"/>
-        <ellipse cx="19" cy="15.5" rx="5" ry="7" fill="#9147ff" fill-opacity="0.17" stroke="#fff" stroke-width="1.4"/>
-        <polygon points="17,14 21,14 19,4" fill="#fff" stroke="#9147ff" stroke-width="1.4"/>
-        <ellipse cx="19" cy="4.8" rx="1.1" ry="2" fill="#fff" fill-opacity="0.90"/>
-        <rect x="15" y="33" width="8" height="2" rx="1" fill="#fff" fill-opacity="0.22"/>
-      </svg>
-    </span>
+    <img src="/mnt/data/be48b5b3-b851-43f3-bfbe-16056ed1ddad.png" alt="PG Concursos Logo" class="logo-png" />
     <span class="header-title">PG Concursos Públicos</span>
   </header>
   <main>
@@ -301,7 +300,7 @@
           Aqui o jogo muda.
         </div>
         <div class="btn-row">
-          <button id="btn-avancar">Avançar <span style='font-size:1.2em'>→</span></button>
+          <button id="btn-avancar">Avançar <span style='font-size:1.15em'>→</span></button>
         </div>
       </div>
     </section>
@@ -351,27 +350,27 @@
     </section>
   </main>
   <script>
-    // Matrix Rain (Roxo, baixo contraste)
+    // Matrix Rain (melhor visível, roxo, não polui)
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
-    let fontSize = window.innerWidth < 500 ? 15 : 19;
+    let fontSize = window.innerWidth < 600 ? 16 : 20;
     let columns = Math.floor(width / fontSize) + 2;
     let drops = Array(columns).fill(1);
     function resizeMatrix() {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-      fontSize = window.innerWidth < 500 ? 15 : 19;
+      fontSize = window.innerWidth < 600 ? 16 : 20;
       columns = Math.floor(width / fontSize) + 2;
       drops = Array(columns).fill(1);
     }
     window.addEventListener('resize', resizeMatrix);
     function drawMatrix() {
-      ctx.fillStyle = "rgba(40,20,80,0.15)";
+      ctx.fillStyle = "rgba(41,0,80,0.14)";
       ctx.fillRect(0, 0, width, height);
-      ctx.fillStyle = "#a97fff";
-      ctx.font = fontSize + "px 'Share Tech Mono', monospace";
+      ctx.fillStyle = "#b88bfa";
+      ctx.font = fontSize + "px 'Space Mono', monospace";
       for(let i = 0; i < drops.length; i++) {
         const text = String.fromCharCode(0x30A0 + Math.random() * 96);
         const x = i * fontSize;
@@ -381,7 +380,7 @@
         drops[i]++;
       }
     }
-    setInterval(drawMatrix, 44);
+    setInterval(drawMatrix, 48);
 
     // Telas
     function showScreen(n) {
@@ -391,31 +390,11 @@
 
     // Abas Inteligentes
     const TABS = [
-      {
-        label: "Ciclo Inteligente",
-        icon: "🚀",
-        desc: "Monte ciclos de estudos que aceleram sua evolução, sem perder tempo e sem sobrecarregar sua mente."
-      },
-      {
-        label: "Questões na Medida",
-        icon: "🧠",
-        desc: "Resolva questões no momento certo e na quantidade certa para fixar conteúdo sem decorar à toa."
-      },
-      {
-        label: "Marcação Inteligente",
-        icon: "📚",
-        desc: "Aprenda a marcar o material de forma eficiente, tornando cada revisão mais rápida e produtiva."
-      },
-      {
-        label: "Revisões Poderosas",
-        icon: "🔁",
-        desc: "Implemente revisões de alto impacto, garantindo que nada importante seja esquecido na hora da prova."
-      },
-      {
-        label: "E muito mais...",
-        icon: "✨",
-        desc: "Filtros de prioridade, simulados, dicas práticas e acompanhamento passo a passo."
-      }
+      { label: "Ciclo Inteligente", icon: "🚀", desc: "Monte ciclos de estudos que aceleram sua evolução, sem perder tempo e sem sobrecarregar sua mente." },
+      { label: "Questões na Medida", icon: "🧠", desc: "Resolva questões no momento certo e na quantidade certa para fixar conteúdo sem decorar à toa." },
+      { label: "Marcação Inteligente", icon: "📚", desc: "Aprenda a marcar o material de forma eficiente, tornando cada revisão mais rápida e produtiva." },
+      { label: "Revisões Poderosas", icon: "🔁", desc: "Implemente revisões de alto impacto, garantindo que nada importante seja esquecido na hora da prova." },
+      { label: "E muito mais...", icon: "✨", desc: "Filtros de prioridade, simulados, dicas práticas e acompanhamento passo a passo." }
     ];
     let selectedTab = 0;
     function renderTabs() {
@@ -431,17 +410,13 @@
       });
       document.getElementById('tab-content').innerHTML = `<span>${TABS[selectedTab].desc}</span>`;
     }
-
     function openTabs() { selectedTab = 0; renderTabs(); }
 
-    // Funções Botões SEMPRE após DOM carregado
     window.onload = function() {
       showScreen(1);
-      // Avançar para Abas
       document.getElementById('btn-avancar').onclick = function() {
         showScreen(2); openTabs();
       };
-      // Tabs continuar/voltar
       document.getElementById('btn-continuar').onclick = function() { showScreen(3);}
       document.getElementById('btn-voltar1').onclick = function() { showScreen(1);}
       document.getElementById('btn-voltar2').onclick = function() { showScreen(2); openTabs(); }
@@ -453,7 +428,7 @@
       e.preventDefault();
       const email = document.getElementById('emailInput').value.trim();
       const err = document.getElementById('errEmail');
-      const regex = /^[\\w-.]+@[\\w-]+\\.[a-z]{2,}$/i;
+      const regex = /^[\w-.]+@[\w-]+\.[a-z]{2,}$/i;
       if (!regex.test(email)) {
         err.innerText = "E-mail inválido. Tente novamente.";
         err.style.display = 'block';
