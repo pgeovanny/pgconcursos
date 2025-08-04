@@ -14,8 +14,9 @@
       --cinza: #F6F4FB;
       --cinza-escuro: #edeaf7;
       --preto: #181833;
-      --grad: linear-gradient(120deg, var(--roxo) 20%, var(--roxo-claro) 100%);
-      --sombra: 0 6px 26px 0 rgba(86,54,142,0.12), 0 2px 12px 0 rgba(86,54,142,0.07);
+      --grad: linear-gradient(120deg, var(--roxo) 10%, var(--roxo-claro) 100%);
+      --sombra: 0 6px 26px 0 rgba(86,54,142,0.13), 0 2px 12px 0 rgba(86,54,142,0.09);
+      --shadow-card: 0 4px 18px 0 rgba(108,75,165,0.11);
     }
     * { box-sizing: border-box; }
     html, body {
@@ -26,109 +27,119 @@
       color: var(--preto);
       scroll-behavior: smooth;
     }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100vw;
+    }
     header {
       background: var(--grad);
-      padding: 2rem 1rem 1.1rem 1rem;
+      padding: 2.5rem 1rem 1.6rem 1rem;
       text-align: center;
-      border-radius: 0 0 36px 36px;
-      box-shadow: 0 8px 32px rgba(108,75,165,.10);
-      animation: fadeInDown 1s cubic-bezier(0.68,-0.55,0.27,1.55);
+      border-radius: 0 0 40px 40px;
+      box-shadow: 0 10px 36px rgba(108,75,165,.12);
       position: relative;
-    }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-40px);}
-      to   { opacity: 1; transform: translateY(0);}
+      width: 100vw;
+      max-width: 100vw;
+      margin-bottom: -2rem;
+      z-index: 2;
     }
     .logo-img {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 0.2rem;
-      margin-top: -0.8rem;
+      width: 90px;
+      height: 90px;
       object-fit: contain;
       border-radius: 50%;
       background: #fff;
-      box-shadow: 0 3px 20px #6C4BA525;
-      border: 4px solid #fff;
+      box-shadow: 0 4px 20px #6C4BA535;
+      border: 5px solid #fff;
+      margin-bottom: 0.2rem;
+      margin-top: -0.6rem;
       display: block;
       margin-left: auto;
       margin-right: auto;
-      filter: drop-shadow(0 2px 16px #6C4BA550);
+      filter: drop-shadow(0 2px 20px #6C4BA530);
       transition: transform 0.2s;
     }
     .logo-img:hover {
-      transform: scale(1.06) rotate(-3deg);
+      transform: scale(1.08) rotate(-2deg);
     }
     .brand-title {
       font-family: 'Outfit', 'Montserrat', sans-serif;
-      font-size: 2.15rem;
+      font-size: 2.3rem;
       font-weight: 900;
       letter-spacing: -1px;
       color: var(--branco);
       text-shadow: 0 2px 18px #6C4BA570;
-      margin-top: 0.07rem;
-      margin-bottom: 0.15rem;
-      line-height: 1.12;
+      margin-top: 0.08rem;
+      margin-bottom: 0.08rem;
+      line-height: 1.11;
     }
     .headline {
       color: var(--branco);
-      font-size: 1.18rem;
-      letter-spacing: .1px;
-      max-width: 410px;
+      font-size: 1.17rem;
+      letter-spacing: .12px;
+      max-width: 430px;
       margin: .5rem auto 0 auto;
       text-align: center;
       font-weight: 500;
-      line-height: 1.55;
+      line-height: 1.5;
+      text-shadow: 0 1.5px 8px #6C4BA530;
     }
-    .divider {
-      margin: 1.5rem auto .6rem auto;
-      height: 3px;
-      width: 52px;
-      border-radius: 6px;
-      background: linear-gradient(90deg, var(--roxo), var(--roxo-claro));
-      opacity: 0.15;
+    .headline b {
+      display: block;
+      margin-top: .25rem;
+      font-size: 1.08em;
+      color: #fff;
+      text-shadow: 0 2px 16px #6C4BA570;
     }
     main {
-      max-width: 450px;
-      width: 98%;
-      margin: -1.8rem auto 0 auto;
+      max-width: 480px;
+      width: 100%;
+      margin: 0 auto;
       background: var(--branco);
-      border-radius: 28px;
+      border-radius: 35px;
       box-shadow: var(--sombra);
-      padding: 2.2rem 1.3rem 1.6rem 1.3rem;
+      padding: 2.4rem 1.5rem 2.2rem 1.5rem;
       display: flex;
       flex-direction: column;
-      gap: 2.1rem;
-      animation: fadeInUp 1.05s cubic-bezier(0.68,-0.55,0.27,1.55);
-      min-height: 65vh;
+      gap: 2.2rem;
+      z-index: 1;
       position: relative;
-    }
-    @keyframes fadeInUp {
-      from { opacity:0; transform: translateY(44px);}
-      to   { opacity:1; transform: translateY(0);}
+      min-height: 80vh;
     }
     .mistery {
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       font-family: 'Outfit', 'Montserrat', sans-serif;
       font-weight: 800;
       color: var(--roxo-escuro);
       text-align: center;
       letter-spacing: -0.5px;
-      margin-bottom: 0.7rem;
+      margin-bottom: 1rem;
       background: linear-gradient(90deg,var(--roxo),var(--roxo-claro));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
               background-clip: text;
               text-fill-color: transparent;
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
       animation: fadeInUp 1.3s;
+    }
+    .mistery:before {
+      content: "🚀";
+      font-size: 1.3em;
+      margin-right: 0.38em;
+      filter: drop-shadow(0 1px 5px #6C4BA530);
     }
     .problem-card {
       background: var(--cinza-escuro);
-      border-radius: 18px;
-      box-shadow: 0 2px 12px #6c4ba511;
-      padding: 1.1rem 1.1rem .9rem 1.25rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow-card);
+      padding: 1.35rem 1.2rem 1.05rem 1.3rem;
       border-left: 6px solid var(--roxo);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.8rem;
       display: flex;
       flex-direction: column;
       gap: .6rem;
@@ -148,71 +159,78 @@
       gap: .45rem;
     }
     .big-quote {
-      font-size: 1.08rem;
+      font-size: 1.12rem;
       color: var(--roxo-escuro);
       font-weight: 700;
       background: #f7f4ff;
-      padding: 1.07rem 1.12rem 1.07rem 1.2rem;
-      border-radius: 15px;
+      padding: 1.19rem 1.19rem 1.15rem 1.24rem;
+      border-radius: 16px;
       text-align: justify;
-      box-shadow: 0 2px 14px #bda6ff18;
+      box-shadow: 0 3px 14px #bda6ff22;
       border-left: 4px solid var(--roxo-claro);
-      margin-bottom: 1rem;
+      margin-bottom: 1.1rem;
+    }
+    .big-quote .destaque {
+      color: var(--roxo);
+      font-weight: 800;
+      display: block;
+      margin-top: 0.5em;
     }
     .topic-section {
       background: var(--cinza);
-      border-radius: 20px;
+      border-radius: 18px;
       padding: 1.25rem 1.1rem 1.1rem 1.2rem;
       box-shadow: 0 2px 11px rgba(120,80,200,0.04);
       animation: fadeInUp 1.2s .19s backwards;
     }
     .topic-section h2 {
       color: var(--roxo);
-      font-size: 1.09rem;
-      margin-bottom: .8rem;
-      font-weight: 800;
+      font-size: 1.14rem;
+      margin-bottom: .9rem;
+      font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 1.3px;
+      letter-spacing: 1.4px;
       text-align: left;
+      font-family: 'Outfit', 'Montserrat', sans-serif;
     }
     .topic-section ul {
-      padding-left: 1.15rem;
+      padding-left: 1.18rem;
       margin: 0;
       list-style: disc;
       color: var(--roxo-escuro);
-      font-size: 1.05rem;
+      font-size: 1.07rem;
       text-align: justify;
       display: flex;
       flex-direction: column;
-      gap: .62rem;
+      gap: .6rem;
       font-weight: 500;
     }
     .autoridade {
       text-align: justify;
-      font-size: 1.08rem;
+      font-size: 1.1rem;
       margin-top: .8rem;
       color: var(--preto);
       font-weight: 600;
       background: #f6f2fe;
       border-left: 5px solid var(--roxo);
-      padding: .85rem 1.1rem .75rem 1.1rem;
-      border-radius: 0 17px 17px 0;
+      padding: .95rem 1.15rem .80rem 1.15rem;
+      border-radius: 0 18px 18px 0;
       line-height: 1.7;
       box-shadow: 0 2px 12px #6c4ba511;
       animation: fadeInUp 1.2s .22s backwards;
     }
     .destaque {
       color: var(--roxo);
-      font-weight: 700;
+      font-weight: 900;
       font-size: 1.09em;
     }
     .contador-section {
-      margin: 1.25rem auto 0 auto;
+      margin: 1.35rem auto 0 auto;
       background: var(--roxo-escuro);
       border-radius: 18px;
-      box-shadow: 0 2px 14px rgba(60,20,110,0.12);
-      padding: 1.13rem 1.1rem .85rem 1.1rem;
-      max-width: 320px;
+      box-shadow: 0 2px 14px rgba(60,20,110,0.13);
+      padding: 1.13rem 1.1rem .95rem 1.1rem;
+      max-width: 330px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -238,45 +256,43 @@
       text-shadow: 0 2px 16px #6C4BA540;
       transition: all .12s;
     }
-    @media (max-width: 540px) {
-      main {
-        padding: 1rem .2rem 1.1rem .2rem;
-        max-width: 99vw;
-      }
-      .brand-title {
-        font-size: 1.1rem;
-      }
+    @media (max-width: 600px) {
+      header { border-radius: 0 0 30px 30px; }
+      main { border-radius: 19px; padding: 1.25rem 0.2rem 1.1rem 0.2rem; }
       .logo-img { width: 54px; height: 54px; }
-      .topic-section h2 { font-size: .93rem; }
+      .brand-title { font-size: 1.3rem;}
+      .headline { font-size: 1rem;}
+      .topic-section h2 { font-size: .99rem; }
       .contador-numero { font-size: 1.32rem;}
-      .headline { font-size: 0.98rem;}
     }
     footer {
       width: 100%;
       text-align: center;
-      padding: 1.15rem .5rem .8rem .5rem;
+      padding: 1.2rem .5rem .7rem .5rem;
       color: #A39EC9;
-      font-size: .98rem;
+      font-size: .97rem;
       background: transparent;
       margin-top: 1rem;
       font-family: 'Montserrat', Arial, sans-serif;
+    }
+    @keyframes fadeInUp {
+      from { opacity:0; transform: translateY(44px);}
+      to   { opacity:1; transform: translateY(0);}
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://i.ibb.co/6JQ4CDT/1000115773.webp" alt="Logo PG Concursos" class="logo-img">
+    <img src="https://i.postimg.cc/jdRnCJ86/1000115773.webp" alt="Logo PG Concursos" class="logo-img">
     <div class="brand-title">PG Concursos Públicos</div>
     <div class="headline">
       O que separa quem é aprovado de quem fica no caminho?
-      <br>
       <b>Descubra técnicas e atalhos que só quem viveu os concursos conhece.</b>
     </div>
-    <div class="divider"></div>
   </header>
 
   <main>
-    <div class="mistery">🚀 Aprenda a estudar sozinho. Domine seu caminho até a aprovação!</div>
+    <div class="mistery">Aprenda a estudar sozinho. Domine seu caminho até a aprovação!</div>
 
     <div class="problem-card">
       <ul>
@@ -287,8 +303,8 @@
     </div>
 
     <div class="big-quote">
-      “Ninguém ensina de verdade o que você só aprende errando.<br>
-      <span class="destaque">Ou… você pode aprender com quem já errou por você.</span>”
+      “Ninguém ensina de verdade o que você só aprende errando.
+      <span class="destaque">Ou… você pode aprender com quem já errou por você.”</span>
     </div>
 
     <section class="topic-section">
@@ -306,7 +322,7 @@
     </section>
 
     <div class="autoridade">
-      Todo o conteúdo nasceu de <span class="destaque">anos de experiência real em concursos</span>.  
+      Todo o conteúdo nasceu de <span class="destaque">anos de experiência real em concursos</span>.
       <br><br>
       <span class="destaque">A diferença entre tentar e aprovar está aqui: praticidade, clareza e método.</span>
     </div>
