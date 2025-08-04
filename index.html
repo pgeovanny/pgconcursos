@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manual do Aprovado | PG Concursos Públicos</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Outfit:wght@600;900&display=swap" rel="stylesheet">
+  <title>PG Concursos Públicos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Outfit:wght@600;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --roxo: #6C4BA5;
@@ -12,9 +12,10 @@
       --roxo-escuro: #432C6C;
       --branco: #fff;
       --cinza: #F6F4FB;
+      --cinza-escuro: #edeaf7;
       --preto: #181833;
       --grad: linear-gradient(120deg, var(--roxo) 20%, var(--roxo-claro) 100%);
-      --sombra: 0 6px 26px 0 rgba(86,54,142,0.10), 0 1.5px 8px 0 rgba(86,54,142,0.09);
+      --sombra: 0 6px 26px 0 rgba(86,54,142,0.12), 0 2px 12px 0 rgba(86,54,142,0.07);
     }
     * { box-sizing: border-box; }
     html, body {
@@ -26,14 +27,13 @@
       scroll-behavior: smooth;
     }
 
-    /* Header com logo */
     header {
       background: var(--grad);
-      padding: 2.2rem 1rem 1.1rem 1rem;
+      padding: 2rem 1rem 1.1rem 1rem;
       text-align: center;
-      border-radius: 0 0 32px 32px;
-      box-shadow: 0 8px 32px rgba(108,75,165,.13);
-      animation: fadeInDown 1s ease;
+      border-radius: 0 0 36px 36px;
+      box-shadow: 0 8px 32px rgba(108,75,165,.10);
+      animation: fadeInDown 1s cubic-bezier(0.68,-0.55,0.27,1.55);
       position: relative;
     }
     @keyframes fadeInDown {
@@ -41,10 +41,13 @@
       to   { opacity: 1; transform: translateY(0);}
     }
     .logo-svg {
-      width: 54px; height: 54px;
+      width: 62px; height: 62px;
       margin-bottom: 0.5rem;
       filter: drop-shadow(0 4px 8px rgba(90,40,160,0.16));
       animation: rocketIn 1.1s cubic-bezier(0.68,-0.55,0.27,1.55);
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
     @keyframes rocketIn {
       from { opacity:0; transform: scale(0.6) rotate(-30deg);}
@@ -52,184 +55,205 @@
     }
     .brand-title {
       font-family: 'Outfit', 'Montserrat', sans-serif;
-      font-size: 2.2rem;
+      font-size: 2.35rem;
       font-weight: 900;
       letter-spacing: -1px;
       color: var(--branco);
-      text-shadow: 0 2px 16px #6C4BA570;
+      text-shadow: 0 2px 18px #6C4BA570;
+      margin-top: -0.1rem;
+      margin-bottom: 0.12rem;
+      line-height: 1.12;
     }
-    .sub {
+    .headline {
+      color: var(--branco);
       font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--roxo-claro);
-      margin-top: 0.2rem;
-      letter-spacing: 1px;
+      letter-spacing: .2px;
+      max-width: 390px;
+      margin: .4rem auto 0 auto;
+      text-align: center;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .divider {
+      margin: 1.6rem auto .5rem auto;
+      height: 3px;
+      width: 48px;
+      border-radius: 6px;
+      background: linear-gradient(90deg, var(--roxo), var(--roxo-claro));
+      opacity: 0.12;
     }
 
     main {
-      max-width: 480px;
+      max-width: 440px;
       width: 97%;
-      margin: -1rem auto 0 auto;
+      margin: -1.7rem auto 0 auto;
       background: var(--branco);
       border-radius: 26px;
       box-shadow: var(--sombra);
-      padding: 2rem 1.3rem 2rem 1.3rem;
+      padding: 2rem 1.3rem 1.6rem 1.3rem;
       display: flex;
       flex-direction: column;
-      gap: 2rem;
-      animation: fadeInUp 1.2s cubic-bezier(0.68,-0.55,0.27,1.55);
-      min-height: 76vh;
+      gap: 2.2rem;
+      animation: fadeInUp 1.15s cubic-bezier(0.68,-0.55,0.27,1.55);
+      min-height: 65vh;
+      position: relative;
     }
     @keyframes fadeInUp {
-      from { opacity:0; transform: translateY(48px);}
+      from { opacity:0; transform: translateY(44px);}
       to   { opacity:1; transform: translateY(0);}
     }
 
     .mistery {
-      font-size: 1.38rem;
+      font-size: 1.32rem;
+      font-family: 'Outfit', 'Montserrat', sans-serif;
+      font-weight: 800;
       color: var(--roxo-escuro);
-      font-weight: bold;
       text-align: center;
       letter-spacing: -0.5px;
-      margin-bottom: .5rem;
+      margin-bottom: 0.7rem;
       background: linear-gradient(90deg,var(--roxo),var(--roxo-claro));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
               background-clip: text;
               text-fill-color: transparent;
+      display: block;
+      animation: fadeInUp 1.3s;
     }
-    .problem {
-      font-size: 1.07rem;
-      font-weight: 500;
-      color: var(--preto);
-      text-align: justify;
-      margin-bottom: 0.8rem;
-      line-height: 1.65;
-      border-left: 4px solid var(--roxo-claro);
-      padding-left: .95rem;
-      background: #faf8fe;
-      border-radius: 0 16px 16px 0;
-      box-shadow: 0 1.5px 10px rgba(110, 70, 190, 0.03);
+
+    .problem-card {
+      background: var(--cinza-escuro);
+      border-radius: 16px;
+      box-shadow: 0 2px 12px #6c4ba511;
+      padding: 1.05rem 1rem .85rem 1.2rem;
+      border-left: 5px solid var(--roxo);
+      margin-bottom: 0.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      animation: fadeInUp 1.3s .16s backwards;
     }
-    .topic-section {
-      background: var(--cinza);
-      border-radius: 18px;
-      padding: 1.15rem .7rem 1.05rem 1.1rem;
-      box-shadow: 0 1.5px 8px rgba(120,80,200,0.05);
-      margin-bottom: 0.2rem;
-      animation: fadeInUp 1.2s cubic-bezier(0.68,-0.55,0.27,1.55) .17s backwards;
-    }
-    .topic-section h2 {
-      color: var(--roxo);
-      font-size: 1.1rem;
-      margin-bottom: .7rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-    }
-    .topic-section ul {
-      padding-left: 1rem;
+    .problem-card ul {
+      padding-left: 1.2rem;
       margin: 0;
       list-style: disc;
       color: var(--roxo-escuro);
       font-size: 1.03rem;
       text-align: justify;
+      line-height: 1.7;
+      font-weight: 500;
       display: flex;
       flex-direction: column;
-      gap: .68rem;
+      gap: .45rem;
     }
+
+    .big-quote {
+      font-size: 1.07rem;
+      color: var(--roxo-escuro);
+      font-weight: 700;
+      background: #f7f4ff;
+      padding: .92rem 1rem .92rem 1.05rem;
+      border-radius: 14px;
+      text-align: justify;
+      box-shadow: 0 2px 12px #bda6ff18;
+      border-left: 3.8px solid var(--roxo-claro);
+      margin-bottom: 1rem;
+    }
+
+    .topic-section {
+      background: var(--cinza);
+      border-radius: 18px;
+      padding: 1.1rem 1rem 1rem 1.15rem;
+      box-shadow: 0 1.5px 8px rgba(120,80,200,0.04);
+      animation: fadeInUp 1.2s .19s backwards;
+    }
+    .topic-section h2 {
+      color: var(--roxo);
+      font-size: 1.06rem;
+      margin-bottom: .8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      text-align: left;
+    }
+    .topic-section ul {
+      padding-left: 1.05rem;
+      margin: 0;
+      list-style: disc;
+      color: var(--roxo-escuro);
+      font-size: 1.025rem;
+      text-align: justify;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      font-weight: 500;
+    }
+
     .autoridade {
       text-align: justify;
-      font-size: 1.07rem;
-      margin-top: 0.7rem;
+      font-size: 1.04rem;
+      margin-top: .8rem;
       color: var(--preto);
-      font-weight: 500;
+      font-weight: 600;
       background: #f6f2fe;
       border-left: 4px solid var(--roxo);
-      padding: .7rem 1rem .7rem 1rem;
-      border-radius: 0 14px 14px 0;
+      padding: .75rem 1rem .75rem 1rem;
+      border-radius: 0 16px 16px 0;
       line-height: 1.7;
+      box-shadow: 0 2px 12px #6c4ba511;
+      animation: fadeInUp 1.2s .22s backwards;
     }
     .destaque {
       color: var(--roxo);
       font-weight: 700;
       font-size: 1.08em;
     }
-    .cta-section {
+
+    .contador-section {
       margin: 1.2rem auto 0 auto;
       background: var(--roxo-escuro);
       border-radius: 17px;
       box-shadow: 0 1.5px 14px rgba(60,20,110,0.10);
-      padding: 1.7rem .8rem 1.2rem .8rem;
-      max-width: 350px;
+      padding: 1.2rem 1.1rem .9rem 1.1rem;
+      max-width: 330px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1.05rem;
-      animation: fadeInUp 1.2s cubic-bezier(0.68,-0.55,0.27,1.55) .37s backwards;
+      gap: .6rem;
+      animation: fadeInUp 1.3s .25s backwards;
     }
-    .cta-section p {
+    .contador-section span {
       color: var(--branco);
-      font-size: 1.18rem;
-      text-align: center;
-      font-weight: 600;
-      letter-spacing: .5px;
-      margin-bottom: .2rem;
-    }
-    .cta-form {
-      display: flex;
-      width: 100%;
-      gap: .5rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: .2rem;
-    }
-    .cta-form input[type="email"] {
-      flex: 1 1 120px;
-      padding: .68rem;
-      border-radius: 8px;
-      border: none;
-      font-size: 1.03rem;
-      outline: none;
-      margin-bottom: .5rem;
-      background: var(--branco);
-      color: var(--preto);
-      transition: box-shadow .2s;
-      box-shadow: 0 1.5px 8px rgba(110, 70, 190, 0.05);
-    }
-    .cta-form input[type="email"]:focus {
-      box-shadow: 0 3px 15px #BDA6FF55;
-      border: 1.2px solid var(--roxo-claro);
-    }
-    .cta-form button {
-      padding: .7rem 1.4rem;
-      background: var(--roxo-claro);
-      color: var(--preto);
-      border: none;
-      border-radius: 8px;
-      font-weight: 800;
-      font-size: 1.02rem;
-      cursor: pointer;
-      transition: background .18s, color .18s;
-      box-shadow: 0 1.5px 8px rgba(120,80,200,0.08);
+      font-size: 1.13rem;
+      font-weight: 700;
       letter-spacing: .2px;
     }
-    .cta-form button:hover {
-      background: var(--roxo);
-      color: var(--branco);
+    .contador-numero {
+      margin-top: .25rem;
+      font-family: 'Outfit', 'Montserrat', sans-serif;
+      font-size: 2.35rem;
+      font-weight: 900;
+      background: linear-gradient(90deg,var(--roxo-claro),var(--branco),var(--roxo));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+              background-clip: text;
+              text-fill-color: transparent;
+      text-shadow: 0 2px 18px #6C4BA540;
+      transition: all .13s;
     }
 
     /* Responsivo */
     @media (max-width: 540px) {
       main {
-        padding: 1.1rem .4rem 1.2rem .4rem;
+        padding: 1rem .4rem 1.2rem .4rem;
         max-width: 99vw;
       }
       .brand-title {
-        font-size: 1.45rem;
+        font-size: 1.3rem;
       }
-      .logo-svg { width: 40px; height: 40px; }
-      .topic-section h2 { font-size: .97rem; }
+      .logo-svg { width: 38px; height: 38px; }
+      .topic-section h2 { font-size: .95rem; }
+      .contador-numero { font-size: 1.65rem;}
+      .headline { font-size: 1.01rem;}
     }
     footer {
       width: 100%;
@@ -261,17 +285,28 @@
       </g>
     </svg>
     <div class="brand-title">PG Concursos Públicos</div>
-    <div class="sub">Manual do Aprovado</div>
+    <div class="headline">
+      O que separa quem é aprovado de quem fica no caminho?
+      <br>
+      <b>Descubra técnicas e atalhos que só quem viveu os concursos conhece.</b>
+    </div>
+    <div class="divider"></div>
   </header>
 
   <main>
-    <div class="mistery">🚀 Algo grande está chegando...</div>
-    <div class="problem">
-      • Chega de mentoria.<br>
-      • Chega de estudar no escuro.<br>
-      • Chega de fórmulas prontas que não funcionam.<br>
-      <br>
-      <b>O que separa os aprovados de quem fica pelo caminho?</b>
+    <div class="mistery">🚀 Aprenda a estudar sozinho. Domine seu caminho até a aprovação!</div>
+
+    <div class="problem-card">
+      <ul>
+        <li>Descubra como organizar seus estudos mesmo começando do zero.</li>
+        <li>Saia do ciclo de dúvidas e incertezas. Torne-se independente.</li>
+        <li>Pare de perder tempo com métodos que não funcionam pra você.</li>
+      </ul>
+    </div>
+
+    <div class="big-quote">
+      “Ninguém ensina de verdade o que você só aprende errando.<br>
+      <span class="destaque">Ou… você pode aprender com quem já errou por você.</span>”
     </div>
 
     <section class="topic-section">
@@ -289,24 +324,31 @@
     </section>
 
     <div class="autoridade">
-      Todo o conteúdo é fruto de <span class="destaque">anos de experiência real em concursos</span>, condensado no material mais completo já produzido.  
+      Todo o conteúdo nasceu de <span class="destaque">anos de experiência real em concursos</span>.  
       <br><br>
-      <span class="destaque">Chega de promessas vazias.</span>  
-      O Manual do Aprovado é para quem quer resultado de verdade.
+      <span class="destaque">A diferença entre tentar e aprovar está aqui: praticidade, clareza e método.</span>
     </div>
 
-    <section class="cta-section">
-      <p>🔒 Seja o(a) primeiro(a) a saber.<br>
-        Insira seu e-mail e garanta acesso antecipado!</p>
-      <form class="cta-form" autocomplete="off" onsubmit="alert('Seu interesse foi registrado! 🚀'); return false;">
-        <input type="email" placeholder="Seu e-mail" required>
-        <button type="submit">Quero ser avisado</button>
-      </form>
+    <section class="contador-section">
+      <span>Pessoas que já acessaram esta página:</span>
+      <span class="contador-numero" id="contador">0</span>
     </section>
   </main>
 
   <footer>
     © 2025 PG Concursos Públicos. Todos os direitos reservados.
   </footer>
+
+  <script>
+    // Contador LocalStorage (simples, não global, mas mostra no mobile real)
+    const contadorElemento = document.getElementById('contador');
+    let count = parseInt(localStorage.getItem('pg_concursos_contador')) || 0;
+    if (!sessionStorage.getItem('pg_concursos_visitou')) {
+      count += 1;
+      localStorage.setItem('pg_concursos_contador', count);
+      sessionStorage.setItem('pg_concursos_visitou', '1');
+    }
+    contadorElemento.textContent = count;
+  </script>
 </body>
 </html>
