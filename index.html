@@ -81,30 +81,31 @@
       min-height: 170px;
       width: 100%;
       background: var(--branco);
-      border-radius: 21px;
+      border-radius: 20px;
       box-shadow: 0 3px 15px #6c4ba510;
       margin: 0 auto 1.7rem auto;
-      padding: 2.1rem 1.4rem 1.8rem 1.4rem;
+      padding: 2.1rem 1.5rem 1.9rem 1.5rem;
       display: flex;
       align-items: flex-start;
       justify-content: center;
-      font-size: 1.22rem;
+      font-size: 1.24rem;
       font-family: 'Outfit', 'Montserrat', Arial, sans-serif;
       font-weight: 600;
       letter-spacing: .01em;
       text-align: center;
       position: relative;
       transition: box-shadow 0.22s;
+      line-height: 1.6;
     }
     .typewriter {
-      min-height: 2.2em;
+      min-height: 2.5em;
       color: var(--roxo-escuro);
       text-align: center;
       margin: 0 auto;
       width: 100%;
       display: inline-block;
       white-space: pre-line;
-      font-size: 1.23rem;
+      font-size: 1.22rem;
       letter-spacing: 0.01em;
     }
     .type-cursor {
@@ -122,33 +123,37 @@
     }
     .cta-btn {
       display: inline-block;
-      padding: 1.15rem 2.4rem;
+      padding: 1.18rem 2.3rem;
       background: linear-gradient(90deg, var(--roxo-claro), var(--roxo));
       color: #fff;
       font-family: 'Outfit', 'Montserrat', sans-serif;
-      font-size: 1.18rem;
+      font-size: 1.19rem;
       font-weight: 900;
       border-radius: 36px;
       box-shadow: 0 2px 22px #6c4ba53a;
       border: none;
       margin: 1.6rem auto 0 auto;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
       cursor: pointer;
-      transition: filter .16s, background .18s;
+      transition: filter .15s, background .18s;
       user-select: none;
       text-align: center;
+      outline: none;
+      opacity: 1;
+      min-width: 210px;
     }
-    .cta-btn:hover {
-      filter: brightness(1.10) saturate(1.2);
+    .cta-btn:hover, .cta-btn:focus {
+      filter: brightness(1.10) saturate(1.17);
       background: linear-gradient(90deg, var(--roxo), var(--roxo-claro));
+      opacity: .97;
     }
     @media (max-width: 600px) {
       header { border-radius: 0 0 15px 15px; padding: 1.3rem .7rem 1.2rem .7rem;}
       .logo-img { width: 56px; height: 56px; }
-      .brand-title { font-size: 1.14rem;}
-      main { padding-top: 1.7rem; padding-bottom: .9rem;}
-      .typewriter-container { font-size: 1.02rem; padding: 1.2rem .6rem 1rem .6rem;}
-      .cta-btn { font-size: 1rem; padding: .87rem 1.5rem;}
+      .brand-title { font-size: 1.13rem;}
+      main { padding-top: 1.4rem; padding-bottom: .8rem;}
+      .typewriter-container { font-size: 1.03rem; padding: 1.1rem .7rem .95rem .7rem;}
+      .cta-btn { font-size: .97rem; padding: .93rem 1.2rem;}
     }
   </style>
 </head>
@@ -168,7 +173,7 @@
     </button>
   </main>
   <script>
-    // FRASES - pode mudar se quiser!
+    // Frases digitadas, personalize se quiser!
     const frases = [
       "Eu sei que você já sentiu que estava estudando e não aprendia de verdade...",
       "Já tentou vários métodos, mas sempre se sentiu perdido.",
@@ -176,9 +181,7 @@
       "Já pensou em desistir porque parecia impossível organizar tanta matéria.",
       "Se cansou de dicas soltas, PDFs, promessas de 'fórmulas mágicas'...",
       "Sente que falta um passo a passo prático de verdade.",
-      "E se existisse um caminho confiável para você finalmente aprovar?",
-      "",
-      "Quero estudar de verdade."
+      "E se existisse um caminho confiável para você finalmente aprovar?"
     ];
 
     const typeElem = document.getElementById('typewriter');
@@ -191,10 +194,11 @@
       if(fraseAtual >= frases.length) {
         cursorElem.style.display = 'none';
         ctaBtn.style.display = 'inline-block';
+        ctaBtn.focus();
         return;
       }
       let frase = frases[fraseAtual];
-      let delay = 40 + Math.random()*18;
+      let delay = 42 + Math.random()*16;
 
       typeElem.textContent = frase.substring(0, charAtual+1);
       if (charAtual < frase.length) {
@@ -204,8 +208,8 @@
         setTimeout(() => {
           fraseAtual++;
           charAtual = 0;
-          setTimeout(digitarFrase, 600);
-        }, 1050);
+          setTimeout(digitarFrase, 630);
+        }, 970);
       }
     }
     digitarFrase();
