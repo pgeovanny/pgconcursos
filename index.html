@@ -4,228 +4,301 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manual do Aprovado | PG Concursos Públicos</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Outfit:wght@600;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --roxo: #6C4BA5;
-      --roxo-claro: #AF9DF2;
+      --roxo-claro: #BDA6FF;
+      --roxo-escuro: #432C6C;
       --branco: #fff;
-      --cinza: #e9e9f0;
+      --cinza: #F6F4FB;
       --preto: #181833;
+      --grad: linear-gradient(120deg, var(--roxo) 20%, var(--roxo-claro) 100%);
+      --sombra: 0 6px 26px 0 rgba(86,54,142,0.10), 0 1.5px 8px 0 rgba(86,54,142,0.09);
     }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Montserrat', Arial, sans-serif;
-    }
-    body {
-      background: var(--branco);
-      color: var(--preto);
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--cinza);
+      font-family: 'Montserrat', 'Outfit', Arial, sans-serif;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      color: var(--preto);
+      scroll-behavior: smooth;
     }
+
+    /* Header com logo */
     header {
-      width: 100%;
-      padding: 2rem 1rem 1rem 1rem;
+      background: var(--grad);
+      padding: 2.2rem 1rem 1.1rem 1rem;
       text-align: center;
-      background: linear-gradient(90deg, var(--roxo) 60%, var(--roxo-claro) 100%);
-      color: var(--branco);
+      border-radius: 0 0 32px 32px;
+      box-shadow: 0 8px 32px rgba(108,75,165,.13);
+      animation: fadeInDown 1s ease;
+      position: relative;
     }
-    .logo {
-      font-size: 2.2rem;
-      font-weight: 700;
-      letter-spacing: -2px;
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px);}
+      to   { opacity: 1; transform: translateY(0);}
+    }
+    .logo-svg {
+      width: 54px; height: 54px;
       margin-bottom: 0.5rem;
-      /* Se quiser, troque por uma imagem depois */
+      filter: drop-shadow(0 4px 8px rgba(90,40,160,0.16));
+      animation: rocketIn 1.1s cubic-bezier(0.68,-0.55,0.27,1.55);
+    }
+    @keyframes rocketIn {
+      from { opacity:0; transform: scale(0.6) rotate(-30deg);}
+      to   { opacity:1; transform: scale(1)   rotate(0deg);}
+    }
+    .brand-title {
+      font-family: 'Outfit', 'Montserrat', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: var(--branco);
+      text-shadow: 0 2px 16px #6C4BA570;
     }
     .sub {
-      font-size: 1rem;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--roxo-claro);
+      margin-top: 0.2rem;
       letter-spacing: 1px;
-      opacity: 0.9;
     }
 
     main {
-      padding: 2rem 1.1rem 1rem 1.1rem;
-      max-width: 430px;
-      width: 100%;
-      margin: auto;
-      flex: 1;
+      max-width: 480px;
+      width: 97%;
+      margin: -1rem auto 0 auto;
+      background: var(--branco);
+      border-radius: 26px;
+      box-shadow: var(--sombra);
+      padding: 2rem 1.3rem 2rem 1.3rem;
       display: flex;
       flex-direction: column;
-      gap: 1.7rem;
+      gap: 2rem;
+      animation: fadeInUp 1.2s cubic-bezier(0.68,-0.55,0.27,1.55);
+      min-height: 76vh;
     }
+    @keyframes fadeInUp {
+      from { opacity:0; transform: translateY(48px);}
+      to   { opacity:1; transform: translateY(0);}
+    }
+
     .mistery {
-      font-size: 1.3rem;
-      color: var(--roxo);
+      font-size: 1.38rem;
+      color: var(--roxo-escuro);
       font-weight: bold;
-      margin-bottom: .7rem;
       text-align: center;
-      letter-spacing: -1px;
+      letter-spacing: -0.5px;
+      margin-bottom: .5rem;
+      background: linear-gradient(90deg,var(--roxo),var(--roxo-claro));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+              background-clip: text;
+              text-fill-color: transparent;
     }
     .problem {
-      text-align: center;
-      font-size: 1.06rem;
-      color: var(--preto);
-      margin-bottom: 1rem;
+      font-size: 1.07rem;
       font-weight: 500;
-      line-height: 1.6;
+      color: var(--preto);
+      text-align: justify;
+      margin-bottom: 0.8rem;
+      line-height: 1.65;
+      border-left: 4px solid var(--roxo-claro);
+      padding-left: .95rem;
+      background: #faf8fe;
+      border-radius: 0 16px 16px 0;
+      box-shadow: 0 1.5px 10px rgba(110, 70, 190, 0.03);
     }
-    .list-section {
+    .topic-section {
       background: var(--cinza);
       border-radius: 18px;
-      padding: 1.2rem 1rem;
-      box-shadow: 0 1px 10px rgba(120,80,200,0.08);
-      margin-bottom: .3rem;
+      padding: 1.15rem .7rem 1.05rem 1.1rem;
+      box-shadow: 0 1.5px 8px rgba(120,80,200,0.05);
+      margin-bottom: 0.2rem;
+      animation: fadeInUp 1.2s cubic-bezier(0.68,-0.55,0.27,1.55) .17s backwards;
     }
-    .list-section ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .list-section li {
-      margin-bottom: .8rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 0.7rem;
-      font-size: 1.05rem;
+    .topic-section h2 {
       color: var(--roxo);
+      font-size: 1.1rem;
+      margin-bottom: .7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
     }
-    .list-section li:last-child { margin-bottom: 0;}
-    .list-section li::before {
-      content: "✔️";
-      color: var(--roxo-claro);
-      font-size: 1.15em;
-      margin-top: 2px;
+    .topic-section ul {
+      padding-left: 1rem;
+      margin: 0;
+      list-style: disc;
+      color: var(--roxo-escuro);
+      font-size: 1.03rem;
+      text-align: justify;
+      display: flex;
+      flex-direction: column;
+      gap: .68rem;
     }
     .autoridade {
-      text-align: center;
-      font-size: 1.05rem;
-      margin-top: 1.2rem;
-      margin-bottom: .3rem;
+      text-align: justify;
+      font-size: 1.07rem;
+      margin-top: 0.7rem;
       color: var(--preto);
       font-weight: 500;
+      background: #f6f2fe;
+      border-left: 4px solid var(--roxo);
+      padding: .7rem 1rem .7rem 1rem;
+      border-radius: 0 14px 14px 0;
+      line-height: 1.7;
     }
     .destaque {
       color: var(--roxo);
       font-weight: 700;
+      font-size: 1.08em;
     }
     .cta-section {
-      margin: 1.7rem auto 0 auto;
-      background: var(--roxo);
-      border-radius: 14px;
-      box-shadow: 0 1px 8px rgba(90,60,180,0.07);
-      padding: 1.3rem .9rem;
+      margin: 1.2rem auto 0 auto;
+      background: var(--roxo-escuro);
+      border-radius: 17px;
+      box-shadow: 0 1.5px 14px rgba(60,20,110,0.10);
+      padding: 1.7rem .8rem 1.2rem .8rem;
       max-width: 350px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: .85rem;
+      gap: 1.05rem;
+      animation: fadeInUp 1.2s cubic-bezier(0.68,-0.55,0.27,1.55) .37s backwards;
     }
     .cta-section p {
       color: var(--branco);
-      font-size: 1.13rem;
+      font-size: 1.18rem;
       text-align: center;
       font-weight: 600;
-      margin-bottom: .5rem;
+      letter-spacing: .5px;
+      margin-bottom: .2rem;
     }
     .cta-form {
       display: flex;
       width: 100%;
-      gap: .6rem;
+      gap: .5rem;
       flex-wrap: wrap;
       justify-content: center;
+      margin-top: .2rem;
     }
     .cta-form input[type="email"] {
       flex: 1 1 120px;
-      padding: .7rem;
+      padding: .68rem;
       border-radius: 8px;
       border: none;
-      font-size: 1rem;
+      font-size: 1.03rem;
       outline: none;
       margin-bottom: .5rem;
+      background: var(--branco);
+      color: var(--preto);
+      transition: box-shadow .2s;
+      box-shadow: 0 1.5px 8px rgba(110, 70, 190, 0.05);
+    }
+    .cta-form input[type="email"]:focus {
+      box-shadow: 0 3px 15px #BDA6FF55;
+      border: 1.2px solid var(--roxo-claro);
     }
     .cta-form button {
-      padding: .7rem 1.5rem;
+      padding: .7rem 1.4rem;
       background: var(--roxo-claro);
       color: var(--preto);
       border: none;
       border-radius: 8px;
-      font-weight: 700;
-      font-size: 1rem;
+      font-weight: 800;
+      font-size: 1.02rem;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background .18s, color .18s;
+      box-shadow: 0 1.5px 8px rgba(120,80,200,0.08);
+      letter-spacing: .2px;
     }
     .cta-form button:hover {
-      background: var(--branco);
-      color: var(--roxo);
+      background: var(--roxo);
+      color: var(--branco);
     }
-    @media (max-width: 480px) {
-      header {
-        font-size: 0.95rem;
-        padding: 1.3rem .4rem 0.6rem .4rem;
-      }
+
+    /* Responsivo */
+    @media (max-width: 540px) {
       main {
-        padding: 1.2rem .5rem 0.7rem .5rem;
+        padding: 1.1rem .4rem 1.2rem .4rem;
+        max-width: 99vw;
       }
-      .logo {
-        font-size: 1.5rem;
+      .brand-title {
+        font-size: 1.45rem;
       }
-      .cta-section {
-        padding: 1rem .5rem;
-      }
-      .list-section {
-        padding: .8rem .5rem;
-      }
+      .logo-svg { width: 40px; height: 40px; }
+      .topic-section h2 { font-size: .97rem; }
     }
     footer {
       width: 100%;
       text-align: center;
-      padding: 1.2rem .5rem .8rem .5rem;
-      color: #aaa;
-      font-size: .92rem;
-      background: var(--branco);
-      margin-top: 1.5rem;
+      padding: 1.25rem .5rem .9rem .5rem;
+      color: #A39EC9;
+      font-size: .98rem;
+      background: transparent;
+      margin-top: 1rem;
+      font-family: 'Montserrat', Arial, sans-serif;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">PG Concursos Públicos</div>
+    <!-- Logo SVG: foguete saindo de livro -->
+    <svg class="logo-svg" viewBox="0 0 60 60" fill="none">
+      <!-- Livro aberto -->
+      <path d="M10 47 Q30 37 50 47" fill="#fff" stroke="#6C4BA5" stroke-width="2"/>
+      <path d="M10 47 Q30 53 50 47" fill="#fff" stroke="#BDA6FF" stroke-width="2"/>
+      <!-- Foguete -->
+      <g>
+        <ellipse cx="30" cy="30" rx="4" ry="10" fill="#6C4BA5"/>
+        <rect x="27" y="16" width="6" height="12" rx="3" fill="#BDA6FF" stroke="#6C4BA5" stroke-width="1.2"/>
+        <!-- Janelinha -->
+        <circle cx="30" cy="22" r="1.1" fill="#fff"/>
+        <!-- Chamas -->
+        <polygon points="30,41 27,47 30,45 33,47" fill="#FFB300"/>
+      </g>
+    </svg>
+    <div class="brand-title">PG Concursos Públicos</div>
     <div class="sub">Manual do Aprovado</div>
   </header>
 
   <main>
-    <div class="mistery">Algo grande está chegando...</div>
-
+    <div class="mistery">🚀 Algo grande está chegando...</div>
     <div class="problem">
-      Chega de mentoria.<br>
-      Chega de estudar no escuro.<br>
-      Chega de fórmulas prontas que não funcionam.
+      • Chega de mentoria.<br>
+      • Chega de estudar no escuro.<br>
+      • Chega de fórmulas prontas que não funcionam.<br>
+      <br>
+      <b>O que separa os aprovados de quem fica pelo caminho?</b>
     </div>
 
-    <section class="list-section">
+    <section class="topic-section">
+      <h2>O que você vai aprender:</h2>
       <ul>
-        <li>Ciclos de estudo inteligentes, para qualquer carga horária</li>
-        <li>Revisão na medida certa</li>
-        <li>Questões na hora e quantidade certa</li>
-        <li>Como estudar Lei Seca do jeito que cai</li>
-        <li>Estratégias de Pré e Pós-Edital</li>
-        <li>Sacadas de reta final</li>
-        <li>Análises das principais bancas</li>
-        <li>Aprendizados de anos de estrada, condensados no melhor material</li>
+        <li><b>Ciclos de estudo</b> otimizados para diferentes rotinas e cargas horárias.</li>
+        <li>Métodos eficientes de <b>revisão</b> para não esquecer o que importa.</li>
+        <li>Como <b>fazer questões</b> na hora certa e na quantidade certa.</li>
+        <li>Estratégia definitiva para estudar <b>Lei Seca</b> sem enrolação.</li>
+        <li>O que muda no <b>Pré e Pós-Edital</b>.</li>
+        <li>As <b>táticas de reta final</b> usadas pelos aprovados.</li>
+        <li>Análise real das <b>bancas</b> que mais aprovam.</li>
+        <li><b>Sacadas e atalhos</b> que só quem passou por tudo revela.</li>
       </ul>
     </section>
 
     <div class="autoridade">
-      Tudo testado na prática. <span class="destaque">Nada de promessas vazias.</span><br>
-      <span class="destaque">O guia definitivo que faltava.</span>
+      Todo o conteúdo é fruto de <span class="destaque">anos de experiência real em concursos</span>, condensado no material mais completo já produzido.  
+      <br><br>
+      <span class="destaque">Chega de promessas vazias.</span>  
+      O Manual do Aprovado é para quem quer resultado de verdade.
     </div>
 
     <section class="cta-section">
-      <p>Quer saber antes de todo mundo?</p>
-      <form class="cta-form" autocomplete="off" onsubmit="alert('Seu interesse foi registrado!'); return false;">
+      <p>🔒 Seja o(a) primeiro(a) a saber.<br>
+        Insira seu e-mail e garanta acesso antecipado!</p>
+      <form class="cta-form" autocomplete="off" onsubmit="alert('Seu interesse foi registrado! 🚀'); return false;">
         <input type="email" placeholder="Seu e-mail" required>
         <button type="submit">Quero ser avisado</button>
       </form>
