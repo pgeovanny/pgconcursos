@@ -7,15 +7,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;900&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --roxo: #764bcb;
-      --roxo2: #b699f8;
-      --roxo-dark: #492a80;
+      --roxo: #7c46c5;
+      --roxo2: #bda6ff;
+      --roxo-dark: #38256e;
       --branco: #fff;
-      --cinza-bg: #F6F4FB;
+      --cinza-bg: #f3f0fa;
       --card-bg: #fff;
       --preto: #19162a;
-      --soft-shadow: 0 8px 24px 0 rgba(110,75,202,0.13);
-      --pulse-shadow: 0 0 0 0 rgba(118,75,203,0.22);
+      --soft-shadow: 0 8px 32px 0 rgba(110,75,202,0.15);
     }
     html, body {
       margin: 0; padding: 0; width: 100vw; min-height: 100vh;
@@ -27,82 +26,92 @@
     }
     body { display: flex; flex-direction: column; min-height: 100vh; align-items: stretch; }
     header {
-      z-index: 2; background: transparent;
+      background: transparent; z-index: 2;
       display: flex; flex-direction: column; align-items: center;
-      padding: 1.1rem 1rem 0.5rem 1rem; margin-bottom: 0.5rem;
+      padding: 1.2rem 1rem 0.8rem 1rem; margin-bottom: 0.5rem;
     }
-    .logo-img { width: 70px; height: 70px; object-fit: cover; background: var(--branco); border-radius: 50%; box-shadow: 0 2px 16px #764bcb23; border: 2.5px solid #fff; margin-bottom: 0.2rem; }
-    .brand-title { font-family: 'Outfit', 'Inter', sans-serif; font-size: 2.1rem; font-weight: 900; letter-spacing: 1px; background: linear-gradient(90deg, var(--roxo2), var(--roxo) 95%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 4px 26px #b699f819; margin-bottom: 0.1rem; text-align: center; user-select: none;}
-    /* --- Tela Cinemática --- */
+    .logo-img { width: 72px; height: 72px; object-fit: cover; background: var(--branco); border-radius: 50%; box-shadow: 0 2px 24px #764bcb34; border: 2.5px solid #fff; margin-bottom: 0.2rem; }
+    .brand-title { font-family: 'Outfit', 'Inter', sans-serif; font-size: 2.12rem; font-weight: 900; letter-spacing: 1.2px; background: linear-gradient(90deg, var(--roxo2), var(--roxo) 95%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 5px 28px #bda6ff29; margin-bottom: 0.1rem; text-align: center; user-select: none;}
+    /* ---- Fundo com profundidade ---- */
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, #d8cfff 0%, #ece5fc 55%, #fff 100%);
+      opacity: .92;
+      z-index: 0;
+      pointer-events: none;
+      animation: bgmove 14s ease-in-out infinite alternate;
+    }
+    @keyframes bgmove {
+      0% { background-position: 0% 70%; }
+      100% { background-position: 100% 10%; }
+    }
+    /* ---- Cinematic Section ---- */
     .cinema {
       position: relative;
       width: 100vw;
-      min-height: 85vh;
+      min-height: 84vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       overflow: hidden;
       z-index: 2;
-      background: var(--cinza-bg);
-      box-shadow: 0 2px 24px #a992eb0d;
-    }
-    .glassbreak {
-      position: absolute;
-      left: 50%; top: 48%;
-      width: 370px; height: 160px;
-      transform: translate(-50%, -50%);
-      z-index: 3;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity .4s;
-    }
-    .glassbreak.active {
-      opacity: 1;
-      animation: glassShake .34s cubic-bezier(.8,-0.7,.2,2.2) both;
-    }
-    @keyframes glassShake {
-      0% { filter: blur(0); transform:translate(-50%,-50%) scale(1);}
-      20%{ filter: blur(2px);}
-      60%{ filter: blur(0.6px);}
-      70%{ transform:translate(-51%,-52%) scale(1.03);}
-      100%{ filter: blur(0); transform:translate(-50%,-50%) scale(1);}
+      background: transparent;
     }
     .frase-impacto {
-      min-width: 260px; max-width: 96vw; width: 370px;
+      min-width: 260px; max-width: 94vw; width: 370px;
       min-height: 120px;
       background: var(--card-bg);
-      border-radius: 1.3rem;
-      box-shadow: 0 8px 40px #764bcb19, 0 0 0 #fff;
-      padding: 2.2rem 1.25rem 2.1rem 1.25rem;
+      border-radius: 1.35rem;
+      box-shadow: 0 8px 40px #764bcb26, 0 0 0 #fff;
+      padding: 2.4rem 1.27rem 2.1rem 1.27rem;
       font-family: 'Outfit', 'Inter', Arial, sans-serif;
-      font-size: 1.25rem;
-      font-weight: 800;
+      font-size: 1.35rem;
+      font-weight: 900;
       color: var(--roxo-dark);
       text-align: center;
       opacity: 0;
-      transform: scale(.92) rotate(-4deg);
-      transition: opacity 0.42s cubic-bezier(.65,0,.22,1), transform .62s cubic-bezier(.65,0,.22,1);
+      transform: scale(.93) rotate(-2deg) blur(5px);
+      filter: drop-shadow(0 6px 22px #bda6ff31);
+      pointer-events: none;
       position: absolute;
       left: 50%; top: 50%;
       translate: -50% -50%;
       z-index: 2;
-      pointer-events: none;
       user-select: none;
-      letter-spacing: 0.2px;
-      text-shadow: 0 1.5px 9px #b699f827;
+      letter-spacing: 0.3px;
+      text-shadow: 0 2.5px 11px #bda6ff36;
+      border: 2px solid #ece1fa;
+      overflow: hidden;
     }
     .frase-impacto.active {
       opacity: 1;
       pointer-events: auto;
-      transform: scale(1.05) rotate(2deg);
-      animation: fraseRumble 0.57s cubic-bezier(.9,-0.2,.3,1.2);
+      transform: scale(1.07) rotate(0deg) blur(0);
+      filter: drop-shadow(0 7px 30px #a678f427);
+      animation: fraseCine 1.08s cubic-bezier(.8,-0.17,.18,1.13);
+      background: linear-gradient(90deg,#faf8ff 75%,#eeeaff 100%);
+      border: 2.5px solid #cab4f8;
     }
-    @keyframes fraseRumble {
-      0%{opacity:0;transform:scale(.86) rotate(-11deg);}
-      60%{opacity:.9;transform:scale(1.09) rotate(8deg);}
-      85%{transform:scale(.98) rotate(-2deg);}
-      100%{opacity:1;transform:scale(1.05) rotate(2deg);}
+    @keyframes fraseCine {
+      0%   {opacity:0;transform:scale(.65) rotate(-17deg) blur(12px);}
+      38%  {opacity:1;transform:scale(1.21) rotate(8deg) blur(3px);}
+      56%  {transform:scale(0.93) rotate(-5deg) blur(0.7px);}
+      90%  {transform:scale(1.13) rotate(1.7deg) blur(0);}
+      100% {opacity:1;transform:scale(1.07) rotate(0deg) blur(0);}
+    }
+    /* Glow extra na última frase */
+    .frase-impacto.glow-effect.active {
+      box-shadow: 0 0 36px 12px #d1c2f9, 0 8px 42px #7c46c523;
+      border: 2.5px solid #ac86e6;
+      animation: fraseFinal 1.32s cubic-bezier(.66,.01,.18,1.12);
+    }
+    @keyframes fraseFinal {
+      0%   {opacity:0;transform:scale(.56) rotate(-15deg) blur(17px);}
+      28%  {opacity:.9;transform:scale(1.29) rotate(8deg) blur(3.5px);}
+      66%  {opacity:1;transform:scale(1.11) rotate(-5deg) blur(0.7px);}
+      100% {opacity:1;transform:scale(1.13) rotate(0deg) blur(0);}
     }
     .frase-impacto b, .frase-impacto strong {
       color: var(--roxo);
@@ -110,50 +119,97 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font-weight: 900;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.35px;
+      text-shadow: 0 3px 8px #bda6ff42;
     }
-    /* Transição tela preta */
+    /* Vidro quebrando realista */
+    .glassbreak {
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 370px; height: 160px;
+      transform: translate(-50%, -50%);
+      z-index: 7;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .36s;
+      filter: drop-shadow(0 0 22px #7c46c59c);
+    }
+    .glassbreak.active {
+      opacity: 1;
+      animation: glassRumble .47s cubic-bezier(.8,-0.7,.2,2.2) both;
+    }
+    @keyframes glassRumble {
+      0% { filter: blur(0); transform:translate(-50%,-50%) scale(1) rotate(-2deg);}
+      24%{ filter: blur(1.2px) brightness(1.4); }
+      42%{ filter: blur(0.6px);}
+      59%{ transform:translate(-52%,-51%) scale(1.03) rotate(6deg);}
+      100%{ filter: blur(0); transform:translate(-50%,-50%) scale(1) rotate(0);}
+    }
+    /* Flash branco (quebra) */
+    .flashbang {
+      position: fixed; left:0;top:0;width:100vw;height:100vh;
+      background: #fff;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9;
+      transition: opacity 0.13s;
+    }
+    .flashbang.active { opacity: 0.65; transition: opacity 0.19s;}
+    /* Shake global (tela toda treme) */
+    .cinema.shake {
+      animation: shakeIt .27s cubic-bezier(.54,-0.5,.41,2.1);
+    }
+    @keyframes shakeIt {
+      0% { transform:translate(0px,0px);}
+      15%{ transform:translate(-8px,2px);}
+      35%{ transform:translate(12px,-4px);}
+      60%{ transform:translate(-9px,3px);}
+      100%{ transform:translate(0,0);}
+    }
+    /* Fade preto */
     .fade-black {
       position: fixed; left:0;top:0;width:100vw;height:100vh;
-      background: #0c0a14;
+      background: #19162a;
       opacity: 0;
       pointer-events: none;
       z-index: 8;
-      transition: opacity 0.43s;
+      transition: opacity 0.46s;
     }
-    .fade-black.active { opacity: 0.55; }
+    .fade-black.active { opacity: 0.62; }
+    /* CTA Impacto */
     .cta-btn {
       display: block;
-      margin: 2.7rem auto 0 auto;
-      padding: 1.12rem 2.2rem;
+      margin: 2.9rem auto 0 auto;
+      padding: 1.18rem 2.4rem;
       background: linear-gradient(90deg, var(--roxo2), var(--roxo));
       color: #fff;
       font-family: 'Outfit', 'Inter', sans-serif;
-      font-size: 1.17rem;
+      font-size: 1.23rem;
       font-weight: 900;
-      border-radius: 40px;
-      box-shadow: 0 3px 22px #b699f828;
+      border-radius: 42px;
+      box-shadow: 0 3px 28px #bda6ff2b, 0 0 8px #cab4f8;
       border: none;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.05em;
       cursor: pointer;
       opacity: 0;
       pointer-events: none;
-      transform: scale(.98);
-      transition: opacity .65s, transform .42s, filter .13s;
+      transform: scale(.97);
+      transition: opacity .62s, transform .48s, filter .18s;
       outline: none;
-      z-index: 4;
+      z-index: 11;
+      filter: drop-shadow(0 0 6px #cab4f8cc);
     }
     .cta-btn.active {
       opacity: 1;
       pointer-events: auto;
       transform: scale(1.11);
-      animation: btnBoom .89s cubic-bezier(.7,-0.2,.32,1.1);
-      box-shadow: 0 0 12px 0 var(--roxo2), 0 3px 22px #b699f828;
+      animation: btnBoom 1.09s cubic-bezier(.7,-0.2,.32,1.1);
+      box-shadow: 0 0 26px 0 var(--roxo2), 0 3px 22px #b699f828;
     }
     @keyframes btnBoom {
-      0%   { transform: scale(.7) rotate(-12deg);}
-      40%  { transform: scale(1.2) rotate(9deg);}
-      65%  { transform: scale(.97);}
+      0%   { transform: scale(.62) rotate(-16deg);}
+      38%  { transform: scale(1.19) rotate(9deg);}
+      68%  { transform: scale(.97);}
       100% { transform: scale(1.11);}
     }
     .cta-btn:active { filter: brightness(0.97); transform: scale(.99);}
@@ -198,22 +254,15 @@
       54%  { opacity:.6; transform: rotateY(-13deg) scale(1.04);}
       100% { opacity:1; transform: rotateY(0) scale(1);}
     }
-    .mistery {
-      font-size: 1.12rem; font-family: 'Outfit', sans-serif; font-weight: 800;
-      background: linear-gradient(90deg,var(--roxo),var(--roxo2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      text-align: center; margin-bottom: .4rem; letter-spacing: -.2px;
-    }
+    .mistery { font-size: 1.12rem; font-family: 'Outfit', sans-serif; font-weight: 800; background: linear-gradient(90deg,var(--roxo),var(--roxo2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; margin-bottom: .4rem; letter-spacing: -.2px;}
     .mistery:before { content: "🚀 "; font-size: 1.05em; }
-    .card-efeito ul {
-      padding-left: 1.1rem; margin: 0; color: var(--roxo-dark); font-size: 1.06rem; text-align: justify; line-height: 1.7; font-weight: 500; display: flex; flex-direction: column; gap: .37rem;
-    }
+    .card-efeito ul { padding-left: 1.1rem; margin: 0; color: var(--roxo-dark); font-size: 1.06rem; text-align: justify; line-height: 1.7; font-weight: 500; display: flex; flex-direction: column; gap: .37rem;}
     .big-quote { font-size: 1.11rem; color: var(--roxo-dark); font-weight: 800; background: #f7f4ff; padding: 1.03rem 1.09rem 1.01rem 1.18rem; border-radius: 15px; text-align: justify; box-shadow: 0 2px 11px #bda6ff16; border-left: 4px solid var(--roxo2); margin-bottom: .4rem; line-height: 1.5;}
     .big-quote .destaque { color: var(--roxo); font-weight: 900; display: block; margin-top: 0.5em;}
     .topic-section h2 { color: var(--roxo-dark); font-size: 1.09rem; margin-bottom: .77rem; font-weight: 900; text-transform: uppercase; letter-spacing: .8px; font-family: 'Outfit', 'Inter', sans-serif;}
     .autoridade { text-align: justify; font-size: 1.06rem; color: var(--roxo-dark); font-weight: 700; background: #f6f2fe; border-left: 4px solid var(--roxo); padding: .92rem 1.09rem .87rem 1.09rem; border-radius: 0 14px 14px 0; line-height: 1.7; box-shadow: 0 2px 8px #6c4ba511;}
     .autoridade .destaque { color: var(--roxo); font-weight: 900; font-size: 1.07em; margin-top: .5rem; display: block;}
-    .cta-aviso { margin-top: 1.3rem; display: flex; align-items: center; justify-content: center; gap: .65rem; background: linear-gradient(90deg, var(--roxo2), var(--roxo)); color: #fff; font-family: 'Outfit', 'Inter', sans-serif; font-size: 1.11rem; font-weight: 900; border-radius: 34px; padding: 1.03rem 1.3rem; box-shadow: var(--pulse-shadow); letter-spacing: 0.04em; user-select: none; animation: pulse 2.4s infinite; position: relative; min-width: 220px; text-align: center;}
+    .cta-aviso { margin-top: 1.3rem; display: flex; align-items: center; justify-content: center; gap: .65rem; background: linear-gradient(90deg, var(--roxo2), var(--roxo)); color: #fff; font-family: 'Outfit', 'Inter', sans-serif; font-size: 1.11rem; font-weight: 900; border-radius: 34px; padding: 1.03rem 1.3rem; box-shadow: 0 0 18px #bda6ff2a; letter-spacing: 0.04em; user-select: none; animation: pulse 2.4s infinite; position: relative; min-width: 220px; text-align: center;}
     @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(118,75,203,0.22);} 60%{ box-shadow: 0 0 0 18px rgba(118,75,203,0);} 100% { box-shadow: 0 0 0 0 rgba(118,75,203,0.22);}}
     .cta-aviso svg { min-width: 22px; width: 26px; height: 32px;}
     .contador-section { margin: 1rem auto 0 auto; background: none; padding: 0; max-width: 320px; display: flex; flex-direction: row; align-items: center; justify-content: center; gap: .4em; opacity: .85; font-size: 1.09rem; color: var(--roxo-dark);}
@@ -238,18 +287,24 @@
     <!-- Página inicial: Efeito cinema/glass break -->
     <section class="cinema" id="pagina1">
       <div class="glassbreak" id="glassbreak">
-        <!-- SVG de rachadura -->
+        <!-- SVG mais detalhado de rachadura -->
         <svg width="100%" height="100%" viewBox="0 0 370 160" fill="none">
-          <g stroke="#9176d1" stroke-width="2.4" stroke-linecap="round" opacity="0.44">
+          <g stroke="#b49cf8" stroke-width="2.3" stroke-linecap="round" opacity="0.64">
             <path d="M185 0 L185 160"/>
             <path d="M0 80 L370 80"/>
             <path d="M60 10 Q185 80 310 10"/>
             <path d="M20 140 Q185 80 350 140"/>
             <path d="M95 80 Q185 30 275 80"/>
             <path d="M95 80 Q185 130 275 80"/>
+            <!-- Mais rachaduras secundárias -->
+            <path d="M80 30 Q185 70 290 25"/>
+            <path d="M290 130 Q185 100 70 135"/>
+            <path d="M35 90 Q185 50 340 110"/>
+            <path d="M340 50 Q185 110 40 45"/>
           </g>
         </svg>
       </div>
+      <div class="flashbang" id="flashbang"></div>
       <div class="fade-black" id="fadeBlack"></div>
       <div class="frase-impacto" id="frase0"></div>
       <div class="frase-impacto" id="frase1"></div>
@@ -257,7 +312,9 @@
       <div class="frase-impacto" id="frase3"></div>
       <div class="frase-impacto" id="frase4"></div>
       <div class="frase-impacto" id="frase5"></div>
-      <div class="frase-impacto" id="frase6"></div>
+      <div class="frase-impacto glow-effect" id="frase6"></div>
+      <!-- Audio -->
+      <audio id="glassSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa59bb.mp3"></audio>
       <button class="cta-btn" id="ctaBtn">Quero estudar de verdade</button>
     </section>
     <!-- Página 2: Cards e CTA animada -->
@@ -334,8 +391,11 @@
     const ctaBtn = document.getElementById('ctaBtn');
     const glassbreak = document.getElementById('glassbreak');
     const fadeBlack = document.getElementById('fadeBlack');
+    const flashbang = document.getElementById('flashbang');
+    const glassSound = document.getElementById('glassSound');
     const pagina1 = document.getElementById('pagina1');
     const pagina2 = document.getElementById('pagina2');
+
     // Sequência de animação cinema
     async function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
     async function apresentaFrases(){
@@ -343,17 +403,26 @@
         // Fade preto curto antes da quebra, exceto na 1a
         if(i>0){
           fadeBlack.classList.add('active');
-          await sleep(300);
+          await sleep(350);
           fadeBlack.classList.remove('active');
         }
-        // Glassbreak + frase explode
+        // Flash e shake global
+        pagina1.classList.add('shake');
+        flashbang.classList.add('active');
+        await sleep(120);
+        flashbang.classList.remove('active');
+        // Glassbreak (com som)
         glassbreak.classList.add('active');
+        try { glassSound.currentTime = 0; glassSound.play(); } catch {}
+        // Frase com efeito
         fraseEls[i].innerHTML = frases[i];
         fraseEls[i].classList.add('active');
-        await sleep(690); // Glass/quebra efeito
+        if(i === frases.length-1) fraseEls[i].classList.add('glow-effect');
+        await sleep(990); // Glass/quebra efeito
+        pagina1.classList.remove('shake');
         glassbreak.classList.remove('active');
-        await sleep(2050 + Math.min(frases[i].length*15,1300));
-        fraseEls[i].classList.remove('active');
+        await sleep(1950 + Math.min(frases[i].length*16,1300));
+        fraseEls[i].classList.remove('active','glow-effect');
         fraseEls[i].innerHTML = "";
       }
       // Após tudo, botão
@@ -361,7 +430,7 @@
       ctaBtn.focus();
     }
     // Inicializa
-    fraseEls.forEach(el=>{el.innerHTML='';el.classList.remove('active');});
+    fraseEls.forEach(el=>{el.innerHTML='';el.classList.remove('active','glow-effect');});
     ctaBtn.classList.remove('active');
     pagina2.classList.remove('active');
     window.onload = ()=>apresentaFrases();
