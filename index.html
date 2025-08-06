@@ -105,30 +105,49 @@
       -webkit-text-fill-color: transparent;
       margin-top: 0.18rem;
     }
+    /* ------------- Primeira Página Responsiva ------------- */
     .cinema {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      min-height: 83vh;
       position: relative;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      width: 100%; min-height: 82vh;
-      overflow: hidden;
+      padding: 0;
       margin-top: 1vh;
     }
+    .cinema-inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100vw;
+      min-height: 82vh;
+      position: relative;
+      z-index: 2;
+      padding: 10vh 0 7vh 0;
+      box-sizing: border-box;
+    }
     .frase-impacto {
-      position: absolute; left: 50%; top: 48%;
-      width: 95vw; max-width: 400px;
-      padding: 1.2rem 0.9rem;
+      width: 96vw;
+      max-width: 410px;
+      margin: 0 auto 1.1rem auto;
       background: var(--branco);
       border-radius: 1.45rem;
       border: 2px solid #ece1fa;
       font-family: 'Outfit', sans-serif;
-      font-size: 1.12rem; font-weight: 900;
+      font-size: 1.13rem;
+      font-weight: 900;
       text-align: center;
-      transform: translate(-50%, -50%) scale(0.8) rotate(-5deg);
-      opacity: 0;
-      filter: drop-shadow(0 6px 18px rgba(189,166,255,0.15));
-      will-change: transform, opacity;
-      box-shadow: 0 10px 34px 0 #cab4f83d;
       line-height: 1.35;
       letter-spacing: .01em;
+      padding: 1.1rem 0.95rem;
+      opacity: 0;
+      box-shadow: 0 10px 34px 0 #cab4f83d;
+      filter: drop-shadow(0 6px 18px rgba(189,166,255,0.15));
+      margin-bottom: 0.8rem;
+      position: static !important;
     }
     .frase-impacto b, .frase-impacto strong {
       background: linear-gradient(90deg, var(--roxo), var(--roxo2));
@@ -151,13 +170,17 @@
     }
     .cinema.shake { animation: shakeIt 0.6s var(--ease-main); }
     .cta-btn {
-      position: absolute; bottom: 9%;
-      left: 50%; transform: translateX(-50%) scale(0.88);
+      margin: 2.1vh auto 0 auto;
+      display: block;
+      width: 96vw;
+      max-width: 380px;
+      min-height: 45px;
+      font-size: 1.08rem;
       padding: 1rem 1.6rem;
       background: linear-gradient(90deg, var(--roxo2), var(--roxo));
       color: var(--branco);
       font-family: 'Outfit', sans-serif;
-      font-size: 1.08rem; font-weight: 900;
+      font-weight: 900;
       border: none; border-radius: 46px;
       text-decoration: none;
       opacity: 0;
@@ -166,21 +189,23 @@
       background-size: 200% 100%; background-position: 0 0;
       z-index: 11;
       cursor:pointer;
+      position: static !important;
     }
     .cta-btn.active {
-      opacity: 1; transform: translateX(-50%) scale(1);
+      opacity: 1; transform: scale(1);
       animation: btnBoom 1s ease-out both;
     }
     .cta-btn:hover {
       background-position: 100% 0;
-      transform: translateX(-50%) scale(1.05);
+      transform: scale(1.05);
     }
     @keyframes btnBoom {
-      0%   { transform: translateX(-50%) scale(0.65) rotate(-15deg);}
-      60%  { transform: translateX(-50%) scale(1.18) rotate(8deg);}
-      100% { transform: translateX(-50%) scale(1) rotate(0);}
+      0%   { transform: scale(0.65) rotate(-15deg);}
+      60%  { transform: scale(1.18) rotate(8deg);}
+      100% { transform: scale(1) rotate(0);}
     }
     .hidden { display: none !important; }
+    /* ----------- Hero e Cards - igual antes, levemente reduzido ----------- */
     .hero {
       max-width: 98vw;
       margin: 1.2rem auto 1rem auto;
@@ -279,22 +304,18 @@
       display:inline-block;
       line-height:1.8;
     }
-    @media (max-width:650px) {
-      .hero { max-width: 99vw; margin: 0.9rem auto 0.6rem; padding: 0.8rem 0.18rem 0.5rem 0.18rem; font-size:0.97rem;}
-      .content-screen { padding: 0 0.1rem; }
-      .header-title .pg { font-size: clamp(1rem, 8vw, 1.48rem);}
-      .header-title .concursos { font-size: clamp(0.82rem, 6vw, 1.06rem);}
-      .card-efeito { font-size:0.96rem; }
-      .topic-section h2 { font-size:0.93rem; }
+    /* Media queries para celulares pequenos */
+    @media (max-width: 480px) {
+      .cinema-inner { padding: 6.5vh 0 4.6vh 0; }
+      .frase-impacto { font-size: 1.00rem; padding: 0.92rem 0.49rem; }
+      .cta-btn { font-size: 0.97rem; min-height: 40px; }
+      .hero { font-size: 0.97rem;}
+      .content-screen { gap: .54rem; }
     }
-    @media (max-width:410px) {
-      .hero { font-size: 0.95rem; }
-      .header-title .pg { font-size: 1.1rem; }
-      .header-title .concursos { font-size: 0.74rem; }
-      .card-efeito, .big-quote, .topic-section ul { font-size:0.94rem;}
-      .cta-btn { font-size:0.98rem;}
-      .frase-impacto { font-size:0.95rem; }
-      .content-screen { gap: 0.44rem; }
+    @media (max-width: 370px) {
+      .cinema-inner { padding: 3.5vh 0 2.2vh 0; }
+      .frase-impacto { font-size: 0.94rem; }
+      .cta-btn { font-size: 0.91rem; }
     }
   </style>
 </head>
@@ -319,15 +340,17 @@
       </div>
       <div class="flashbang" id="flashbang" style="background:#fff;"></div>
       <div class="fade-black" id="fadeBlack" style="background:#19162a;"></div>
-      <div class="frase-impacto" id="frase0"></div>
-      <div class="frase-impacto" id="frase1"></div>
-      <div class="frase-impacto" id="frase2"></div>
-      <div class="frase-impacto" id="frase3"></div>
-      <div class="frase-impacto" id="frase4"></div>
-      <div class="frase-impacto" id="frase5"></div>
-      <div class="frase-impacto" id="frase6"></div>
+      <div class="cinema-inner">
+        <div class="frase-impacto" id="frase0"></div>
+        <div class="frase-impacto" id="frase1"></div>
+        <div class="frase-impacto" id="frase2"></div>
+        <div class="frase-impacto" id="frase3"></div>
+        <div class="frase-impacto" id="frase4"></div>
+        <div class="frase-impacto" id="frase5"></div>
+        <div class="frase-impacto" id="frase6"></div>
+        <button class="cta-btn" id="ctaBtn" tabindex="0">Quero estudar de verdade</button>
+      </div>
       <audio id="glassSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa59bb.mp3" preload="auto"></audio>
-      <button class="cta-btn" id="ctaBtn" tabindex="0">Quero estudar de verdade</button>
     </section>
     <section class="hero hidden" id="heroBlock">
       <p>Todo o conteúdo nasceu de</p>
@@ -394,6 +417,7 @@
           fb.classList.add('active'); await sleep(100); fb.classList.remove('active');
           gb.classList.add('active'); try{ snd.currentTime=0; snd.play(); }catch(e){}
           let el = els[i]; el.innerHTML = frases[i];
+          el.style.opacity = 1;
           await el.animate([
             { opacity:0, transform:'scale(0.65) rotate(-15deg)' },
             { opacity:1, transform:'scale(1.12) rotate(7deg)' },
@@ -405,6 +429,7 @@
             { opacity:1, transform:'scale(1) rotate(0)' },
             { opacity:0, transform:'scale(0.88) rotate(-5deg)' }
           ], { duration:500, easing:'ease-in', fill:'forwards' }).finished;
+          el.style.opacity = 0;
           el.innerHTML = '';
         }
         btn.classList.add('active'); btn.focus();
