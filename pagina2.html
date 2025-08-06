@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PG Concursos — Conteúdo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;900&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --roxo: #7c46c5;
+      --roxo2: #bda6ff;
+      --branco: #fff;
+      --preto: #19162a;
+      --ease-main: cubic-bezier(0.19,1,0.22,1);
+      --dur-med: 0.8s;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body {
+      font-family:'Inter',sans-serif;
+      color: var(--preto);
+      background: linear-gradient(-45deg, #7c46c5, #bda6ff, #38256e, #ece5fc);
+      background-size:400% 400%;
+      animation: gradBG 15s var(--ease-main) infinite;
+    }
+    @keyframes gradBG {
+      0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}
+    }
+    header {
+      text-align:center; padding:1rem 0;
+      background:rgba(255,255,255,0.6); backdrop-filter:blur(6px);
+    }
+    .brand-title {
+      font-family:'Outfit',sans-serif;
+      font-size:1.8rem;
+      background:linear-gradient(90deg,var(--roxo2),var(--roxo));
+      -webkit-background-clip:text; color:transparent;
+    }
+    .cards-wrapper {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:1.5rem;
+      padding:2rem;
+      max-width:1200px; margin:0 auto;
+    }
+    .card {
+      background:rgba(255,255,255,0.85);
+      border-radius:1.5rem;
+      padding:1.5rem;
+      box-shadow:0 8px 32px rgba(0,0,0,0.1);
+      backdrop-filter:blur(10px);
+      transform-style:preserve-3d;
+      transition:transform var(--dur-med) var(--ease-main),
+                 box-shadow var(--dur-med) var(--ease-main),
+                 opacity var(--dur-med) var(--ease-main),
+                 transform var(--dur-med) var(--ease-main);
+      opacity:0; transform: translateY(20px) rotateX(0) rotateY(0) scale(1);
+      will-change:transform,opacity;
+    }
+    .card.visible {
+      opacity:1; transform: translateY(0) scale(1);
+    }
+    .card:hover {
+      box-shadow:0 16px 48px rgba(0,0,0,0.2);
+    }
+    .card h3 {
+      font-family:'Outfit',sans-serif;
+      margin-bottom:0.8rem;
+      background:linear-gradient(90deg,var(--roxo),var(--roxo2));
+      -webkit-background-clip:text; color:transparent;
+    }
+    .card p, .card ul { line-height:1.6; margin-bottom:1rem; }
+    .card ul { padding-left:1.2rem; }
+    .card .destaque { color:var(--roxo); font-weight:700; }
+    /* tilt effect */
+    .tilt-container { perspective:1000px; }
+    /* responsivo */
+    @media (max-width:480px) {
+      .cards-wrapper { padding:1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand-title">PG CONCURSOS PÚBLICOS</div>
+  </header>
+  <main>
+    <section class="cards-wrapper">
+      <!-- 1 -->
+      <div class="card tilt-container">
+        <h3>🎯 Domine seus Estudos</h3>
+        <p class="destaque">Aprenda a estudar sozinho e construa seu método até a aprovação.</p>
+      </div>
+      <!-- 2 -->
+      <div class="card tilt-container">
+        <h3>📋 Organização Eficiente</h3>
+        <ul>
+          <li>Planeje seu cronograma.</li>
+          <li>Defina metas diárias e semanais.</li>
+          <li>Use revisões espaçadas.</li>
+        </ul>
+      </div>
+      <!-- 3 -->
+      <div class="card tilt-container">
+        <h3>💡 Técnicas de Revisão</h3>
+        <p>Flashcards, mapas mentais e resumos dinâmicos para fixar o que importa.</p>
+      </div>
+      <!-- 4 -->
+      <div class="card tilt-container">
+        <h3>📝 Prática de Questões</h3>
+        <p class="destaque">Quantitativa e qualitativa: saiba quando e como resolver.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // IntersectionObserver para fade-in
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.card').forEach(c => observer.observe(c));
+
+    // Tilt 3D
+    document.querySelectorAll('.tilt-container').forEach(container => {
+      const card = container;
+      container.addEventListener('mousemove', e => {
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width/2;
+        const y = e.clientY - rect.top - rect.height/2;
+        const tiltX = (y / (rect.height/2)) * 10;
+        const tiltY = (x / (rect.width/2)) * 10;
+        card.style.transform = `rotateX(${ -tiltX }deg) rotateY(${ tiltY }deg) scale(1.03)`;
+      });
+      container.addEventListener('mouseleave', () => {
+        card.style.transform = 'rotateX(0) rotateY(0) scale(1)';
+      });
+    });
+  </script>
+</body>
+</html>
