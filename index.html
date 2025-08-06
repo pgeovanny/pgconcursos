@@ -23,7 +23,6 @@
       color: var(--preto);
       perspective: 1200px;
     }
-    /* Header Profissional */
     header {
       position: sticky; top: 0; z-index: 100;
       display: flex; align-items: center; justify-content: center;
@@ -88,7 +87,6 @@
       -webkit-text-fill-color: transparent;
       margin-top: 0.2rem;
     }
-    /* Fundo animado */
     body::before {
       content: '';
       position: fixed; inset: 0;
@@ -101,7 +99,6 @@
       0% { background-position: 0% 70%; }
       100% { background-position: 100% 10%; }
     }
-    /* Primeira Tela: Cinema */
     .cinema { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 84vh; overflow: hidden; }
     .frase-impacto {
       position: absolute; left: 50%; top: 48%;
@@ -169,7 +166,6 @@
       60%  { transform: translateX(-50%) scale(1.2) rotate(10deg);}
       100% { transform: translateX(-50%) scale(1) rotate(0);}
     }
-    /* Página 2 Hero */
     .hidden { display: none !important; }
     .hero {
       max-width: 700px;
@@ -198,7 +194,6 @@
       font-size: clamp(1.1rem, 4.5vw, 1.6rem);
       letter-spacing: .2px;
     }
-    /* Cards originais com flip */
     .content-screen {
       display: flex;
       flex-direction: column;
@@ -282,7 +277,6 @@
       <span class="concursos">Concursos Públicos</span>
     </div>
   </header>
-  <!-- Primeira tela (cinema) -->
   <main>
     <section class="cinema" id="pagina1">
       <div class="glassbreak" id="glassbreak">
@@ -304,9 +298,8 @@
       <div class="frase-impacto" id="frase5"></div>
       <div class="frase-impacto" id="frase6"></div>
       <audio id="glassSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa59bb.mp3" preload="auto"></audio>
-      <button class="cta-btn" id="ctaBtn">Quero estudar de verdade</button>
+      <button class="cta-btn" id="ctaBtn" tabindex="0">Quero estudar de verdade</button>
     </section>
-    <!-- Página 2: hero + cards -->
     <section class="hero hidden" id="heroBlock">
       <p>Todo o conteúdo nasceu de</p>
       <p class="emphasis">anos de experiência real em concursos</p>
@@ -339,92 +332,89 @@
     </section>
   </main>
   <script>
-    // --------- CINEMA FRASES --------
-    const frases = [
-      "Eu sei que você já sentiu que <b>não aprendia de verdade</b>...",
-      "Já tentou <b>vários métodos</b>, mas se sentiu perdido.",
-      "Viu outros passando e pensou: <b>será que existe um jeito certo?</b>",
-      "Pensou em desistir por tanta matéria.",
-      "Se cansou de <b>dicas soltas</b> e promessas vazias...",
-      "Sente que falta um <b>passo a passo prático</b>.",
-      "E se existisse um <b>caminho confiável</b> para aprovar?"
-    ];
-    const els = frases.map((_,i)=>document.getElementById(`frase${i}`));
-    const gb = document.getElementById('glassbreak'),
-          fb = document.getElementById('flashbang'),
-          db = document.getElementById('fadeBlack'),
-          snd = document.getElementById('glassSound'),
-          sec = document.getElementById('pagina1'),
-          btn = document.getElementById('ctaBtn');
-    const hero = document.getElementById('heroBlock');
-    const pagina2 = document.getElementById('pagina2');
-    const sleep = ms => new Promise(r=>setTimeout(r, ms));
-    async function runCinema() {
-      for (let i=0; i<els.length; i++) {
-        if (i>0) { db.classList.add('active'); await sleep(300); db.classList.remove('active'); }
-        sec.classList.add('shake');
-        fb.classList.add('active'); await sleep(120); fb.classList.remove('active');
-        gb.classList.add('active'); try{ snd.currentTime=0; snd.play(); }catch(e){}
-        let el = els[i]; el.innerHTML = frases[i];
-        await el.animate([
-          { opacity:0, transform:'scale(0.6) rotate(-15deg)' },
-          { opacity:1, transform:'scale(1.15) rotate(8deg)' },
-          { opacity:1, transform:'scale(1) rotate(0)' }
-        ], { duration:1000, easing:'cubic-bezier(0.8,-0.17,0.18,1.13)', fill:'forwards' }).finished;
-        sec.classList.remove('shake'); gb.classList.remove('active');
-        await sleep(1200 + Math.min(frases[i].length * 14, 800));
-        await el.animate([
-          { opacity:1, transform:'scale(1) rotate(0)' },
-          { opacity:0, transform:'scale(0.8) rotate(-5deg)' }
-        ], { duration:600, easing:'ease-in', fill:'forwards' }).finished;
-        el.innerHTML = '';
+    document.addEventListener('DOMContentLoaded', function(){
+      // --------- CINEMA FRASES --------
+      const frases = [
+        "Eu sei que você já sentiu que <b>não aprendia de verdade</b>...",
+        "Já tentou <b>vários métodos</b>, mas se sentiu perdido.",
+        "Viu outros passando e pensou: <b>será que existe um jeito certo?</b>",
+        "Pensou em desistir por tanta matéria.",
+        "Se cansou de <b>dicas soltas</b> e promessas vazias...",
+        "Sente que falta um <b>passo a passo prático</b>.",
+        "E se existisse um <b>caminho confiável</b> para aprovar?"
+      ];
+      const els = frases.map((_,i)=>document.getElementById(`frase${i}`));
+      const gb = document.getElementById('glassbreak'),
+            fb = document.getElementById('flashbang'),
+            db = document.getElementById('fadeBlack'),
+            snd = document.getElementById('glassSound'),
+            sec = document.getElementById('pagina1'),
+            btn = document.getElementById('ctaBtn');
+      const hero = document.getElementById('heroBlock');
+      const pagina2 = document.getElementById('pagina2');
+      const sleep = ms => new Promise(r=>setTimeout(r, ms));
+      async function runCinema() {
+        for (let i=0; i<els.length; i++) {
+          if (i>0) { db.classList.add('active'); await sleep(300); db.classList.remove('active'); }
+          sec.classList.add('shake');
+          fb.classList.add('active'); await sleep(120); fb.classList.remove('active');
+          gb.classList.add('active'); try{ snd.currentTime=0; snd.play(); }catch(e){}
+          let el = els[i]; el.innerHTML = frases[i];
+          await el.animate([
+            { opacity:0, transform:'scale(0.6) rotate(-15deg)' },
+            { opacity:1, transform:'scale(1.15) rotate(8deg)' },
+            { opacity:1, transform:'scale(1) rotate(0)' }
+          ], { duration:1000, easing:'cubic-bezier(0.8,-0.17,0.18,1.13)', fill:'forwards' }).finished;
+          sec.classList.remove('shake'); gb.classList.remove('active');
+          await sleep(1200 + Math.min(frases[i].length * 14, 800));
+          await el.animate([
+            { opacity:1, transform:'scale(1) rotate(0)' },
+            { opacity:0, transform:'scale(0.8) rotate(-5deg)' }
+          ], { duration:600, easing:'ease-in', fill:'forwards' }).finished;
+          el.innerHTML = '';
+        }
+        btn.classList.add('active'); btn.focus();
       }
-      btn.classList.add('active'); btn.focus();
-    }
-    // ----------- TRANSIÇÃO PARA CARDS -------------
-    btn.addEventListener('click', ()=>{
-      sec.style.opacity = 1;
-      sec.animate([
-        { opacity: 1, filter: "blur(0)" }, { opacity: 0, filter: "blur(8px)" }
-      ], { duration: 680, fill: "forwards", easing: "var(--ease-main)" })
-      .onfinish = ()=>{
-        sec.classList.add('hidden');
-        hero.classList.remove('hidden');
-        pagina2.classList.remove('hidden');
-        pagina2.classList.add('active');
-        animateCards();
-        startCounter();
-        window.scrollTo({top:0,behavior:"smooth"});
-      };
-    });
-    // -------------- CARDS ANIMATION --------------
-    function animateCards(){
-      document.querySelectorAll('.card-efeito').forEach((card,ix)=>{
-        setTimeout(()=>{
-          card.classList.add('ativo');
-        }, 180+ix*180);
+      runCinema();
+      btn.addEventListener('click', ()=>{
+        sec.style.opacity = 1;
+        sec.animate([
+          { opacity: 1, filter: "blur(0)" }, { opacity: 0, filter: "blur(8px)" }
+        ], { duration: 680, fill: "forwards", easing: "cubic-bezier(0.19,1,0.22,1)" })
+        .onfinish = ()=>{
+          sec.classList.add('hidden');
+          hero.classList.remove('hidden');
+          pagina2.classList.remove('hidden');
+          pagina2.classList.add('active');
+          animateCards();
+          startCounter();
+          window.scrollTo({top:0,behavior:"smooth"});
+        };
       });
-    }
-    // -------------- CONTADOR ANIMADO -------------
-    function startCounter() {
-      const el = document.getElementById('contador');
-      const BASE = 127;
-      let count = parseInt(localStorage.getItem('pg_manifestaram') || BASE, 10) + 1;
-      localStorage.setItem('pg_manifestaram', count);
-      let start = count - 3, end = count, duration = 800, startTime;
-      function step(timestamp) {
-        if (!startTime) startTime = timestamp;
-        let progress = Math.min((timestamp - startTime) / duration, 1);
-        el.textContent = Math.floor(start + (end - start) * progress);
-        if (progress < 1) requestAnimationFrame(step);
-        else el.textContent = end;
+      function animateCards(){
+        document.querySelectorAll('.card-efeito').forEach((card,ix)=>{
+          setTimeout(()=>{
+            card.classList.add('ativo');
+          }, 180+ix*180);
+        });
       }
-      requestAnimationFrame(step);
-    }
-    // ------ INICIALIZA PRIMEIRA TELA -----
-    window.addEventListener('load', runCinema);
-    // ------ LOGO volta ao topo
-    document.querySelector('.logo-link').onclick = e => { e.preventDefault(); window.scrollTo({top:0,behavior:"smooth"}); };
+      function startCounter() {
+        const el = document.getElementById('contador');
+        const BASE = 127;
+        let count = parseInt(localStorage.getItem('pg_manifestaram') || BASE, 10) + 1;
+        localStorage.setItem('pg_manifestaram', count);
+        let start = count - 3, end = count, duration = 800, startTime;
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          let progress = Math.min((timestamp - startTime) / duration, 1);
+          el.textContent = Math.floor(start + (end - start) * progress);
+          if (progress < 1) requestAnimationFrame(step);
+          else el.textContent = end;
+        }
+        requestAnimationFrame(step);
+      }
+      document.querySelector('.logo-link').onclick = e => { e.preventDefault(); window.scrollTo({top:0,behavior:"smooth"}); };
+    });
   </script>
 </body>
 </html>
