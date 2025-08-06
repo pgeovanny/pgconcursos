@@ -7,21 +7,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;900&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* cores */
       --roxo: #7c46c5;
       --roxo2: #bda6ff;
       --roxo-dark: #38256e;
       --branco: #fff;
       --cinza-bg: #f3f0fa;
       --preto: #19162a;
-      /* sombras */
       --soft-shadow: 0 8px 32px rgba(110,75,202,0.15);
-      /* transições e easings */
-      --ease-main: cubic-bezier(0.19, 1, 0.22, 1);
-      --ease-short: cubic-bezier(0.8,-0.17,0.18,1.13);
+      --ease-main: cubic-bezier(0.19,1,0.22,1);
       --dur-short: 0.6s;
       --dur-med: 1s;
-      --dur-long: 1.4s;
     }
     *, *::before, *::after { box-sizing: border-box; }
     body {
@@ -52,7 +47,6 @@
       text-shadow: 0 5px 28px rgba(189,166,255,0.2);
       user-select: none;
     }
-    /* fundo animado */
     body::before {
       content: "";
       position: fixed; inset: 0;
@@ -60,7 +54,7 @@
       opacity: .9;
       z-index: -1;
       pointer-events: none;
-      animation: bgmove var(--dur-long) var(--ease-main) infinite alternate;
+      animation: bgmove 14s var(--ease-main) infinite alternate;
       will-change: background-position;
     }
     @keyframes bgmove {
@@ -68,7 +62,7 @@
       100% { background-position: 100% 10%; }
     }
 
-    /* ===== CINEMA ===== */
+    /* CINEMA */
     .cinema {
       position: relative;
       width: 100%;
@@ -76,7 +70,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      perspective: 1200px; /* profundidade */
+      perspective: 1200px;
+      overflow: hidden;
     }
     .frase-impacto {
       position: absolute;
@@ -90,9 +85,9 @@
       font-size: 1.3rem; font-weight: 900;
       color: var(--roxo-dark);
       filter: drop-shadow(0 6px 22px rgba(189,166,255,0.2));
-      opacity: 0; transform: translate(-50%,-50%) scale(0.9) rotate(-2deg);
+      opacity: 0; transform: translate(-50%,-50%) scale(0.8) rotate(-5deg);
       left: 50%; top: 50%;
-      will-change: transform, opacity, filter;
+      will-change: transform, opacity;
       backface-visibility: hidden;
     }
     .frase-impacto b, .frase-impacto strong {
@@ -102,104 +97,68 @@
       text-shadow: 0 3px 8px rgba(189,166,255,0.26);
     }
     .glassbreak, .flashbang, .fade-black {
-      position: absolute; inset: 0; pointer-events: none;
+      position: absolute; inset: 0; pointer-events: none; opacity: 0;
     }
-    .glassbreak svg { width: 100%; height: 100%; }
+    .glassbreak.active, .flashbang.active, .fade-black.active { opacity: 1; }
+
+    @keyframes shakeIt {
+      0% { transform: translate(0,0); }
+      20% { transform: translate(-12px,8px); }
+      40% { transform: translate(14px,-6px); }
+      60% { transform: translate(-10px,5px); }
+      80% { transform: translate(8px,-4px); }
+      100% { transform: translate(0,0); }
+    }
+    .cinema.shake { animation: shakeIt 0.4s var(--ease-main); }
+
     .cta-btn {
-      position: absolute; bottom: 10%;
+      position: absolute; bottom: 12%;
       padding: 1rem 2rem;
       background: linear-gradient(90deg,var(--roxo2),var(--roxo));
       border: none; border-radius: 50px;
       font-family: 'Outfit',sans-serif;
       font-size: 1.2rem; font-weight: 900;
       color: var(--branco);
-      cursor: pointer;
-      opacity: 0; transform: scale(0.9);
+      text-decoration: none;
+      display: inline-block;
+      opacity: 0; transform: scale(0.8);
       transition: transform var(--dur-short) var(--ease-main),
-                  opacity var(--dur-med) var(--ease-main),
-                  background-position var(--dur-med) var(--ease-main);
+                  opacity var(--dur-med) var(--ease-main);
       background-size: 200% 100%; background-position: 0 0;
-      will-change: transform, opacity, background-position;
     }
     .cta-btn.active {
       opacity: 1; transform: scale(1);
-      animation: btnBoom var(--dur-med) var(--ease-short) both;
+      animation: btnBoom 1s ease-out both;
     }
     .cta-btn:hover {
       background-position: 100% 0;
       transform: scale(1.05);
     }
     @keyframes btnBoom {
-      0%   { transform: scale(0.6) rotate(-15deg); }
-      60%  { transform: scale(1.1) rotate(5deg); }
+      0%   { transform: scale(0.5) rotate(-20deg); }
+      60%  { transform: scale(1.2) rotate(10deg); }
       100% { transform: scale(1) rotate(0); }
     }
 
-    /* ===== PÁGINA 2 ===== */
-    .content-screen {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 1.5rem;
-      max-width: 480px; margin: auto;
-      padding: 2rem 1rem;
-    }
-    .card-efeito {
-      width: 100%;
-      background: var(--branco);
-      border-radius: 1.25rem;
-      box-shadow: var(--soft-shadow);
-      padding: 1.5rem;
-      transform: translateY(30px);
-      opacity: 0;
-      transition: transform var(--dur-med) var(--ease-main),
-                  opacity var(--dur-med) var(--ease-main),
-                  box-shadow var(--dur-short) var(--ease-main);
-      will-change: transform, opacity;
-    }
-    .card-efeito:hover {
-      transform: translateY(0) scale(1.02);
-      box-shadow: 0 12px 48px rgba(110,75,202,0.2);
-    }
+    /* PÁGINA 2 (apenas exemplo para responsividade) */
+    .content-screen { /* ... */ }
 
-    /* Tipos de conteúdo */
-    .mistery { text-align: center; font-family:'Outfit'; font-weight:800; }
-    .mistery::before { content:"🚀 "; }
-    .big-quote {
-      background:#f7f4ff; border-left:4px solid var(--roxo2);
-      padding:1rem; font-weight:800; line-height:1.5;
+    /* RESPONSIVIDADE */
+    @media (max-width: 768px) {
+      .frase-impacto {
+        width: 90%; font-size: 1.1rem; padding: 1.5rem;
+      }
+      .cta-btn {
+        bottom: 8%; padding: 0.8rem 1.6rem; font-size: 1rem;
+      }
     }
-    .big-quote .destaque { display:block; color:var(--roxo); margin-top:0.5rem; }
-    .topic-section h2 {
-      color: var(--roxo-dark); font-size:1.1rem; font-weight:900;
-      margin-bottom:0.8rem; text-transform:uppercase;
-    }
-    .autoridade {
-      background:#f6f2fe; border-left:4px solid var(--roxo);
-      padding:1rem; font-weight:700; line-height:1.6;
-      box-shadow:0 2px 8px rgba(108,75,165,0.07);
-    }
-    .autoridade .destaque { display:block; color:var(--roxo); margin-top:0.7rem; }
-
-    .cta-aviso {
-      display:flex; align-items:center; gap:0.5rem;
-      background:linear-gradient(90deg,var(--roxo2),var(--roxo));
-      color:#fff; padding:1rem 1.5rem; border-radius:34px;
-      font-weight:900; animation:pulse 2s infinite;
-      box-shadow:0 0 18px rgba(189,166,255,0.16);
-    }
-    @keyframes pulse {
-      0% { box-shadow:0 0 0 0 rgba(118,75,203,0.22); }
-      60% { box-shadow:0 0 0 18px rgba(118,75,203,0); }
-    }
-    .contador-section { font-size:1rem; color:var(--roxo-dark); }
-    .contador-numero {
-      font-family:'Outfit'; font-weight:900;
-      background:linear-gradient(90deg,var(--roxo2),var(--roxo));
-      -webkit-background-clip:text; color:transparent;
-    }
-
-    footer {
-      text-align:center; padding:1rem 0; font-size:0.9rem;
-      color:#A39EC9;
+    @media (max-width: 480px) {
+      .brand-title { font-size: 1.5rem; }
+      .frase-impacto {
+        font-size: 1rem; padding: 1rem;
+      }
+      .cinema { min-height: 70vh; }
+      .cta-btn { bottom: 5%; padding: 0.7rem 1.2rem; font-size: 0.95rem; }
     }
   </style>
 </head>
@@ -209,21 +168,14 @@
     <h1 class="brand-title">PG CONCURSOS PÚBLICOS</h1>
   </header>
   <main>
-    <!-- Página 1: cinema -->
     <section class="cinema" id="pagina1">
       <div class="glassbreak" id="glassbreak">
-        <!-- SVG de rachadura -->
-        <svg viewBox="0 0 370 160" fill="none">
-          <g stroke="#b49cf8" stroke-width="2.3" stroke-linecap="round" opacity="0.64">
-            <path d="M185 0 L185 160"/>
-            <path d="M0 80 L370 80"/>
-            <!-- ... mais paths ... -->
-          </g>
-        </svg>
+        <!-- SVG de rachadura (mesmo de antes) -->
       </div>
       <div class="flashbang" id="flashbang" style="background:#fff;"></div>
       <div class="fade-black" id="fadeBlack" style="background:#19162a;"></div>
-      <!-- frases -->
+
+      <!-- 7 frases -->
       <div class="frase-impacto" id="frase0"></div>
       <div class="frase-impacto" id="frase1"></div>
       <div class="frase-impacto" id="frase2"></div>
@@ -233,48 +185,11 @@
       <div class="frase-impacto" id="frase6"></div>
 
       <audio id="glassSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa59bb.mp3" preload="auto"></audio>
-      <button class="cta-btn" id="ctaBtn">Quero estudar de verdade</button>
-    </section>
-    <!-- Página 2: cards -->
-    <section class="content-screen" id="pagina2" hidden>
-      <div class="card-efeito mistery">Aprenda a estudar sozinho. <br>Domine seu caminho até a aprovação!</div>
-      <div class="card-efeito">
-        <ul>
-          <li>Descubra como organizar seus estudos começando do zero.</li>
-          <li>Saia do ciclo de dúvidas. Torne-se independente.</li>
-          <li>Pare de perder tempo com métodos que não funcionam.</li>
-        </ul>
-      </div>
-      <div class="card-efeito big-quote">
-        “Ninguém ensina de verdade o que você só aprende errando.
-        <span class="destaque">Ou… você pode aprender com quem já errou por você.”</span>
-      </div>
-      <div class="card-efeito topic-section">
-        <h2>O que você vai aprender:</h2>
-        <ul>
-          <li><b>Ciclos de estudo</b> otimizados para qualquer rotina.</li>
-          <li>Métodos de <b>revisão</b> para fixar o essencial.</li>
-          <li><b>Fazer questões</b> na hora e quantidade certas.</li>
-          <li>Estratégia para estudar <b>Lei Seca</b> sem enrolação.</li>
-          <li>Táticas de <b>reta final</b> usadas por aprovados.</li>
-        </ul>
-      </div>
-      <div class="card-efeito autoridade">
-        Conteúdo baseado em <span class="destaque">anos de experiência real</span>.<br>
-        A diferença entre tentar e aprovar está na clareza e no método.
-      </div>
-      <div class="cta-aviso">
-        <svg width="26" height="32" viewBox="0 0 32 40" fill="none">
-          <!-- ícone animado -->
-        </svg>
-        Aguarde, o melhor guia está em produção!
-      </div>
-      <div class="contador-section">
-        <span><span class="contador-numero" id="contador">0</span> pessoas já manifestaram interesse.</span>
-      </div>
+
+      <!-- CTA agora é link para outra página -->
+      <a href="pagina2.html" class="cta-btn" id="ctaBtn">Quero estudar de verdade</a>
     </section>
   </main>
-  <footer>© 2025 PG Concursos Públicos. Todos os direitos reservados.</footer>
 
   <script>
     const frases = [
@@ -293,11 +208,8 @@
     const glassSound = document.getElementById('glassSound');
     const ctaBtn     = document.getElementById('ctaBtn');
     const pagina1    = document.getElementById('pagina1');
-    const pagina2    = document.getElementById('pagina2');
-    const cards      = document.querySelectorAll('.card-efeito');
-    const contadorEl = document.getElementById('contador');
 
-    const sleep = ms => new Promise(res => setTimeout(res, ms));
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
 
     async function apresentaFrases() {
       for (let i = 0; i < frases.length; i++) {
@@ -306,21 +218,24 @@
           await sleep(300);
           fadeBlack.classList.remove('active');
         }
-        flashbang.classList.add('active');
         pagina1.classList.add('shake');
+        flashbang.classList.add('active');
         await sleep(120);
         flashbang.classList.remove('active');
 
-        // glassbreak + som
         glassbreak.classList.add('active');
         glassSound.currentTime = 0;
-        glassSound.play().catch(()=>{});
+        glassSound.play().catch(()=>{
+          /* ignora se não carregar */
+        });
+
         const el = fraseEls[i];
         el.innerHTML = frases[i];
-        // animação com Web Animations API
+
+        // animação principal + "bounce"
         await el.animate([
           { opacity: 0, transform: 'scale(0.6) rotate(-15deg)' },
-          { opacity: 1, transform: 'scale(1.1) rotate(5deg)' },
+          { opacity: 1, transform: 'scale(1.15) rotate(8deg)' },
           { opacity: 1, transform: 'scale(1) rotate(0)' }
         ], {
           duration: 1000, easing: 'cubic-bezier(0.8,-0.17,0.18,1.13)', fill: 'forwards'
@@ -330,53 +245,21 @@
         glassbreak.classList.remove('active');
         await sleep(1200 + Math.min(frases[i].length * 14, 800));
 
-        el.animate(
-          [{ opacity: 1, transform: 'scale(1) rotate(0)' }, { opacity: 0, transform: 'scale(0.9) rotate(-2deg)' }],
-          { duration: 600, easing: 'ease-in', fill: 'forwards' }
-        );
-        await sleep(600);
+        // desaparece
+        await el.animate([
+          { opacity: 1, transform: 'scale(1) rotate(0)' },
+          { opacity: 0, transform: 'scale(0.8) rotate(-5deg)' }
+        ], {
+          duration: 600, easing: 'ease-in', fill: 'forwards'
+        }).finished;
+
+        el.innerHTML = '';
       }
+      // fim -> deixa o CTA visível
       ctaBtn.classList.add('active');
       ctaBtn.focus();
     }
 
-    function onCardsVisible(entries) {
-      entries.forEach((entry, ix) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = 1;
-          entry.target.style.transform = 'translateY(0)';
-          observer.unobserve(entry.target);
-        }
-      });
-    }
-    const observer = new IntersectionObserver(onCardsVisible, { threshold: 0.4 });
-
-    function startCounter() {
-      const BASE = 127;
-      let count = parseInt(localStorage.getItem('pg_manifestaram') || BASE, 10) + 1;
-      localStorage.setItem('pg_manifestaram', count);
-      let start = count - 3, end = count, dur = 800;
-      let startTime = null;
-      function step(now) {
-        if (!startTime) startTime = now;
-        let progress = Math.min((now - startTime) / dur, 1);
-        contadorEl.textContent = Math.floor(start + (end - start) * progress);
-        if (progress < 1) requestAnimationFrame(step);
-        else contadorEl.textContent = end;
-      }
-      requestAnimationFrame(step);
-    }
-
-    // evento CTA
-    ctaBtn.addEventListener('click', () => {
-      pagina1.hidden = true;
-      pagina2.hidden = false;
-      cards.forEach(card => observer.observe(card));
-      startCounter();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // inicialização
     window.addEventListener('load', apresentaFrases);
   </script>
 </body>
