@@ -14,142 +14,180 @@
       --ease-main: cubic-bezier(0.19,1,0.22,1);
       --dur-med: 1s;
     }
-    * { box-sizing: border-box; margin:0; padding:0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100vw;
+      min-height: 100vh;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
     body {
-      font-family: 'Inter',sans-serif;
+      font-family: 'Inter', sans-serif;
       background: #f3f0fa;
       color: var(--preto);
-      overflow-x: hidden;
       perspective: 1200px;
     }
+    /* Header atualizado igual à pagina2 */
     header {
-      text-align: center; padding:1rem 0;
+      text-align: center;
+      padding: 2rem 1rem;
     }
-    .logo-img {
-      width:72px; height:72px;
-      border-radius:50%;
-      border:3px solid var(--branco);
-      box-shadow:0 2px 24px rgba(118,75,203,0.2);
+    .header-title {
+      display: inline-block;
+      text-align: center;
     }
-    .brand-title {
-      font-family:'Outfit',sans-serif;
-      font-size:2rem;
-      background: linear-gradient(90deg,var(--roxo2),var(--roxo));
+    .header-title .pg {
+      display: block;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.5rem, 10vw, 4rem);
+      background: linear-gradient(90deg, var(--roxo2), var(--roxo));
       -webkit-background-clip: text;
-      color: transparent;
-      margin-top:0.5rem;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      animation: slideIn 0.8s var(--ease-main) both;
     }
-    /* fundo animado */
+    .header-title .concursos {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.5rem, 6vw, 2.5rem);
+      background: linear-gradient(90deg, var(--roxo), var(--roxo2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: slideIn 1s var(--ease-main) both;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    /* Fundo animado */
     body::before {
-      content:""; position:fixed; inset:0;
-      background: radial-gradient(ellipse at 60% 40%,#d8cfff,#ece5fc 55%,#fff);
+      content: "";
+      position: fixed; inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, #d8cfff, #ece5fc 55%, #fff);
       animation: bgmove 20s var(--ease-main) infinite alternate;
-      z-index:-1;
-      will-change:background-position;
+      z-index: -1;
+      will-change: background-position;
     }
     @keyframes bgmove {
-      0%{background-position:0% 70%}100%{background-position:100% 10%}
+      0%   { background-position: 0% 70%; }
+      100% { background-position: 100% 10%; }
     }
-    /* seção cinema */
+    /* Cinema */
     .cinema {
-      position:relative;
-      display:flex; align-items:center; justify-content:center;
-      width:100%; min-height:84vh;
-      overflow:hidden;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 84vh;
+      overflow: hidden;
     }
     .frase-impacto {
-      position:absolute; left:50%; top:50%;
-      width:90vw; max-width:380px;
-      padding:2rem 1.5rem;
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 90vw; max-width: 380px;
+      padding: 2rem 1.5rem;
       background: var(--branco);
-      border-radius:1.5rem;
-      border:2px solid #ece1fa;
-      font-family:'Outfit',sans-serif;
-      font-size:1.3rem; font-weight:900;
-      text-align:center;
-      transform: translate(-50%,-50%) scale(0.8) rotate(-5deg);
-      opacity:0;
-      will-change:transform,opacity;
+      border-radius: 1.5rem;
+      border: 2px solid #ece1fa;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem; font-weight: 900;
+      text-align: center;
+      transform: translate(-50%, -50%) scale(0.8) rotate(-5deg);
+      opacity: 0;
       filter: drop-shadow(0 6px 22px rgba(189,166,255,0.2));
+      will-change: transform, opacity;
     }
     .frase-impacto b, .frase-impacto strong {
-      background: linear-gradient(90deg,var(--roxo),var(--roxo2));
-      -webkit-background-clip: text; color: transparent;
+      background: linear-gradient(90deg, var(--roxo), var(--roxo2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     .glassbreak, .flashbang, .fade-black {
-      position:absolute; inset:0; pointer-events:none; opacity:0;
-      transition:opacity 0.3s;
+      position: absolute; inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s;
     }
     .glassbreak.active, .flashbang.active, .fade-black.active {
-      opacity:1;
+      opacity: 1;
     }
     @keyframes shakeIt {
-      0% {transform:translate(0,0)}
-      25%{transform:translate(-12px,8px)}
-      50%{transform:translate(14px,-6px)}
-      75%{transform:translate(-10px,5px)}
-      100%{transform:translate(0,0)}
+      0% { transform: translate(0,0); }
+      25% { transform: translate(-12px, 8px); }
+      50% { transform: translate(14px, -6px); }
+      75% { transform: translate(-10px, 5px); }
+      100% { transform: translate(0,0); }
     }
     .cinema.shake { animation: shakeIt 0.6s var(--ease-main); }
-    /* CTA */
+    .glassbreak svg { width:100%; height:100%; }
     .cta-btn {
-      position:absolute; bottom:12%;
-      padding:1rem 2rem;
-      background: linear-gradient(90deg,var(--roxo2),var(--roxo));
-      color:#fff; font-family:'Outfit',sans-serif; font-size:1.2rem; font-weight:900;
-      border:none; border-radius:50px;
-      text-decoration:none;
-      opacity:0; transform: scale(0.8);
-      transition:opacity var(--dur-med) var(--ease-main),
-                 transform var(--dur-med) var(--ease-main);
-      background-size:200% 100%; background-position:0 0;
+      position: absolute; bottom: 12%;
+      padding: 1rem 2rem;
+      background: linear-gradient(90deg, var(--roxo2), var(--roxo));
+      color: var(--branco);
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.2rem; font-weight: 900;
+      border: none; border-radius: 50px;
+      text-decoration: none;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity var(--dur-med) var(--ease-main), transform var(--dur-med) var(--ease-main);
+      background-size: 200% 100%; background-position: 0 0;
     }
     .cta-btn.active {
-      opacity:1; transform: scale(1);
+      opacity: 1; transform: scale(1);
       animation: btnBoom 1s ease-out both;
     }
     .cta-btn:hover {
-      background-position:100% 0;
+      background-position: 100% 0;
       transform: scale(1.05);
     }
     @keyframes btnBoom {
-      0%{transform:scale(0.5) rotate(-20deg)}
-      60%{transform:scale(1.2) rotate(10deg)}
-      100%{transform:scale(1) rotate(0)}
+      0%   { transform: scale(0.5) rotate(-20deg); }
+      60%  { transform: scale(1.2) rotate(10deg); }
+      100% { transform: scale(1) rotate(0); }
     }
-    /* responsivo */
-    @media (max-width:480px) {
-      .frase-impacto { font-size:1rem; padding:1rem; }
-      .cta-btn { bottom:8%; padding:0.7rem 1.5rem; font-size:1rem; }
+    /* Responsividade */
+    @media (max-width: 480px) {
+      .frase-impacto { font-size: 1rem; padding: 1rem; }
+      .cta-btn { bottom: 8%; padding: 0.7rem 1.5rem; font-size: 1rem; }
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://i.postimg.cc/jdRnCJ86/1000115773.webp" alt="Logo PG" class="logo-img">
-    <div class="brand-title">PG CONCURSOS PÚBLICOS</div>
-  </header>
-  <section class="cinema" id="pagina1">
-    <div class="glassbreak" id="glassbreak">
-      <!-- SVG de rachadura -->
-      <svg viewBox="0 0 370 160" fill="none"><g stroke="#b49cf8" stroke-width="2.3" stroke-linecap="round" opacity="0.64">
-        <path d="M185 0 L185 160"/><path d="M0 80 L370 80"/>
-        <!-- ... -->
-      </g></svg>
+    <div class="header-title">
+      <span class="pg">PG</span>
+      <span class="concursos">Concursos Públicos</span>
     </div>
-    <div class="flashbang" id="flashbang" style="background:#fff;"></div>
-    <div class="fade-black" id="fadeBlack" style="background:#19162a;"></div>
-    <!-- frases -->
-    <div class="frase-impacto" id="frase0"></div>
-    <div class="frase-impacto" id="frase1"></div>
-    <div class="frase-impacto" id="frase2"></div>
-    <div class="frase-impacto" id="frase3"></div>
-    <div class="frase-impacto" id="frase4"></div>
-    <div class="frase-impacto" id="frase5"></div>
-    <div class="frase-impacto" id="frase6"></div>
-    <audio id="glassSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa59bb.mp3" preload="auto"></audio>
-    <a href="pagina2.html" class="cta-btn" id="ctaBtn">Quero estudar de verdade</a>
-  </section>
+  </header>
+  <main>
+    <section class="cinema" id="pagina1">
+      <div class="glassbreak" id="glassbreak">
+        <svg viewBox="0 0 370 160" fill="none">
+          <g stroke="#b49cf8" stroke-width="2.3" stroke-linecap="round" opacity="0.64">
+            <path d="M185 0 L185 160"/>
+            <path d="M0 80 L370 80"/>
+            <!-- ... demais paths de rachadura ... -->
+          </g>
+        </svg>
+      </div>
+      <div class="flashbang" id="flashbang" style="background:#fff;"></div>
+      <div class="fade-black" id="fadeBlack" style="background:#19162a;"></div>
+      <div class="frase-impacto" id="frase0"></div>
+      <div class="frase-impacto" id="frase1"></div>
+      <div class="frase-impacto" id="frase2"></div>
+      <div class="frase-impacto" id="frase3"></div>
+      <div class="frase-impacto" id="frase4"></div>
+      <div class="frase-impacto" id="frase5"></div>
+      <div class="frase-impacto" id="frase6"></div>
+      <audio id="glassSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa59bb.mp3" preload="auto"></audio>
+      <a href="pagina2.html" class="cta-btn" id="ctaBtn">Quero estudar de verdade</a>
+    </section>
+  </main>
   <script>
     const frases = [
       "Eu sei que você já sentiu que <b>não aprendia de verdade</b>...",
@@ -167,33 +205,30 @@
           snd = document.getElementById('glassSound'),
           sec = document.getElementById('pagina1'),
           btn = document.getElementById('ctaBtn');
-    const sleep = ms=>new Promise(r=>setTimeout(r,ms));
-
+    const sleep = ms => new Promise(r=>setTimeout(r, ms));
     async function run() {
-      for(let i=0;i<els.length;i++){
-        if(i>0){ db.classList.add('active'); await sleep(300); db.classList.remove('active'); }
+      for (let i=0; i<els.length; i++) {
+        if (i>0) { db.classList.add('active'); await sleep(300); db.classList.remove('active'); }
         sec.classList.add('shake');
         fb.classList.add('active'); await sleep(120); fb.classList.remove('active');
-        gb.classList.add('active');
-        snd.currentTime=0; snd.play().catch(()=>{});
-        let el=els[i]; el.innerHTML=frases[i];
+        gb.classList.add('active'); snd.currentTime=0; snd.play().catch(()=>{});
+        let el = els[i]; el.innerHTML = frases[i];
         await el.animate([
-          {opacity:0,transform:'scale(0.6) rotate(-15deg)'},
-          {opacity:1,transform:'scale(1.15) rotate(8deg)'},
-          {opacity:1,transform:'scale(1) rotate(0)'}
-        ],{duration:1000,easing:'cubic-bezier(0.8,-0.17,0.18,1.13)',fill:'forwards'}).finished;
+          { opacity:0, transform:'scale(0.6) rotate(-15deg)' },
+          { opacity:1, transform:'scale(1.15) rotate(8deg)' },
+          { opacity:1, transform:'scale(1) rotate(0)' }
+        ], { duration:1000, easing:'cubic-bezier(0.8,-0.17,0.18,1.13)', fill:'forwards' }).finished;
         sec.classList.remove('shake'); gb.classList.remove('active');
-        await sleep(1200 + Math.min(frases[i].length*14,800));
+        await sleep(1200 + Math.min(frases[i].length * 14, 800));
         await el.animate([
-          {opacity:1,transform:'scale(1) rotate(0)'},
-          {opacity:0,transform:'scale(0.8) rotate(-5deg)'}
-        ],{duration:600,easing:'ease-in',fill:'forwards'}).finished;
-        el.innerHTML='';
+          { opacity:1, transform:'scale(1) rotate(0)' },
+          { opacity:0, transform:'scale(0.8) rotate(-5deg)' }
+        ], { duration:600, easing:'ease-in', fill:'forwards' }).finished;
+        el.innerHTML = '';
       }
-      btn.classList.add('active');
-      btn.focus();
+      btn.classList.add('active'); btn.focus();
     }
-    window.addEventListener('load',run);
+    window.addEventListener('load', run);
   </script>
 </body>
 </html>
