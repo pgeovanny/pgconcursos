@@ -14,7 +14,6 @@
       --preto: #19162a;
       --soft-shadow: 0 8px 32px rgba(110,75,202,0.15);
       --ease-main: cubic-bezier(0.19,1,0.22,1);
-      --dur-med: 1s;
     }
     *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
     html, body { width: 100vw; min-height: 100vh; overflow-x: hidden; scroll-behavior: smooth; }
@@ -30,7 +29,7 @@
       display: flex; align-items: center; justify-content: center;
       gap: 1rem;
       padding: 1.5rem 2rem;
-      background: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.7);
       backdrop-filter: blur(12px);
       min-height: 90px;
     }
@@ -152,9 +151,10 @@
       text-decoration: none;
       opacity: 0;
       box-shadow: 0 4px 32px #cab4f82a;
-      transition: opacity var(--dur-med) var(--ease-main), transform var(--dur-med) var(--ease-main);
+      transition: opacity .8s, transform .8s;
       background-size: 200% 100%; background-position: 0 0;
       z-index: 11;
+      cursor:pointer;
     }
     .cta-btn.active {
       opacity: 1; transform: translateX(-50%) scale(1);
@@ -246,7 +246,7 @@
       text-align: center;
       letter-spacing: -0.2px;
     }
-    .mistery::before { content: \"🚀 \"; font-size:1.05em; }
+    .mistery::before { content: "🚀 "; font-size:1.05em; }
     .card-efeito ul { padding-left:1.1rem; margin:0; display:flex; flex-direction:column; gap:0.37rem; font-size:1.06rem; line-height:1.7; color:var(--preto); }
     .big-quote { background:#f7f4ff; border-left:4px solid var(--roxo2); padding:1.03rem; border-radius:15px; box-shadow:0 2px 11px rgba(189,166,255,0.09); font-weight:800; line-height:1.5; }
     .big-quote .destaque { display:block; margin-top:0.5rem; color:var(--roxo); font-weight:900; }
@@ -276,51 +276,51 @@
 </head>
 <body>
   <header>
-    <a href=\"#\" class=\"logo-link\"><img src=\"https://i.postimg.cc/jdRnCJ86/1000115773.webp\" alt=\"Logo PG\"></a>
-    <div class=\"header-title\">
-      <span class=\"pg\">PG</span>
-      <span class=\"concursos\">Concursos Públicos</span>
+    <a href="#" class="logo-link"><img src="https://i.postimg.cc/jdRnCJ86/1000115773.webp" alt="Logo PG"></a>
+    <div class="header-title">
+      <span class="pg">PG</span>
+      <span class="concursos">Concursos Públicos</span>
     </div>
   </header>
   <!-- Primeira tela (cinema) -->
   <main>
-    <section class=\"cinema\" id=\"pagina1\">
-      <div class=\"glassbreak\" id=\"glassbreak\">
-        <svg viewBox=\"0 0 370 160\" fill=\"none\"><g stroke=\"#b49cf8\" stroke-width=\"2.3\" stroke-linecap=\"round\" opacity=\"0.64\">
-        <path d=\"M185 0 L185 160\"/><path d=\"M0 80 L370 80\"/>
-        <path d=\"M60 10 Q185 80 310 10\"/><path d=\"M20 140 Q185 80 350 140\"/>
-        <path d=\"M95 80 Q185 30 275 80\"/><path d=\"M95 80 Q185 130 275 80\"/>
-        <path d=\"M80 30 Q185 70 290 25\"/><path d=\"M290 130 Q185 100 70 135\"/>
-        <path d=\"M35 90 Q185 50 340 110\"/><path d=\"M340 50 Q185 110 40 45\"/>
+    <section class="cinema" id="pagina1">
+      <div class="glassbreak" id="glassbreak">
+        <svg viewBox="0 0 370 160" fill="none"><g stroke="#b49cf8" stroke-width="2.3" stroke-linecap="round" opacity="0.64">
+        <path d="M185 0 L185 160"/><path d="M0 80 L370 80"/>
+        <path d="M60 10 Q185 80 310 10"/><path d="M20 140 Q185 80 350 140"/>
+        <path d="M95 80 Q185 30 275 80"/><path d="M95 80 Q185 130 275 80"/>
+        <path d="M80 30 Q185 70 290 25"/><path d="M290 130 Q185 100 70 135"/>
+        <path d="M35 90 Q185 50 340 110"/><path d="M340 50 Q185 110 40 45"/>
         </g></svg>
       </div>
-      <div class=\"flashbang\" id=\"flashbang\" style=\"background:#fff;\"></div>
-      <div class=\"fade-black\" id=\"fadeBlack\" style=\"background:#19162a;\"></div>
-      <div class=\"frase-impacto\" id=\"frase0\"></div>
-      <div class=\"frase-impacto\" id=\"frase1\"></div>
-      <div class=\"frase-impacto\" id=\"frase2\"></div>
-      <div class=\"frase-impacto\" id=\"frase3\"></div>
-      <div class=\"frase-impacto\" id=\"frase4\"></div>
-      <div class=\"frase-impacto\" id=\"frase5\"></div>
-      <div class=\"frase-impacto\" id=\"frase6\"></div>
-      <audio id=\"glassSound\" src=\"https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa59bb.mp3\" preload=\"auto\"></audio>
-      <button class=\"cta-btn\" id=\"ctaBtn\">Quero estudar de verdade</button>
+      <div class="flashbang" id="flashbang" style="background:#fff;"></div>
+      <div class="fade-black" id="fadeBlack" style="background:#19162a;"></div>
+      <div class="frase-impacto" id="frase0"></div>
+      <div class="frase-impacto" id="frase1"></div>
+      <div class="frase-impacto" id="frase2"></div>
+      <div class="frase-impacto" id="frase3"></div>
+      <div class="frase-impacto" id="frase4"></div>
+      <div class="frase-impacto" id="frase5"></div>
+      <div class="frase-impacto" id="frase6"></div>
+      <audio id="glassSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa59bb.mp3" preload="auto"></audio>
+      <button class="cta-btn" id="ctaBtn">Quero estudar de verdade</button>
     </section>
     <!-- Página 2: hero + cards -->
-    <section class=\"hero hidden\" id=\"heroBlock\">
+    <section class="hero hidden" id="heroBlock">
       <p>Todo o conteúdo nasceu de</p>
-      <p class=\"emphasis\">anos de experiência real em concursos</p>
-      <p class=\"emphasis\">A diferença entre tentar e aprovar está aqui: praticidade, clareza e método.</p>
+      <p class="emphasis">anos de experiência real em concursos</p>
+      <p class="emphasis">A diferença entre tentar e aprovar está aqui: praticidade, clareza e método.</p>
     </section>
-    <section class=\"content-screen hidden\" id=\"pagina2\">
-      <div class=\"card-efeito mistery\">Aprenda a estudar sozinho. <br>Domine seu caminho até a aprovação!</div>
-      <div class=\"card-efeito\"><ul>
+    <section class="content-screen hidden" id="pagina2">
+      <div class="card-efeito mistery">Aprenda a estudar sozinho. <br>Domine seu caminho até a aprovação!</div>
+      <div class="card-efeito"><ul>
         <li>Descubra como organizar seus estudos mesmo começando do zero.</li>
         <li>Saia do ciclo de dúvidas e incertezas. Torne-se independente.</li>
         <li>Pare de perder tempo com métodos que não funcionam pra você.</li>
       </ul></div>
-      <div class=\"card-efeito big-quote\">“Ninguém ensina de verdade o que você só aprende errando.<span class=\"destaque\">Ou… você pode aprender com quem já errou por você.</span>”</div>
-      <div class=\"card-efeito topic-section\">
+      <div class="card-efeito big-quote">“Ninguém ensina de verdade o que você só aprende errando.<span class="destaque">Ou… você pode aprender com quem já errou por você.</span>”</div>
+      <div class="card-efeito topic-section">
         <h2>O que você vai aprender:</h2>
         <ul>
           <li><b>Ciclos de estudo</b> otimizados para diferentes rotinas e cargas horárias.</li>
@@ -333,21 +333,21 @@
           <li><b>Sacadas e atalhos</b> que só quem passou por tudo revela.</li>
         </ul>
       </div>
-      <div class=\"card-efeito autoridade\">Todo o conteúdo nasceu de <span class=\"destaque\">anos de experiência real em concursos</span>.<br><br><span class=\"destaque\">A diferença entre tentar e aprovar está aqui: praticidade, clareza e método.</span></div>
-      <div class=\"cta-aviso\"><svg width=\"26\" height=\"32\" viewBox=\"0 0 32 40\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"10\" y=\"4\" width=\"12\" height=\"32\" rx=\"6\" fill=\"#fff\" stroke=\"#764bcb\" stroke-width=\"2\"/><polygon id=\"top\" points=\"12,8 20,8 16,20\" fill=\"#b699f8\"><animate attributeName=\"points\" dur=\"2s\" repeatCount=\"indefinite\" values=\"12,8 20,8 16,20; 14,12 18,12 16,16; 12,8 20,8 16,20\"/></polygon><polygon id=\"bottom\" points=\"14,28 18,28 16,20\" fill=\"#b699f8\"><animate attributeName=\"points\" dur=\"2s\" repeatCount=\"indefinite\" values=\"14,28 18,28 16,20; 12,32 20,32 16,28; 14,28 18,28 16,20\"/></polygon><rect x=\"14.6\" y=\"20\" width=\"2.8\" height=\"8\" rx=\"1.4\" fill=\"#b699f8\"><animate attributeName=\"height\" dur=\"2s\" repeatCount=\"indefinite\" values=\"8;2;8\"/><animate attributeName=\"y\" dur=\"2s\" repeatCount=\"indefinite\" values=\"20;26;20\"/></rect></svg>Aguarde, o melhor guia para sua aprovação está em produção!</div>
-      <div class=\"contador-section\"><span><span class=\"contador-numero\" id=\"contador\">0</span> pessoas já manifestaram interesse.</span></div>
+      <div class="card-efeito autoridade">Todo o conteúdo nasceu de <span class="destaque">anos de experiência real em concursos</span>.<br><br><span class="destaque">A diferença entre tentar e aprovar está aqui: praticidade, clareza e método.</span></div>
+      <div class="cta-aviso"><svg width="26" height="32" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="4" width="12" height="32" rx="6" fill="#fff" stroke="#764bcb" stroke-width="2"/><polygon id="top" points="12,8 20,8 16,20" fill="#b699f8"><animate attributeName="points" dur="2s" repeatCount="indefinite" values="12,8 20,8 16,20; 14,12 18,12 16,16; 12,8 20,8 16,20"/></polygon><polygon id="bottom" points="14,28 18,28 16,20" fill="#b699f8"><animate attributeName="points" dur="2s" repeatCount="indefinite" values="14,28 18,28 16,20; 12,32 20,32 16,28; 14,28 18,28 16,20"/></polygon><rect x="14.6" y="20" width="2.8" height="8" rx="1.4" fill="#b699f8"><animate attributeName="height" dur="2s" repeatCount="indefinite" values="8;2;8"/><animate attributeName="y" dur="2s" repeatCount="indefinite" values="20;26;20"/></rect></svg>Aguarde, o melhor guia para sua aprovação está em produção!</div>
+      <div class="contador-section"><span><span class="contador-numero" id="contador">0</span> pessoas já manifestaram interesse.</span></div>
     </section>
   </main>
   <script>
     // --------- CINEMA FRASES --------
     const frases = [
-      \"Eu sei que você já sentiu que <b>não aprendia de verdade</b>...\",
-      \"Já tentou <b>vários métodos</b>, mas se sentiu perdido.\",
-      \"Viu outros passando e pensou: <b>será que existe um jeito certo?</b>\",
-      \"Pensou em desistir por tanta matéria.\",
-      \"Se cansou de <b>dicas soltas</b> e promessas vazias...\",
-      \"Sente que falta um <b>passo a passo prático</b>.\",
-      \"E se existisse um <b>caminho confiável</b> para aprovar?\"
+      "Eu sei que você já sentiu que <b>não aprendia de verdade</b>...",
+      "Já tentou <b>vários métodos</b>, mas se sentiu perdido.",
+      "Viu outros passando e pensou: <b>será que existe um jeito certo?</b>",
+      "Pensou em desistir por tanta matéria.",
+      "Se cansou de <b>dicas soltas</b> e promessas vazias...",
+      "Sente que falta um <b>passo a passo prático</b>.",
+      "E se existisse um <b>caminho confiável</b> para aprovar?"
     ];
     const els = frases.map((_,i)=>document.getElementById(`frase${i}`));
     const gb = document.getElementById('glassbreak'),
@@ -385,8 +385,8 @@
     btn.addEventListener('click', ()=>{
       sec.style.opacity = 1;
       sec.animate([
-        { opacity: 1, filter: \"blur(0)\" }, { opacity: 0, filter: \"blur(8px)\" }
-      ], { duration: 680, fill: \"forwards\", easing: \"var(--ease-main)\" })
+        { opacity: 1, filter: "blur(0)" }, { opacity: 0, filter: "blur(8px)" }
+      ], { duration: 680, fill: "forwards", easing: "var(--ease-main)" })
       .onfinish = ()=>{
         sec.classList.add('hidden');
         hero.classList.remove('hidden');
@@ -394,7 +394,7 @@
         pagina2.classList.add('active');
         animateCards();
         startCounter();
-        window.scrollTo({top:0,behavior:\"smooth\"});
+        window.scrollTo({top:0,behavior:"smooth"});
       };
     });
     // -------------- CARDS ANIMATION --------------
@@ -424,7 +424,7 @@
     // ------ INICIALIZA PRIMEIRA TELA -----
     window.addEventListener('load', runCinema);
     // ------ LOGO volta ao topo
-    document.querySelector('.logo-link').onclick = e => { e.preventDefault(); window.scrollTo({top:0,behavior:\"smooth\"}); };
+    document.querySelector('.logo-link').onclick = e => { e.preventDefault(); window.scrollTo({top:0,behavior:"smooth"}); };
   </script>
 </body>
 </html>
