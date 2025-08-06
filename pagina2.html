@@ -9,135 +9,302 @@
     :root {
       --roxo: #7c46c5;
       --roxo2: #bda6ff;
+      --roxo-dark: #38256e;
       --branco: #fff;
+      --cinza-bg: #f3f0fa;
+      --card-bg: #fff;
+      --soft-shadow: 0 8px 32px rgba(110,75,202,0.15);
       --preto: #19162a;
       --ease-main: cubic-bezier(0.19,1,0.22,1);
       --dur-med: 0.8s;
     }
-    * { box-sizing:border-box; margin:0; padding:0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family:'Inter',sans-serif;
+      font-family: 'Inter', sans-serif;
+      background: var(--cinza-bg);
       color: var(--preto);
-      background: linear-gradient(-45deg, #7c46c5, #bda6ff, #38256e, #ece5fc);
-      background-size:400% 400%;
-      animation: gradBG 15s var(--ease-main) infinite;
-    }
-    @keyframes gradBG {
-      0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}
+      overflow-x: hidden;
     }
     header {
-      text-align:center; padding:1rem 0;
-      background:rgba(255,255,255,0.6); backdrop-filter:blur(6px);
+      text-align: center;
+      padding: 2rem 1rem;
     }
-    .brand-title {
-      font-family:'Outfit',sans-serif;
-      font-size:1.8rem;
-      background:linear-gradient(90deg,var(--roxo2),var(--roxo));
-      -webkit-background-clip:text; color:transparent;
+    .header-title {
+      display: inline-block;
     }
-    .cards-wrapper {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:1.5rem;
-      padding:2rem;
-      max-width:1200px; margin:0 auto;
+    .header-title .pg {
+      display: block;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.5rem, 10vw, 4rem);
+      background: linear-gradient(90deg, var(--roxo2), var(--roxo));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      animation: slideIn 0.8s var(--ease-main) both;
     }
-    .card {
-      background:rgba(255,255,255,0.85);
-      border-radius:1.5rem;
-      padding:1.5rem;
-      box-shadow:0 8px 32px rgba(0,0,0,0.1);
-      backdrop-filter:blur(10px);
-      transform-style:preserve-3d;
-      transition:transform var(--dur-med) var(--ease-main),
-                 box-shadow var(--dur-med) var(--ease-main),
-                 opacity var(--dur-med) var(--ease-main),
-                 transform var(--dur-med) var(--ease-main);
-      opacity:0; transform: translateY(20px) rotateX(0) rotateY(0) scale(1);
-      will-change:transform,opacity;
+    .header-title .concursos {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.5rem, 6vw, 2.5rem);
+      background: linear-gradient(90deg, var(--roxo), var(--roxo2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: slideIn 1s var(--ease-main) both;
     }
-    .card.visible {
-      opacity:1; transform: translateY(0) scale(1);
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .card:hover {
-      box-shadow:0 16px 48px rgba(0,0,0,0.2);
+    .content-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.3rem;
+      width: 100%;
+      max-width: 490px;
+      margin: 0 auto;
+      padding: 1rem 0;
+      opacity: 0;
+      animation: fadeIn 0.9s var(--ease-main) both;
     }
-    .card h3 {
-      font-family:'Outfit',sans-serif;
-      margin-bottom:0.8rem;
-      background:linear-gradient(90deg,var(--roxo),var(--roxo2));
-      -webkit-background-clip:text; color:transparent;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .card p, .card ul { line-height:1.6; margin-bottom:1rem; }
-    .card ul { padding-left:1.2rem; }
-    .card .destaque { color:var(--roxo); font-weight:700; }
-    /* tilt effect */
-    .tilt-container { perspective:1000px; }
-    /* responsivo */
-    @media (max-width:480px) {
-      .cards-wrapper { padding:1rem; }
+    .card-efeito {
+      width: 96%;
+      max-width: 420px;
+      background: var(--card-bg);
+      border-radius: 1.25rem;
+      box-shadow: var(--soft-shadow);
+      padding: 1.37rem 1.13rem 1.21rem;
+      opacity: 0;
+      transform: rotateY(85deg) scale(0.88);
+      animation: cardFlipIn 0.8s cubic-bezier(0.67,0.07,0.27,1) forwards;
+    }
+    .card-efeito:nth-child(1) { animation-delay: 0.18s; }
+    .card-efeito:nth-child(2) { animation-delay: 0.37s; }
+    .card-efeito:nth-child(3) { animation-delay: 0.57s; }
+    .card-efeito:nth-child(4) { animation-delay: 0.77s; }
+    .card-efeito:nth-child(5) { animation-delay: 0.99s; }
+    @keyframes cardFlipIn {
+      0%   { opacity: 0; transform: rotateY(85deg) scale(0.78); }
+      54%  { opacity: 0.6; transform: rotateY(-13deg) scale(1.04); }
+      100% { opacity: 1; transform: rotateY(0) scale(1); }
+    }
+    .mistery {
+      font-size: 1.12rem;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--roxo), var(--roxo2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+      letter-spacing: -0.2px;
+    }
+    .mistery::before {
+      content: "🚀 ";
+      font-size: 1.05em;
+    }
+    .card-efeito ul {
+      padding-left: 1.1rem;
+      margin: 0;
+      color: var(--roxo-dark);
+      font-size: 1.06rem;
+      text-align: justify;
+      line-height: 1.7;
+      font-weight: 500;
+      display: flex;
+      flex-direction: column;
+      gap: 0.37rem;
+    }
+    .big-quote {
+      font-size: 1.11rem;
+      color: var(--roxo-dark);
+      font-weight: 800;
+      background: #f7f4ff;
+      padding: 1.03rem;
+      border-radius: 15px;
+      text-align: justify;
+      box-shadow: 0 2px 11px rgba(189,166,255,0.09);
+      border-left: 4px solid var(--roxo2);
+    }
+    .big-quote .destaque {
+      color: var(--roxo);
+      font-weight: 900;
+      display: block;
+      margin-top: 0.5rem;
+    }
+    .topic-section h2 {
+      color: var(--roxo-dark);
+      font-size: 1.09rem;
+      margin-bottom: 0.77rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-family: 'Outfit', sans-serif;
+    }
+    .topic-section ul {
+      padding-left: 1.1rem;
+      margin: 0;
+      color: var(--roxo-dark);
+      font-size: 1.06rem;
+      text-align: justify;
+      line-height: 1.7;
+      font-weight: 500;
+      display: flex;
+      flex-direction: column;
+      gap: 0.37rem;
+    }
+    .autoridade {
+      background: #f6f2fe;
+      border-left: 4px solid var(--roxo);
+      padding: 0.92rem 1.09rem;
+      border-radius: 0 14px 14px 0;
+      line-height: 1.7;
+      box-shadow: 0 2px 8px rgba(108,75,165,0.07);
+    }
+    .autoridade .destaque {
+      color: var(--roxo);
+      font-weight: 900;
+      font-size: 1.07em;
+      display: block;
+      margin-top: 0.5rem;
+    }
+    .cta-aviso {
+      margin-top: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      background: linear-gradient(90deg, var(--roxo2), var(--roxo));
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.11rem;
+      font-weight: 900;
+      border-radius: 34px;
+      padding: 1.03rem 1.3rem;
+      box-shadow: 0 0 18px rgba(189,166,255,0.16);
+      letter-spacing: 0.04em;
+      animation: pulse 2.4s infinite;
+    }
+    .cta-aviso svg {
+      min-width: 22px;
+      width: 26px;
+      height: 32px;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(118,75,203,0.22); }
+      60% { box-shadow: 0 0 0 18px rgba(118,75,203,0); }
+    }
+    .contador-section {
+      margin: 1rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4em;
+      font-size: 1.09rem;
+      color: var(--roxo-dark);
+    }
+    .contador-numero {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.16rem;
+      font-weight: 900;
+      background: linear-gradient(90deg, var(--roxo2), var(--roxo));
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 1px 7px rgba(189,166,255,0.1);
+      margin-right: 0.11em;
+    }
+    @media (max-width: 480px) {
+      header { padding: 1rem 0.5rem; }
+      .header-title .pg { font-size: clamp(2rem, 15vw, 3rem); }
+      .header-title .concursos { font-size: clamp(1rem, 8vw, 2rem); }
+      .content-screen { padding: 0.5rem 0; }
+      .card-efeito { padding: 1rem; }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="brand-title">PG CONCURSOS PÚBLICOS</div>
+    <div class="header-title">
+      <span class="pg">PG</span>
+      <span class="concursos">Concursos Públicos</span>
+    </div>
   </header>
   <main>
-    <section class="cards-wrapper">
-      <!-- 1 -->
-      <div class="card tilt-container">
-        <h3>🎯 Domine seus Estudos</h3>
-        <p class="destaque">Aprenda a estudar sozinho e construa seu método até a aprovação.</p>
-      </div>
-      <!-- 2 -->
-      <div class="card tilt-container">
-        <h3>📋 Organização Eficiente</h3>
+    <section class="content-screen" id="pagina2">
+      <div class="card-efeito mistery">Aprenda a estudar sozinho. <br>Domine seu caminho até a aprovação!</div>
+      <div class="card-efeito">
         <ul>
-          <li>Planeje seu cronograma.</li>
-          <li>Defina metas diárias e semanais.</li>
-          <li>Use revisões espaçadas.</li>
+          <li>Descubra como organizar seus estudos mesmo começando do zero.</li>
+          <li>Saia do ciclo de dúvidas e incertezas. Torne-se independente.</li>
+          <li>Pare de perder tempo com métodos que não funcionam pra você.</li>
         </ul>
       </div>
-      <!-- 3 -->
-      <div class="card tilt-container">
-        <h3>💡 Técnicas de Revisão</h3>
-        <p>Flashcards, mapas mentais e resumos dinâmicos para fixar o que importa.</p>
+      <div class="card-efeito big-quote">
+        “Ninguém ensina de verdade o que você só aprende errando.
+        <span class="destaque">Ou… você pode aprender com quem já errou por você.</span>”
       </div>
-      <!-- 4 -->
-      <div class="card tilt-container">
-        <h3>📝 Prática de Questões</h3>
-        <p class="destaque">Quantitativa e qualitativa: saiba quando e como resolver.</p>
+      <div class="card-efeito topic-section">
+        <h2>O que você vai aprender:</h2>
+        <ul>
+          <li><b>Ciclos de&nbsp;estudo</b> otimizados para diferentes rotinas e cargas horárias.</li>
+          <li>Métodos eficientes de <b>revisão</b> para não esquecer o que importa.</li>
+          <li>Como <b>fazer questões</b> na hora certa e na quantidade certa.</li>
+          <li>Estratégia definitiva para estudar <b>Lei Seca</b> sem enrolação.</li>
+          <li>O que muda no <b>Pré e Pós-Edital</b>.</li>
+          <li>As <b>táticas de reta final</b> usadas pelos aprovados.</li>
+          <li>Análise real das <b>bancas</b> que mais aprovam.</li>
+          <li><b>Sacadas e atalhos</b> que só quem passou por tudo revela.</li>
+        </ul>
+      </div>
+      <div class="card-efeito autoridade">
+        Todo o conteúdo nasceu de <span class="destaque">anos de experiência real em concursos</span>.<br><br>
+        <span class="destaque">A diferença entre tentar e aprovar está aqui: praticidade, clareza e método.</span>
+      </div>
+      <div class="cta-aviso">
+        <svg width="26" height="32" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="4" width="12" height="32" rx="6" fill="#fff" stroke="#764bcb" stroke-width="2"/>
+          <polygon id="top" points="12,8 20,8 16,20" fill="#b699f8">
+            <animate attributeName="points" dur="2s" repeatCount="indefinite"
+              values="12,8 20,8 16,20; 14,12 18,12 16,16; 12,8 20,8 16,20" />
+          </polygon>
+          <polygon id="bottom" points="14,28 18,28 16,20" fill="#b699f8">
+            <animate attributeName="points" dur="2s" repeatCount="indefinite"
+              values="14,28 18,28 16,20; 12,32 20,32 16,28; 14,28 18,28 16,20" />
+          </polygon>
+          <rect x="14.6" y="20" width="2.8" height="8" rx="1.4" fill="#b699f8">
+            <animate attributeName="height" dur="2s" repeatCount="indefinite"
+              values="8;2;8" />
+            <animate attributeName="y" dur="2s" repeatCount="indefinite"
+              values="20;26;20" />
+          </rect>
+        </svg>
+        Aguarde, o melhor guia para sua aprovação está em produção!
+      </div>
+      <div class="contador-section">
+        <span><span class="contador-numero" id="contador">0</span> pessoas já manifestaram interesse.</span>
       </div>
     </section>
   </main>
-
   <script>
-    // IntersectionObserver para fade-in
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    document.querySelectorAll('.card').forEach(c => observer.observe(c));
-
-    // Tilt 3D
-    document.querySelectorAll('.tilt-container').forEach(container => {
-      const card = container;
-      container.addEventListener('mousemove', e => {
-        const rect = container.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width/2;
-        const y = e.clientY - rect.top - rect.height/2;
-        const tiltX = (y / (rect.height/2)) * 10;
-        const tiltY = (x / (rect.width/2)) * 10;
-        card.style.transform = `rotateX(${ -tiltX }deg) rotateY(${ tiltY }deg) scale(1.03)`;
-      });
-      container.addEventListener('mouseleave', () => {
-        card.style.transform = 'rotateX(0) rotateY(0) scale(1)';
-      });
+    window.addEventListener('load', () => {
+      const el = document.getElementById('contador');
+      const BASE = 127;
+      let count = parseInt(localStorage.getItem('pg_manifestaram') || BASE, 10) + 1;
+      localStorage.setItem('pg_manifestaram', count);
+      let start = count - 3, end = count, duration = 800, startTime;
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        let progress = Math.min((timestamp - startTime) / duration, 1);
+        el.textContent = Math.floor(start + (end - start) * progress);
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = end;
+      }
+      requestAnimationFrame(step);
     });
   </script>
 </body>
