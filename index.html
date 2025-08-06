@@ -9,188 +9,147 @@
     :root {
       --roxo: #7c46c5;
       --roxo2: #bda6ff;
-      --roxo-dark: #38256e;
       --branco: #fff;
-      --cinza-bg: #f3f0fa;
       --preto: #19162a;
-      --soft-shadow: 0 8px 32px rgba(110,75,202,0.15);
       --ease-main: cubic-bezier(0.19,1,0.22,1);
-      --dur-short: 0.6s;
       --dur-med: 1s;
     }
-    *, *::before, *::after { box-sizing: border-box; }
+    * { box-sizing: border-box; margin:0; padding:0; }
     body {
-      margin: 0; padding: 0;
       font-family: 'Inter',sans-serif;
-      background: var(--cinza-bg);
+      background: #f3f0fa;
       color: var(--preto);
       overflow-x: hidden;
-      scroll-behavior: smooth;
+      perspective: 1200px;
     }
     header {
-      text-align: center;
-      padding: 1rem 0 0.5rem;
+      text-align: center; padding:1rem 0;
     }
     .logo-img {
-      width: 72px; height: 72px;
-      border-radius: 50%;
-      border: 3px solid var(--branco);
-      box-shadow: 0 2px 24px rgba(118,75,203,0.2);
+      width:72px; height:72px;
+      border-radius:50%;
+      border:3px solid var(--branco);
+      box-shadow:0 2px 24px rgba(118,75,203,0.2);
     }
     .brand-title {
-      margin: 0.3rem 0;
-      font-family: 'Outfit',sans-serif;
-      font-size: 2rem;
-      background: linear-gradient(90deg, var(--roxo2), var(--roxo));
+      font-family:'Outfit',sans-serif;
+      font-size:2rem;
+      background: linear-gradient(90deg,var(--roxo2),var(--roxo));
       -webkit-background-clip: text;
       color: transparent;
-      text-shadow: 0 5px 28px rgba(189,166,255,0.2);
-      user-select: none;
+      margin-top:0.5rem;
     }
+    /* fundo animado */
     body::before {
-      content: "";
-      position: fixed; inset: 0;
-      background: radial-gradient(ellipse at 60% 40%, #d8cfff, #ece5fc 55%, #fff);
-      opacity: .9;
-      z-index: -1;
-      pointer-events: none;
-      animation: bgmove 14s var(--ease-main) infinite alternate;
-      will-change: background-position;
+      content:""; position:fixed; inset:0;
+      background: radial-gradient(ellipse at 60% 40%,#d8cfff,#ece5fc 55%,#fff);
+      animation: bgmove 20s var(--ease-main) infinite alternate;
+      z-index:-1;
+      will-change:background-position;
     }
     @keyframes bgmove {
-      0% { background-position: 0% 70%; }
-      100% { background-position: 100% 10%; }
+      0%{background-position:0% 70%}100%{background-position:100% 10%}
     }
-
-    /* CINEMA */
+    /* seção cinema */
     .cinema {
-      position: relative;
-      width: 100%;
-      min-height: 84vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      perspective: 1200px;
-      overflow: hidden;
+      position:relative;
+      display:flex; align-items:center; justify-content:center;
+      width:100%; min-height:84vh;
+      overflow:hidden;
     }
     .frase-impacto {
-      position: absolute;
-      max-width: 90vw; width: 380px;
-      padding: 2rem 1.5rem;
+      position:absolute; left:50%; top:50%;
+      width:90vw; max-width:380px;
+      padding:2rem 1.5rem;
       background: var(--branco);
-      border-radius: 1.5rem;
-      border: 2px solid #ece1fa;
-      text-align: center;
-      font-family: 'Outfit',sans-serif;
-      font-size: 1.3rem; font-weight: 900;
-      color: var(--roxo-dark);
+      border-radius:1.5rem;
+      border:2px solid #ece1fa;
+      font-family:'Outfit',sans-serif;
+      font-size:1.3rem; font-weight:900;
+      text-align:center;
+      transform: translate(-50%,-50%) scale(0.8) rotate(-5deg);
+      opacity:0;
+      will-change:transform,opacity;
       filter: drop-shadow(0 6px 22px rgba(189,166,255,0.2));
-      opacity: 0; transform: translate(-50%,-50%) scale(0.8) rotate(-5deg);
-      left: 50%; top: 50%;
-      will-change: transform, opacity;
-      backface-visibility: hidden;
     }
     .frase-impacto b, .frase-impacto strong {
       background: linear-gradient(90deg,var(--roxo),var(--roxo2));
-      -webkit-background-clip: text;
-      color: transparent;
-      text-shadow: 0 3px 8px rgba(189,166,255,0.26);
+      -webkit-background-clip: text; color: transparent;
     }
     .glassbreak, .flashbang, .fade-black {
-      position: absolute; inset: 0; pointer-events: none; opacity: 0;
+      position:absolute; inset:0; pointer-events:none; opacity:0;
+      transition:opacity 0.3s;
     }
-    .glassbreak.active, .flashbang.active, .fade-black.active { opacity: 1; }
-
+    .glassbreak.active, .flashbang.active, .fade-black.active {
+      opacity:1;
+    }
     @keyframes shakeIt {
-      0% { transform: translate(0,0); }
-      20% { transform: translate(-12px,8px); }
-      40% { transform: translate(14px,-6px); }
-      60% { transform: translate(-10px,5px); }
-      80% { transform: translate(8px,-4px); }
-      100% { transform: translate(0,0); }
+      0% {transform:translate(0,0)}
+      25%{transform:translate(-12px,8px)}
+      50%{transform:translate(14px,-6px)}
+      75%{transform:translate(-10px,5px)}
+      100%{transform:translate(0,0)}
     }
-    .cinema.shake { animation: shakeIt 0.4s var(--ease-main); }
-
+    .cinema.shake { animation: shakeIt 0.6s var(--ease-main); }
+    /* CTA */
     .cta-btn {
-      position: absolute; bottom: 12%;
-      padding: 1rem 2rem;
+      position:absolute; bottom:12%;
+      padding:1rem 2rem;
       background: linear-gradient(90deg,var(--roxo2),var(--roxo));
-      border: none; border-radius: 50px;
-      font-family: 'Outfit',sans-serif;
-      font-size: 1.2rem; font-weight: 900;
-      color: var(--branco);
-      text-decoration: none;
-      display: inline-block;
-      opacity: 0; transform: scale(0.8);
-      transition: transform var(--dur-short) var(--ease-main),
-                  opacity var(--dur-med) var(--ease-main);
-      background-size: 200% 100%; background-position: 0 0;
+      color:#fff; font-family:'Outfit',sans-serif; font-size:1.2rem; font-weight:900;
+      border:none; border-radius:50px;
+      text-decoration:none;
+      opacity:0; transform: scale(0.8);
+      transition:opacity var(--dur-med) var(--ease-main),
+                 transform var(--dur-med) var(--ease-main);
+      background-size:200% 100%; background-position:0 0;
     }
     .cta-btn.active {
-      opacity: 1; transform: scale(1);
+      opacity:1; transform: scale(1);
       animation: btnBoom 1s ease-out both;
     }
     .cta-btn:hover {
-      background-position: 100% 0;
+      background-position:100% 0;
       transform: scale(1.05);
     }
     @keyframes btnBoom {
-      0%   { transform: scale(0.5) rotate(-20deg); }
-      60%  { transform: scale(1.2) rotate(10deg); }
-      100% { transform: scale(1) rotate(0); }
+      0%{transform:scale(0.5) rotate(-20deg)}
+      60%{transform:scale(1.2) rotate(10deg)}
+      100%{transform:scale(1) rotate(0)}
     }
-
-    /* PÁGINA 2 (apenas exemplo para responsividade) */
-    .content-screen { /* ... */ }
-
-    /* RESPONSIVIDADE */
-    @media (max-width: 768px) {
-      .frase-impacto {
-        width: 90%; font-size: 1.1rem; padding: 1.5rem;
-      }
-      .cta-btn {
-        bottom: 8%; padding: 0.8rem 1.6rem; font-size: 1rem;
-      }
-    }
-    @media (max-width: 480px) {
-      .brand-title { font-size: 1.5rem; }
-      .frase-impacto {
-        font-size: 1rem; padding: 1rem;
-      }
-      .cinema { min-height: 70vh; }
-      .cta-btn { bottom: 5%; padding: 0.7rem 1.2rem; font-size: 0.95rem; }
+    /* responsivo */
+    @media (max-width:480px) {
+      .frase-impacto { font-size:1rem; padding:1rem; }
+      .cta-btn { bottom:8%; padding:0.7rem 1.5rem; font-size:1rem; }
     }
   </style>
 </head>
 <body>
   <header>
     <img src="https://i.postimg.cc/jdRnCJ86/1000115773.webp" alt="Logo PG" class="logo-img">
-    <h1 class="brand-title">PG CONCURSOS PÚBLICOS</h1>
+    <div class="brand-title">PG CONCURSOS PÚBLICOS</div>
   </header>
-  <main>
-    <section class="cinema" id="pagina1">
-      <div class="glassbreak" id="glassbreak">
-        <!-- SVG de rachadura (mesmo de antes) -->
-      </div>
-      <div class="flashbang" id="flashbang" style="background:#fff;"></div>
-      <div class="fade-black" id="fadeBlack" style="background:#19162a;"></div>
-
-      <!-- 7 frases -->
-      <div class="frase-impacto" id="frase0"></div>
-      <div class="frase-impacto" id="frase1"></div>
-      <div class="frase-impacto" id="frase2"></div>
-      <div class="frase-impacto" id="frase3"></div>
-      <div class="frase-impacto" id="frase4"></div>
-      <div class="frase-impacto" id="frase5"></div>
-      <div class="frase-impacto" id="frase6"></div>
-
-      <audio id="glassSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa59bb.mp3" preload="auto"></audio>
-
-      <!-- CTA agora é link para outra página -->
-      <a href="pagina2.html" class="cta-btn" id="ctaBtn">Quero estudar de verdade</a>
-    </section>
-  </main>
-
+  <section class="cinema" id="pagina1">
+    <div class="glassbreak" id="glassbreak">
+      <!-- SVG de rachadura -->
+      <svg viewBox="0 0 370 160" fill="none"><g stroke="#b49cf8" stroke-width="2.3" stroke-linecap="round" opacity="0.64">
+        <path d="M185 0 L185 160"/><path d="M0 80 L370 80"/>
+        <!-- ... -->
+      </g></svg>
+    </div>
+    <div class="flashbang" id="flashbang" style="background:#fff;"></div>
+    <div class="fade-black" id="fadeBlack" style="background:#19162a;"></div>
+    <!-- frases -->
+    <div class="frase-impacto" id="frase0"></div>
+    <div class="frase-impacto" id="frase1"></div>
+    <div class="frase-impacto" id="frase2"></div>
+    <div class="frase-impacto" id="frase3"></div>
+    <div class="frase-impacto" id="frase4"></div>
+    <div class="frase-impacto" id="frase5"></div>
+    <div class="frase-impacto" id="frase6"></div>
+    <audio id="glassSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa59bb.mp3" preload="auto"></audio>
+    <a href="pagina2.html" class="cta-btn" id="ctaBtn">Quero estudar de verdade</a>
+  </section>
   <script>
     const frases = [
       "Eu sei que você já sentiu que <b>não aprendia de verdade</b>...",
@@ -201,66 +160,40 @@
       "Sente que falta um <b>passo a passo prático</b>.",
       "E se existisse um <b>caminho confiável</b> para aprovar?"
     ];
-    const fraseEls = frases.map((_, i) => document.getElementById(`frase${i}`));
-    const glassbreak = document.getElementById('glassbreak');
-    const flashbang  = document.getElementById('flashbang');
-    const fadeBlack  = document.getElementById('fadeBlack');
-    const glassSound = document.getElementById('glassSound');
-    const ctaBtn     = document.getElementById('ctaBtn');
-    const pagina1    = document.getElementById('pagina1');
+    const els = frases.map((_,i)=>document.getElementById(`frase${i}`));
+    const gb = document.getElementById('glassbreak'),
+          fb = document.getElementById('flashbang'),
+          db = document.getElementById('fadeBlack'),
+          snd = document.getElementById('glassSound'),
+          sec = document.getElementById('pagina1'),
+          btn = document.getElementById('ctaBtn');
+    const sleep = ms=>new Promise(r=>setTimeout(r,ms));
 
-    const sleep = ms => new Promise(r => setTimeout(r, ms));
-
-    async function apresentaFrases() {
-      for (let i = 0; i < frases.length; i++) {
-        if (i > 0) {
-          fadeBlack.classList.add('active');
-          await sleep(300);
-          fadeBlack.classList.remove('active');
-        }
-        pagina1.classList.add('shake');
-        flashbang.classList.add('active');
-        await sleep(120);
-        flashbang.classList.remove('active');
-
-        glassbreak.classList.add('active');
-        glassSound.currentTime = 0;
-        glassSound.play().catch(()=>{
-          /* ignora se não carregar */
-        });
-
-        const el = fraseEls[i];
-        el.innerHTML = frases[i];
-
-        // animação principal + "bounce"
+    async function run() {
+      for(let i=0;i<els.length;i++){
+        if(i>0){ db.classList.add('active'); await sleep(300); db.classList.remove('active'); }
+        sec.classList.add('shake');
+        fb.classList.add('active'); await sleep(120); fb.classList.remove('active');
+        gb.classList.add('active');
+        snd.currentTime=0; snd.play().catch(()=>{});
+        let el=els[i]; el.innerHTML=frases[i];
         await el.animate([
-          { opacity: 0, transform: 'scale(0.6) rotate(-15deg)' },
-          { opacity: 1, transform: 'scale(1.15) rotate(8deg)' },
-          { opacity: 1, transform: 'scale(1) rotate(0)' }
-        ], {
-          duration: 1000, easing: 'cubic-bezier(0.8,-0.17,0.18,1.13)', fill: 'forwards'
-        }).finished;
-
-        pagina1.classList.remove('shake');
-        glassbreak.classList.remove('active');
-        await sleep(1200 + Math.min(frases[i].length * 14, 800));
-
-        // desaparece
+          {opacity:0,transform:'scale(0.6) rotate(-15deg)'},
+          {opacity:1,transform:'scale(1.15) rotate(8deg)'},
+          {opacity:1,transform:'scale(1) rotate(0)'}
+        ],{duration:1000,easing:'cubic-bezier(0.8,-0.17,0.18,1.13)',fill:'forwards'}).finished;
+        sec.classList.remove('shake'); gb.classList.remove('active');
+        await sleep(1200 + Math.min(frases[i].length*14,800));
         await el.animate([
-          { opacity: 1, transform: 'scale(1) rotate(0)' },
-          { opacity: 0, transform: 'scale(0.8) rotate(-5deg)' }
-        ], {
-          duration: 600, easing: 'ease-in', fill: 'forwards'
-        }).finished;
-
-        el.innerHTML = '';
+          {opacity:1,transform:'scale(1) rotate(0)'},
+          {opacity:0,transform:'scale(0.8) rotate(-5deg)'}
+        ],{duration:600,easing:'ease-in',fill:'forwards'}).finished;
+        el.innerHTML='';
       }
-      // fim -> deixa o CTA visível
-      ctaBtn.classList.add('active');
-      ctaBtn.focus();
+      btn.classList.add('active');
+      btn.focus();
     }
-
-    window.addEventListener('load', apresentaFrases);
+    window.addEventListener('load',run);
   </script>
 </body>
 </html>
