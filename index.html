@@ -290,12 +290,14 @@
       margin-bottom: 1.1em;
       background: linear-gradient(99deg, #fff 70%, #eae0fd 100%);
       box-shadow: 0 6px 30px 0 #cab4f84a;
+      text-align: center;
+      padding: 1.35em 1.05em 1.15em 1.05em;
     }
     .legis-hero-title {
-      font-size: 1.16em; font-family:'Outfit',sans-serif; font-weight:900; color:var(--roxo); display:block; margin-bottom:.27em; text-align:center; letter-spacing:0.01em;
+      font-size: 1.14em; font-family:'Outfit',sans-serif; font-weight:900; color:var(--roxo); display:block; margin-bottom:.15em; text-align:center; letter-spacing:0.01em;
     }
     .legis-hero-sub {
-      font-size: 1em; color:#6a4aa2; font-family:'Inter',sans-serif; display:block; text-align:center; margin-bottom:.2em;
+      font-size: 1.02em; color:#5f43b7; font-family:'Inter',sans-serif; display:block; text-align:center; margin-top:.19em; margin-bottom:.2em; font-weight:600;
     }
     .legis-title {
       font-size:1.07em; font-weight:700; color:var(--preto); margin-bottom:.13em;
@@ -364,17 +366,6 @@
       <audio id="glassSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa59bb.mp3" preload="auto"></audio>
     </section>
 
-    <!-- MANUAL DO APROVADO: HERO -->
-    <section class="hero-main hidden" id="heroMainManual">
-      <button class="back-btn" id="backFromHero">Voltar ao início</button>
-      <span class="main-title">
-        TODO O CONTEÚDO NASCEU DE <span class="main-highlight">anos de experiência real em concursos.</span>
-      </span>
-      <span class="main-difference">
-        A diferença entre tentar e aprovar está aqui: <b>praticidade, clareza e método.</b>
-      </span>
-    </section>
-
     <!-- Manual do Aprovado: Conteúdo principal -->
     <section class="content-screen hidden" id="pagina2">
       <button class="back-btn" id="backFrom2">Voltar ao início</button>
@@ -419,11 +410,10 @@
       <button class="back-btn" id="backFromLegis">Voltar ao início</button>
       <div class="manual-card main legis-hero">
         <span class="legis-hero-title">
-          Abordaremos, de forma esquematizada e estratégica, tudo para você <b>gabaritar a Legislação Interna do TJSP 2025!</b>
+          Para você <b>gabaritar a Legislação Interna do TJSP 2025</b>
         </span>
         <span class="legis-hero-sub">
-          Esquemas visuais, tabelas, dicas e análise das normas mais cobradas.  
-          <b>Questões inéditas e comentadas para garantir sua aprovação.</b>
+          Esquemas visuais, tabelas e questões inéditas para você <b>dominar a VUNESP</b>.
         </span>
       </div>
       <div class="legis-card">
@@ -454,15 +444,14 @@
   </main>
   <script>
     document.addEventListener('DOMContentLoaded', function(){
-      // Navegação entre seções
       function showOnly(id) {
-        ['welcomeSection','pagina1','heroMainManual','pagina2','legislacao'].forEach(i=>{
+        ['welcomeSection','pagina1','pagina2','legislacao'].forEach(i=>{
           if(document.getElementById(i)) document.getElementById(i).classList.add('hidden');
         });
         document.getElementById(id).classList.remove('hidden');
         window.scrollTo({top:0,behavior:'smooth'});
       }
-      // Botões início
+      // INÍCIO
       document.getElementById('btnManual').onclick = ()=>{
         showOnly('pagina1');
         runCinema();
@@ -470,18 +459,15 @@
       document.getElementById('btnLegis').onclick = ()=>{
         showOnly('legislacao');
       };
-      // Cinema > Hero
+      // Cinema > Manual do Aprovado (cards)
       document.getElementById('ctaBtn').onclick = ()=>{
-        showOnly('heroMainManual');
-      };
-      // Hero Manual > Conteúdo principal
-      document.getElementById('heroMainManual').onclick = function(e) {
-        if(e.target.classList.contains('back-btn')) { showOnly('welcomeSection'); }
-        else { showOnly('pagina2'); }
+        showOnly('pagina2');
+        animateCards();
+        startCounter();
+        startVisitorsOnline();
       };
       // Voltar
       document.getElementById('backFrom1').onclick = ()=>{ showOnly('welcomeSection'); };
-      document.getElementById('backFromHero').onclick = ()=>{ showOnly('welcomeSection'); };
       document.getElementById('backFrom2').onclick = ()=>{ showOnly('welcomeSection'); };
       document.getElementById('backFromLegis').onclick = ()=>{ showOnly('welcomeSection'); };
       // Amostras Legislação
@@ -501,7 +487,6 @@
       ];
       const els = frases.map((_,i)=>document.getElementById(`frase${i}`));
       const snd = document.getElementById('glassSound'),
-            sec = document.getElementById('pagina1'),
             btn = document.getElementById('ctaBtn');
       const sleep = ms => new Promise(r=>setTimeout(r, ms));
       async function runCinema() {
@@ -561,18 +546,6 @@
         }
         update();
       }
-      // Exibe stats quando entrar no Manual do Aprovado
-      document.getElementById('pagina2').addEventListener('transitionend', function(){
-        animateCards();
-        startCounter();
-        startVisitorsOnline();
-      });
-      // Para garantir (caso navegue pelo hero)
-      document.getElementById('pagina2').addEventListener('mouseenter', function(){
-        animateCards();
-        startCounter();
-        startVisitorsOnline();
-      });
       document.querySelector('.logo-link').onclick = e => { e.preventDefault(); window.scrollTo({top:0,behavior:"smooth"}); };
     });
   </script>
