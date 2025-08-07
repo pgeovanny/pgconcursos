@@ -10,6 +10,7 @@
       --roxo: #7c46c5;
       --roxo2: #bda6ff;
       --cinza-bg: #f3f0fa;
+      --cinza2: #e6d9fa;
       --branco: #fff;
       --preto: #19162a;
       --soft-shadow: 0 8px 32px rgba(110,75,202,0.13);
@@ -47,8 +48,8 @@
       display: flex; align-items: center; justify-content: center;
       gap: 1rem;
       padding: 1.1rem 1rem 1.1rem 1rem;
-      background: rgba(255,255,255,0.83);
-      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(14px);
       min-height: 72px;
       width: 100vw;
     }
@@ -154,6 +155,7 @@
       letter-spacing: 0.01em;
       margin-bottom: .5em;
       text-transform: none;
+      display:inline;
     }
     .hero-main .main-difference {
       font-family: 'Outfit',sans-serif;
@@ -162,11 +164,12 @@
       color: var(--roxo2);
       margin-bottom: 0;
       text-transform: none;
+      display: block;
     }
     .manual-card ul, .legis-card ul {
       text-align: left;
       margin: 0; padding-left: 1.22em; line-height: 1.72;
-      font-size: 1.01em;
+      font-size: 1.05em;
       font-weight: 500;
       font-family: 'Inter',sans-serif;
     }
@@ -243,20 +246,20 @@
       font-size: 1.07em;
     }
     .amostra-btn {
-      margin: 0.85em auto 0 auto;
+      margin: 1em auto 0 auto;
       background: #ece1fa;
       color: var(--roxo);
       font-weight: 800;
       border-radius: 2rem;
-      font-size: 1.01em;
+      font-size: 1.03em;
       box-shadow: 0 2px 8px #cab4f81a;
-      width: 92%;
-      padding: 0.8em 0.1em;
+      width: 93%;
+      padding: 0.82em 0.1em;
     }
     .adquirir-btn {
       background: linear-gradient(90deg,var(--roxo2),var(--roxo));
       color: #fff;
-      margin-top: 1.6em;
+      margin-top: 1.4em;
       margin-bottom: .7em;
       font-size: 1.13em;
       font-weight: 900;
@@ -283,22 +286,38 @@
     .cinema-inner { width:100vw; min-height: 82vh; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; z-index:2; padding: 10vh 0 7vh 0;}
     .frase-impacto { padding: 1.15em 0.98em;}
     /* -------- LEGISLAÇÃO -------- */
+    .legis-hero {
+      margin-bottom: 1.1em;
+      background: linear-gradient(99deg, #fff 70%, #eae0fd 100%);
+      box-shadow: 0 6px 30px 0 #cab4f84a;
+    }
+    .legis-hero-title {
+      font-size: 1.16em; font-family:'Outfit',sans-serif; font-weight:900; color:var(--roxo); display:block; margin-bottom:.27em; text-align:center; letter-spacing:0.01em;
+    }
+    .legis-hero-sub {
+      font-size: 1em; color:#6a4aa2; font-family:'Inter',sans-serif; display:block; text-align:center; margin-bottom:.2em;
+    }
+    .legis-title {
+      font-size:1.07em; font-weight:700; color:var(--preto); margin-bottom:.13em;
+    }
     .legis-card {
       background: #fff;
       border-radius: var(--radius-main);
-      margin: 0.8em auto 0.2em auto;
+      margin: 1em auto 0.6em auto;
       box-shadow: 0 8px 26px 0 #cab4f83d;
-      padding: 1.23em 1.1em 1em 1.1em;
+      padding: 1.13em 1.12em 1em 1.12em;
       font-size: 1.05em;
       color: var(--preto);
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: .5em;
+      gap: .38em;
       position: relative;
+      transition: box-shadow .18s;
     }
+    .legis-card:hover { box-shadow:0 18px 32px 0 #cab4f87b;}
     .legis-card .amostra-btn {
-      margin-top: .5em;
+      margin-top: .7em;
       width: 100%;
     }
     /* Ajustes para telas pequenas */
@@ -308,6 +327,7 @@
       .back-btn, .btn-main, .adquirir-btn, .amostra-btn, .cta-btn { max-width: 99vw;}
       .hero-main { font-size: 1em;}
       .manual-card.what-learn h2 { font-size: 1em;}
+      .legis-hero-title { font-size: 1.01em;}
     }
   </style>
 </head>
@@ -328,11 +348,27 @@
       <button class="btn-main" id="btnLegis">Legislação Interna TJSP 2025</button>
     </section>
 
+    <!-- MANUAL DO APROVADO: CINEMA -->
+    <section class="cinema hidden" id="pagina1">
+      <button class="back-btn" id="backFrom1">Voltar ao início</button>
+      <div class="cinema-inner">
+        <div class="frase-impacto" id="frase0"></div>
+        <div class="frase-impacto" id="frase1"></div>
+        <div class="frase-impacto" id="frase2"></div>
+        <div class="frase-impacto" id="frase3"></div>
+        <div class="frase-impacto" id="frase4"></div>
+        <div class="frase-impacto" id="frase5"></div>
+        <div class="frase-impacto" id="frase6"></div>
+        <button class="cta-btn" id="ctaBtn" tabindex="0">Quero estudar de verdade</button>
+      </div>
+      <audio id="glassSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa59bb.mp3" preload="auto"></audio>
+    </section>
+
     <!-- MANUAL DO APROVADO: HERO -->
     <section class="hero-main hidden" id="heroMainManual">
       <button class="back-btn" id="backFromHero">Voltar ao início</button>
       <span class="main-title">
-        Todo o conteúdo nasceu de <span class="main-highlight">anos de experiência real em concursos.</span>
+        TODO O CONTEÚDO NASCEU DE <span class="main-highlight">anos de experiência real em concursos.</span>
       </span>
       <span class="main-difference">
         A diferença entre tentar e aprovar está aqui: <b>praticidade, clareza e método.</b>
@@ -378,57 +414,49 @@
       </div>
     </section>
 
-    <!-- Página de animação/impacto -->
-    <section class="cinema hidden" id="pagina1">
-      <button class="back-btn" id="backFrom1">Voltar ao início</button>
-      <div class="cinema-inner">
-        <div class="frase-impacto" id="frase0"></div>
-        <div class="frase-impacto" id="frase1"></div>
-        <div class="frase-impacto" id="frase2"></div>
-        <div class="frase-impacto" id="frase3"></div>
-        <div class="frase-impacto" id="frase4"></div>
-        <div class="frase-impacto" id="frase5"></div>
-        <div class="frase-impacto" id="frase6"></div>
-        <button class="cta-btn" id="ctaBtn" tabindex="0">Quero estudar de verdade</button>
-      </div>
-      <audio id="glassSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa59bb.mp3" preload="auto"></audio>
-    </section>
-
     <!-- LEGISLAÇÃO INTERNA TJSP 2025 -->
     <section class="content-screen hidden" id="legislacao">
       <button class="back-btn" id="backFromLegis">Voltar ao início</button>
-      <div class="manual-card main" style="margin-top:.5em;">Abordaremos, de forma esquematizada:</div>
+      <div class="manual-card main legis-hero">
+        <span class="legis-hero-title">
+          Abordaremos, de forma esquematizada e estratégica, tudo para você <b>gabaritar a Legislação Interna do TJSP 2025!</b>
+        </span>
+        <span class="legis-hero-sub">
+          Esquemas visuais, tabelas, dicas e análise das normas mais cobradas.  
+          <b>Questões inéditas e comentadas para garantir sua aprovação.</b>
+        </span>
+      </div>
       <div class="legis-card">
-        Resolução TJSP nº 850/2021 <small>(teletrabalho)</small>
+        <div class="legis-title"><b>Resolução TJSP nº 850/2021</b> <span style="font-size:0.95em; font-weight:500; color:#855ae1;">(teletrabalho)</span></div>
         <button class="amostra-btn">Ver amostra</button>
       </div>
       <div class="legis-card">
-        Resolução TJSP nº 963/2025 <small>(governança eproc)</small>
+        <div class="legis-title"><b>Resolução TJSP nº 963/2025</b> <span style="font-size:0.95em; font-weight:500; color:#855ae1;">(governança eproc)</span></div>
         <button class="amostra-btn">Ver amostra</button>
       </div>
       <div class="legis-card">
-        Lei Complementar nº 1.111/2010
+        <div class="legis-title"><b>Lei Complementar nº 1.111/2010</b></div>
         <button class="amostra-btn">Ver amostra</button>
       </div>
       <div class="legis-card">
-        Regimento Interno do Tribunal de Justiça
+        <div class="legis-title"><b>Regimento Interno do Tribunal de Justiça</b></div>
         <button class="amostra-btn">Ver amostra</button>
       </div>
       <div class="legis-card">
-        Normas da Corregedoria Geral da Justiça
+        <div class="legis-title"><b>Normas da Corregedoria Geral da Justiça</b></div>
         <button class="amostra-btn">Ver amostra</button>
       </div>
       <div class="legis-cta">
-        Além de questões <b>INÉDITAS</b> produzidas de forma totalmente estratégica.
+        Além de <b>questões INÉDITAS</b> produzidas de forma totalmente estratégica.<br>
+        <button class="adquirir-btn">Quero a Legislação Completa</button>
       </div>
-      <button class="adquirir-btn">Adquirir Legislação Completa</button>
     </section>
   </main>
   <script>
     document.addEventListener('DOMContentLoaded', function(){
       // Navegação entre seções
       function showOnly(id) {
-        ['welcomeSection','pagina1','heroMainManual','heroBlock','pagina2','legislacao'].forEach(i=>{
+        ['welcomeSection','pagina1','heroMainManual','pagina2','legislacao'].forEach(i=>{
           if(document.getElementById(i)) document.getElementById(i).classList.add('hidden');
         });
         document.getElementById(id).classList.remove('hidden');
@@ -436,12 +464,17 @@
       }
       // Botões início
       document.getElementById('btnManual').onclick = ()=>{
-        showOnly('heroMainManual');
+        showOnly('pagina1');
+        runCinema();
       };
       document.getElementById('btnLegis').onclick = ()=>{
         showOnly('legislacao');
       };
-      // Hero Manual -> conteúdo Manual
+      // Cinema > Hero
+      document.getElementById('ctaBtn').onclick = ()=>{
+        showOnly('heroMainManual');
+      };
+      // Hero Manual > Conteúdo principal
       document.getElementById('heroMainManual').onclick = function(e) {
         if(e.target.classList.contains('back-btn')) { showOnly('welcomeSection'); }
         else { showOnly('pagina2'); }
@@ -470,8 +503,6 @@
       const snd = document.getElementById('glassSound'),
             sec = document.getElementById('pagina1'),
             btn = document.getElementById('ctaBtn');
-      const hero = document.getElementById('heroMainManual');
-      const pagina2 = document.getElementById('pagina2');
       const sleep = ms => new Promise(r=>setTimeout(r, ms));
       async function runCinema() {
         for (let i=0; i<els.length; i++) {
@@ -493,22 +524,7 @@
         }
         btn.classList.add('active'); btn.focus();
       }
-      btn.addEventListener('click', ()=>{
-        sec.style.opacity = 1;
-        sec.animate([
-          { opacity: 1, filter: 'blur(0)' }, { opacity: 0, filter: 'blur(6px)' }
-        ], { duration: 540, fill: "forwards", easing: "cubic-bezier(0.19,1,0.22,1)" })
-        .onfinish = ()=>{
-          sec.classList.add('hidden');
-          hero.classList.remove('hidden');
-          pagina2.classList.remove('hidden');
-          pagina2.classList.add('active');
-          animateCards();
-          startCounter();
-          startVisitorsOnline();
-          window.scrollTo({top:0,behavior:"smooth"});
-        };
-      });
+      // Contador e visitantes no Manual
       function animateCards(){
         document.querySelectorAll('.manual-card').forEach((card,ix)=>{
           setTimeout(()=>{card.style.boxShadow="0 16px 40px 0 #cab4f848";}, 100+ix*120);
@@ -545,6 +561,18 @@
         }
         update();
       }
+      // Exibe stats quando entrar no Manual do Aprovado
+      document.getElementById('pagina2').addEventListener('transitionend', function(){
+        animateCards();
+        startCounter();
+        startVisitorsOnline();
+      });
+      // Para garantir (caso navegue pelo hero)
+      document.getElementById('pagina2').addEventListener('mouseenter', function(){
+        animateCards();
+        startCounter();
+        startVisitorsOnline();
+      });
       document.querySelector('.logo-link').onclick = e => { e.preventDefault(); window.scrollTo({top:0,behavior:"smooth"}); };
     });
   </script>
