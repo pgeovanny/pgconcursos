@@ -111,8 +111,6 @@
       margin-top: 0.18rem;
     }
     .hidden { display: none !important; }
-
-    /* ---------- CARDS/SECTIONS PADRÃO ---------- */
     .card-block, .manual-card, .legis-card, .manual-cta, .hero-main, .frase-impacto {
       background: var(--branco);
       border-radius: var(--radius-main);
@@ -128,78 +126,12 @@
       position: relative;
       z-index: 1;
     }
-    .hero-main {
-      text-align: center;
-      background: linear-gradient(98deg, #fff, #f7f0ff 60%, #ede7fa 100%);
-      font-family: 'Outfit',sans-serif;
-      font-weight: 600;
-      margin-top: 1.2em;
-      margin-bottom: 1.1em;
-      font-size: 1.13em;
-      line-height: 1.45;
-    }
-    .hero-main .main-title {
-      font-family: 'Outfit',sans-serif;
-      font-weight: 900;
-      font-size: 1.12em;
-      color: var(--preto);
-      margin-bottom: .5em;
-      letter-spacing: .01em;
-      text-transform: uppercase;
-    }
-    .hero-main .main-highlight {
-      font-family: 'Outfit',sans-serif;
-      font-size: 1.11em;
-      font-weight: 800;
-      color: var(--roxo);
-      letter-spacing: 0.01em;
-      margin-bottom: .5em;
-      text-transform: none;
-      display:inline;
-    }
-    .hero-main .main-difference {
-      font-family: 'Outfit',sans-serif;
-      font-size: 1.09em;
-      font-weight: 700;
-      color: var(--roxo2);
-      margin-bottom: 0;
-      text-transform: none;
-      display: block;
-    }
-    .manual-card ul, .legis-card ul {
-      text-align: left;
-      margin: 0; padding-left: 1.22em; line-height: 1.72;
-      font-size: 1.05em;
-      font-weight: 500;
-      font-family: 'Inter',sans-serif;
-    }
-    .manual-card li, .legis-card li { margin-bottom: .39em;}
-    .manual-card.what-learn h2 {
-      font-size: 1.10em;
-      font-family: 'Outfit',sans-serif;
-      background: linear-gradient(90deg,var(--roxo2),var(--roxo));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: 900;
-      margin: .0em 0 .8em 0;
-      text-align: left;
-      letter-spacing: 0.01em;
-    }
-    .manual-card.quote, .legis-card.quote {
-      font-style: italic;
-      background: #f7f4ff;
-      border-left: 5px solid var(--roxo2);
-      padding-left: 1.6em;
-      font-family: 'Outfit',sans-serif;
-      font-size: 1.04em;
-    }
     .manual-card .destaque, .legis-card .destaque {
       display: block;
       color: var(--roxo);
       font-weight: 900;
       margin-top: .22em;
     }
-    /* --------- AVISO/RODAPÉ ---------- */
     .manual-cta, .legis-cta {
       background: linear-gradient(93deg,#cab4f8 15%,#ede7fa 100%);
       color: #45247d;
@@ -214,7 +146,6 @@
       text-align: center;
       font-weight: 600;
     }
-    /* --------- BOTOES ---------- */
     .btn-main, .back-btn, .amostra-btn, .adquirir-btn, .cta-btn {
       margin: 1.1rem auto 0 auto;
       display: block;
@@ -255,6 +186,17 @@
       box-shadow: 0 2px 8px #cab4f81a;
       width: 93%;
       padding: 0.82em 0.1em;
+      text-decoration: none;
+      transition: background 0.19s, color 0.18s;
+    }
+    .amostra-btn:visited {
+      color: var(--roxo);
+    }
+    .amostra-btn[target="_blank"]:after {
+      content: ' ↗';
+      font-size: 0.85em;
+      vertical-align: middle;
+      opacity: .72;
     }
     .adquirir-btn {
       background: linear-gradient(90deg,var(--roxo2),var(--roxo));
@@ -266,18 +208,6 @@
       box-shadow: 0 6px 18px #cab4f82a;
       width: 97%;
     }
-    .cta-btn {
-      margin-top: 2.1vh;
-      width: 99%;
-      min-height: 45px;
-      font-size: 1.11rem;
-      background-size: 200% 100%;
-      background-position: 0 0;
-      border-radius: 46px;
-      z-index: 11;
-    }
-    .cta-btn.active { opacity: 1; transform: scale(1);}
-    /* --------- HERO, CINEMA E FRASES ---------- */
     .content-screen, .cinema, .hero {
       width: 100vw; min-height: 88vh; display: flex; flex-direction: column; align-items: center; gap: 1.08em;
       background: #ede7fa;
@@ -285,7 +215,6 @@
     }
     .cinema-inner { width:100vw; min-height: 82vh; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; z-index:2; padding: 10vh 0 7vh 0;}
     .frase-impacto { padding: 1.15em 0.98em;}
-    /* -------- LEGISLAÇÃO -------- */
     .legis-hero {
       margin-bottom: 1.1em;
       background: linear-gradient(99deg, #fff 70%, #eae0fd 100%);
@@ -322,7 +251,6 @@
       margin-top: .7em;
       width: 100%;
     }
-    /* Ajustes para telas pequenas */
     @media (max-width: 600px) {
       header { min-height: 62px;}
       .manual-card, .manual-cta, .legis-card, .content-screen, .hero-main, .card-block { max-width: 99vw; padding: 1.01em 0.47em;}
@@ -430,7 +358,7 @@
       </div>
       <div class="legis-card">
         <div class="legis-title"><b>Regimento Interno do Tribunal de Justiça</b></div>
-        <button class="amostra-btn">Ver amostra</button>
+        <a class="amostra-btn" href="https://drive.google.com/file/d/1Q0C2esYWSg0nhU5VvI_3qUODr1HjS24_/view?usp=sharing" target="_blank">Ver amostra</a>
       </div>
       <div class="legis-card">
         <div class="legis-title"><b>Normas da Corregedoria Geral da Justiça</b></div>
@@ -471,8 +399,14 @@
       document.getElementById('backFrom2').onclick = ()=>{ showOnly('welcomeSection'); };
       document.getElementById('backFromLegis').onclick = ()=>{ showOnly('welcomeSection'); };
       // Amostras Legislação
-      document.querySelectorAll('.amostra-btn').forEach(btn=>{
-        btn.onclick = ()=>alert('Em breve! Aqui vai aparecer a amostra desse material.');
+      // Regimento Interno vai para o link, os outros alertam
+      document.querySelectorAll('.legis-card').forEach(function(card){
+        const title = card.querySelector('.legis-title')?.innerText || '';
+        const btn = card.querySelector('.amostra-btn');
+        // Só adiciona alerta para os que não têm link
+        if(btn && !btn.hasAttribute('href')) {
+          btn.onclick = ()=>alert('Em breve! Aqui vai aparecer a amostra desse material.');
+        }
       });
       document.querySelector('.adquirir-btn').onclick = ()=>alert('Em breve! Compra direta pelo site ou WhatsApp.');
       // --------- CINEMA FRASES ---------
