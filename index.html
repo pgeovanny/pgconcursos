@@ -106,7 +106,6 @@
       margin-top: 0.18rem;
     }
     .hidden { display: none !important; }
-    /* BOAS-VINDAS */
     .welcome-block {
       max-width: 420px;
       margin: 5vh auto 2.5rem auto;
@@ -175,7 +174,6 @@
       transition: background .17s;
     }
     .back-btn:hover { background: #ece1fa;}
-    /* Legislação moderna */
     .legis-prod-block {
       max-width: 420px;
       margin: 4vh auto 2rem auto;
@@ -224,7 +222,6 @@
       text-align: center;
     }
     @keyframes fadeIn { from{opacity:0;transform:translateY(22px);} to{opacity:1;transform:translateY(0);} }
-    /* Media queries etc podem ser mantidas aqui */
   </style>
 </head>
 <body>
@@ -248,10 +245,15 @@
 
     <!-- Manual do Aprovado (SEU FLUXO COMPLETO ORIGINAL: cinema, hero, pagina2) -->
     <section class="cinema hidden" id="pagina1">
-      <!-- Mantém TODO o seu código de animação, frases, etc (do jeito que você mandou) -->
       <button class="back-btn" id="backFrom1">Voltar ao início</button>
       <div class="glassbreak" id="glassbreak">
-        <!-- ... SVG ... -->
+        <svg viewBox="0 0 370 160" fill="none"><g stroke="#b49cf8" stroke-width="2.3" stroke-linecap="round" opacity="0.64">
+        <path d="M185 0 L185 160"/><path d="M0 80 L370 80"/>
+        <path d="M60 10 Q185 80 310 10"/><path d="M20 140 Q185 80 350 140"/>
+        <path d="M95 80 Q185 30 275 80"/><path d="M95 80 Q185 130 275 80"/>
+        <path d="M80 30 Q185 70 290 25"/><path d="M290 130 Q185 100 70 135"/>
+        <path d="M35 90 Q185 50 340 110"/><path d="M340 50 Q185 110 40 45"/>
+        </g></svg>
       </div>
       <div class="flashbang" id="flashbang" style="background:#fff;"></div>
       <div class="fade-black" id="fadeBlack" style="background:#19162a;"></div>
@@ -268,7 +270,6 @@
       <audio id="glassSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa59bb.mp3" preload="auto"></audio>
     </section>
     <section class="hero hidden" id="heroBlock">
-      <!-- Mesma estrutura, só acrescentei o botão voltar -->
       <button class="back-btn" id="backFromHero">Voltar ao início</button>
       <p>Todo o conteúdo nasceu de</p>
       <p class="emphasis">anos de experiência real em concursos</p>
@@ -323,19 +324,30 @@
   </main>
   <script>
     document.addEventListener('DOMContentLoaded', function(){
-      // --------- FLUXO DE TROCA DE TELAS
-      const ids = ['welcomeSection','pagina1','heroBlock','pagina2','legislacao'];
-      function show(id){ ids.forEach(i=>document.getElementById(i).classList.add('hidden')); document.getElementById(id).classList.remove('hidden'); window.scrollTo({top:0,behavior:'smooth'});}
-      // Botões Boas-Vindas
-      document.getElementById('btnManual').onclick = ()=>{ show('pagina1'); runCinema(); };
-      document.getElementById('btnLegis').onclick = ()=>{ show('legislacao'); };
-      // Botões Voltar
-      document.getElementById('backFrom1').onclick = ()=>{ show('welcomeSection'); };
-      document.getElementById('backFromHero').onclick = ()=>{ show('welcomeSection'); };
-      document.getElementById('backFrom2').onclick = ()=>{ show('welcomeSection'); };
-      document.getElementById('backFromLegis').onclick = ()=>{ show('welcomeSection'); };
+      // Troca de telas simples e seguro
+      function showOnly(id) {
+        // Esconde tudo
+        ['welcomeSection','pagina1','heroBlock','pagina2','legislacao'].forEach(i=>document.getElementById(i).classList.add('hidden'));
+        // Mostra só o que pediu
+        document.getElementById(id).classList.remove('hidden');
+        window.scrollTo({top:0,behavior:'smooth'});
+      }
+      // Welcome -> Manual
+      document.getElementById('btnManual').onclick = ()=>{
+        showOnly('pagina1');
+        runCinema();
+      };
+      // Welcome -> Legislação
+      document.getElementById('btnLegis').onclick = ()=>{
+        showOnly('legislacao');
+      };
+      // Voltar ao início (sempre para welcome)
+      document.getElementById('backFrom1').onclick = ()=>{ showOnly('welcomeSection'); };
+      document.getElementById('backFromHero').onclick = ()=>{ showOnly('welcomeSection'); };
+      document.getElementById('backFrom2').onclick = ()=>{ showOnly('welcomeSection'); };
+      document.getElementById('backFromLegis').onclick = ()=>{ showOnly('welcomeSection'); };
 
-      // ---- DAQUI PRA BAIXO É O SEU JS ORIGINAL (runCinema, etc) ----
+      // =============== SEU JS ORIGINAL MANTIDO ===============
       // --------- CINEMA FRASES --------
       const frases = [
         "Eu sei que você já sentiu que <b>não aprendia de verdade</b>...",
@@ -357,8 +369,6 @@
       const pagina2 = document.getElementById('pagina2');
       const sleep = ms => new Promise(r=>setTimeout(r, ms));
       async function runCinema() {
-        // Se já não está visível, ignora (só dispara uma vez por exibição)
-        if(sec.classList.contains('hidden')) return;
         for (let i=0; i<els.length; i++) {
           if (i>0) { db.classList.add('active'); await sleep(250); db.classList.remove('active'); }
           sec.classList.add('shake');
@@ -410,8 +420,6 @@
         const el = document.getElementById('contador');
         const BASE = 127;
         let count = parseInt(localStorage.getItem('pg_manifestaram') || BASE, 10);
-
-        // Garante que cada visita só conta 1x por sessão
         if (!sessionStorage.getItem('pg_counted')) {
           count += 1;
           localStorage.setItem('pg_manifestaram', count);
@@ -427,12 +435,10 @@
         }
         requestAnimationFrame(step);
       }
-      // Simula visitantes online na página (frontend-only)
       function startVisitorsOnline() {
         const el = document.getElementById('visitas-online');
-        let online = Math.floor(Math.random()*4)+3; // valor inicial
+        let online = Math.floor(Math.random()*4)+3;
         function update() {
-          // flutua de 3 a 8 \"visitantes online\"
           online += Math.floor(Math.random()*3)-1;
           if (online < 3) online = 3;
           if (online > 8) online = 8;
