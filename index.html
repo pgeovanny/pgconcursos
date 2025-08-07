@@ -12,10 +12,11 @@
       --cinza-bg: #f3f0fa;
       --branco: #fff;
       --preto: #19162a;
-      --soft-shadow: 0 8px 32px rgba(110,75,202,0.15);
+      --soft-shadow: 0 8px 32px rgba(110,75,202,0.13);
       --ease-main: cubic-bezier(0.19,1,0.22,1);
       --radius-main: 1.3rem;
       --radius-btn: 2.5rem;
+      --boxmax: 450px;
     }
     *, *::before, *::after { box-sizing: border-box; }
     html, body {
@@ -27,6 +28,7 @@
       background: var(--cinza-bg);
       color: var(--preto);
       perspective: 1200px;
+      font-size: 16px;
     }
     body::before {
       content: '';
@@ -109,160 +111,174 @@
     }
     .hidden { display: none !important; }
 
-    /* ---------- BOAS-VINDAS ---------- */
-    .welcome-block {
-      max-width: 98vw;
-      margin: 5vh auto 2.5rem auto;
+    /* ---------- CARDS/SECTIONS PADRÃO ---------- */
+    .card-block, .manual-card, .legis-card, .manual-cta, .hero, .frase-impacto {
       background: var(--branco);
       border-radius: var(--radius-main);
       box-shadow: var(--soft-shadow);
-      text-align: center;
-      padding: 2.2rem 1rem 1.2rem 1rem;
-      animation: fadeIn 0.7s both;
+      max-width: var(--boxmax);
+      width: 97vw;
+      margin: 0 auto 1.05em auto;
+      padding: 1.22em 1.08em 1.22em 1.08em;
+      font-size: 1.07em;
+      color: var(--preto);
+      font-family: 'Inter', 'Outfit', Arial, sans-serif;
+      transition: box-shadow .19s;
+      position: relative;
+      z-index: 1;
     }
-    .welcome-block h1 {
-      font-family: 'Poppins',sans-serif;
-      font-size: 1.32rem;
+    .manual-card.main, .hero {
+      font-size: 1.19em;
       font-weight: 800;
+      background: linear-gradient(96deg, #fff, #f7f0ff 60%, #ede7fa 100%);
+      text-align: center;
+      margin-top: .7em;
+      font-family: 'Outfit',sans-serif;
+    }
+    .manual-card ul, .legis-card ul {
+      text-align: left;
+      margin: 0; padding-left: 1.22em; line-height: 1.72;
+      font-size: 1.01em;
+      font-weight: 500;
+      font-family: 'Inter',sans-serif;
+    }
+    .manual-card li, .legis-card li { margin-bottom: .39em;}
+    .manual-card.what-learn h2 {
+      font-size: 1.10em;
+      font-family: 'Outfit',sans-serif;
       background: linear-gradient(90deg,var(--roxo2),var(--roxo));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin: 0 0 .48em 0;
-      line-height: 1.18;
-    }
-    .welcome-block p {
-      font-size: 1.01rem;
-      color: var(--preto);
-      margin-bottom: 1.8rem;
-      line-height: 1.42;
-      font-family: 'Inter', sans-serif;
-    }
-    .choose-btns {
-      display: flex;
-      flex-direction: column;
-      gap: 1.08rem;
-      margin-bottom: 0.8rem;
-    }
-    .welcome-btn {
-      font-size: 1.07rem;
-      font-family: 'Outfit',sans-serif;
       font-weight: 900;
-      background: linear-gradient(90deg,var(--roxo2),var(--roxo));
-      color: var(--branco);
-      border: none;
-      border-radius: var(--radius-btn);
-      box-shadow: 0 4px 18px #cab4f82a;
-      padding: 1.08rem 1rem;
-      margin: 0 auto;
-      width: 100%;
-      max-width: 370px;
-      transition: filter .18s, transform .17s;
-      cursor: pointer;
-      text-align: center;
-      letter-spacing: 0.03em;
+      margin: .0em 0 .8em 0;
+      text-align: left;
+      letter-spacing: 0.01em;
     }
-    .welcome-btn:hover { filter: brightness(1.11); transform: scale(1.03);}
-    .back-btn, .amostra-btn, .adquirir-btn {
-      margin: 1.2rem auto 0 auto;
-      display: block;
-      font-size: 1.01rem;
-      background: var(--cinza-bg);
-      color: var(--roxo);
+    .manual-card.quote, .legis-card.quote {
+      font-style: italic;
+      background: #f7f4ff;
+      border-left: 5px solid var(--roxo2);
+      padding-left: 1.6em;
       font-family: 'Outfit',sans-serif;
-      font-weight: 700;
-      border: none;
-      border-radius: var(--radius-btn);
-      padding: 0.8rem 1.5rem;
-      box-shadow: 0 2px 10px #cab4f82a;
-      cursor: pointer;
-      transition: background .17s, transform .17s;
+      font-size: 1.04em;
     }
-    .back-btn:hover, .amostra-btn:hover, .adquirir-btn:hover { background: #ece1fa; transform: scale(1.05);}
-    .adquirir-btn {
+    .manual-card .destaque, .legis-card .destaque {
+      display: block;
+      color: var(--roxo);
+      font-weight: 900;
+      margin-top: .22em;
+    }
+    /* --------- AVISO/RODAPÉ ---------- */
+    .manual-cta, .legis-cta {
+      background: linear-gradient(93deg,#cab4f8 15%,#ede7fa 100%);
+      color: #45247d;
+      border-radius: 1.3em;
+      box-shadow: 0 6px 22px #cab4f841;
+      font-size: 1.04em;
+      padding: 1.2em 1em 1.09em 1em;
+      margin: 1.3em auto 0.2em auto;
+      font-family: 'Outfit',sans-serif;
+      max-width: var(--boxmax);
+      width: 98vw;
+      text-align: center;
+      font-weight: 600;
+    }
+    /* --------- BOTOES ---------- */
+    .btn-main, .back-btn, .amostra-btn, .adquirir-btn, .cta-btn {
+      margin: 1.1rem auto 0 auto;
+      display: block;
+      font-size: 1.07rem;
       background: linear-gradient(90deg,var(--roxo2),var(--roxo));
       color: #fff;
-      margin-top: 1.3rem;
-      margin-bottom: .7rem;
-      font-size: 1.12rem;
-      font-weight: 800;
-      box-shadow: 0 6px 18px #cab4f82a;
-    }
-    /* ---------- LEGISLAÇÃO ---------- */
-    .legis-prod-block {
-      max-width: 98vw;
-      margin: 4vh auto 2rem auto;
-      background: var(--branco);
-      border-radius: var(--radius-main);
-      box-shadow: var(--soft-shadow);
-      padding: 2.1rem 1rem 1.5rem 1rem;
-      animation: fadeIn 0.9s both;
-      text-align:center;
-    }
-    .legis-prod-block h2 {
       font-family: 'Outfit',sans-serif;
-      font-size: 1.15rem;
+      font-weight: 800;
+      border: none;
+      border-radius: var(--radius-btn);
+      box-shadow: 0 2px 10px #cab4f82a;
+      padding: 1em 1.6em;
+      cursor: pointer;
+      transition: filter .17s, background .17s, transform .18s;
+      width: 99%;
+      max-width: var(--boxmax);
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+    .btn-main:hover, .back-btn:hover, .amostra-btn:hover, .adquirir-btn:hover, .cta-btn:hover {
+      filter: brightness(1.11); transform: scale(1.03);
+    }
+    .back-btn {
+      background: linear-gradient(90deg,#e1d4ff 55%,#cab4f8 100%);
+      color: var(--roxo);
       font-weight: 900;
-      background: linear-gradient(90deg,var(--roxo),var(--roxo2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 1.2rem;
-      text-align:center;
+      margin-top: 1.15em;
+      margin-bottom: 0.45em;
+      font-size: 1.07em;
     }
-    .legis-list {
-      list-style: none;
-      margin: 0 0 1.2em 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 1.3em;
-    }
-    .legis-list li {
-      background: #f6f1fe;
-      border-radius: 1.1em;
-      font-family: 'Inter',sans-serif;
-      font-weight: 700;
-      color: #593fa0;
-      padding: 1.05em 1em 0.9em 1em;
-      font-size: 1.04em;
-      box-shadow: 0 2px 10px #cab4f824;
-      display: flex; flex-direction: column; align-items: center; gap: 0.72em;
-    }
-    .legis-list .amostra-btn {
-      margin-top: 0.6em;
-      margin-bottom: 0;
-      width: 90%;
+    .amostra-btn {
+      margin: 0.85em auto 0 auto;
       background: #ece1fa;
       color: var(--roxo);
       font-weight: 800;
       border-radius: 2rem;
       font-size: 1.01em;
       box-shadow: 0 2px 8px #cab4f81a;
+      width: 92%;
+      padding: 0.8em 0.1em;
     }
-    .legis-prod-block .extra {
-      margin-top: 1.3em;
-      font-family: 'Outfit',sans-serif;
-      font-weight: 700;
-      font-size: 1.06em;
+    .adquirir-btn {
+      background: linear-gradient(90deg,var(--roxo2),var(--roxo));
+      color: #fff;
+      margin-top: 1.6em;
+      margin-bottom: .7em;
+      font-size: 1.13em;
+      font-weight: 900;
+      box-shadow: 0 6px 18px #cab4f82a;
+      width: 97%;
+    }
+    .cta-btn {
+      margin-top: 2.1vh;
+      width: 99%;
+      min-height: 45px;
+      font-size: 1.11rem;
+      background-size: 200% 100%;
+      background-position: 0 0;
+      border-radius: 46px;
+      z-index: 11;
+    }
+    .cta-btn.active { opacity: 1; transform: scale(1);}
+    /* --------- HERO, CINEMA E FRASES ---------- */
+    .content-screen, .cinema, .hero {
+      width: 100vw; min-height: 88vh; display: flex; flex-direction: column; align-items: center; gap: 1.08em;
+      background: #ede7fa;
+      padding: 1.8em 0 2em 0;
+    }
+    .cinema-inner { width:100vw; min-height: 82vh; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; z-index:2; padding: 10vh 0 7vh 0;}
+    .frase-impacto { padding: 1.15em 0.98em;}
+    /* -------- LEGISLAÇÃO -------- */
+    .legis-card {
+      background: #fff;
+      border-radius: var(--radius-main);
+      margin: 0.8em auto 0.2em auto;
+      box-shadow: 0 8px 26px 0 #cab4f83d;
+      padding: 1.23em 1.1em 1em 1.1em;
+      font-size: 1.05em;
       color: var(--preto);
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: .5em;
+      position: relative;
+    }
+    .legis-card .amostra-btn {
+      margin-top: .5em;
+      width: 100%;
     }
     /* Ajustes para telas pequenas */
     @media (max-width: 600px) {
-      .welcome-block, .legis-prod-block { max-width: 99vw; padding: 2.2rem 0.4rem 1.2rem 0.4rem;}
-      .legis-list li {font-size: 1em;}
-      .hero, .content-screen, .cinema {padding: 0;}
-      .back-btn, .adquirir-btn, .amostra-btn {width: 100%; max-width: 370px;}
+      header { min-height: 62px;}
+      .manual-card, .manual-cta, .legis-card, .content-screen, .hero, .card-block { max-width: 99vw; padding: 1.01em 0.47em;}
+      .back-btn, .btn-main, .adquirir-btn, .amostra-btn, .cta-btn { max-width: 99vw;}
     }
-    /* ---------- HERO, CINEMA E CARDS ---------- */
-    .cinema, .hero, .content-screen { width: 100vw; min-height: 84vh; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding: 0;}
-    .cinema-inner { width:100vw; min-height: 82vh; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; z-index:2; padding: 10vh 0 7vh 0;}
-    .frase-impacto { width:96vw; max-width:410px; margin:0 auto 1.1rem auto; background:var(--branco); border-radius:1.45rem; border:2px solid #ece1fa; font-family:'Outfit',sans-serif; font-size:1.13rem; font-weight:900; text-align:center; line-height:1.35; letter-spacing:.01em; padding:1.1rem 0.95rem; box-shadow:0 10px 34px 0 #cab4f83d; filter:drop-shadow(0 6px 18px rgba(189,166,255,0.15)); margin-bottom:0.8rem;}
-    .cta-btn { margin: 2.1vh auto 0 auto; display: block; width: 96vw; max-width: 380px; min-height: 45px; font-size: 1.08rem; padding: 1rem 1.6rem; background: linear-gradient(90deg, var(--roxo2), var(--roxo)); color: var(--branco); font-family: 'Outfit', sans-serif; font-weight: 900; border: none; border-radius: 46px; text-decoration: none; box-shadow: 0 4px 18px #cab4f82a; transition: opacity .6s, transform .6s;}
-    .cta-btn.active { opacity: 1; transform: scale(1); animation: btnBoom 1s ease-out both;}
-    .cta-btn:hover { background-position: 100% 0; transform: scale(1.05);}
-    .card-efeito { width: 98vw; max-width: 445px; background: var(--branco); border-radius: 1.18rem; box-shadow: var(--soft-shadow); padding: 1.15rem 0.82rem 1.01rem 0.82rem; margin-bottom: 1rem;}
-    @keyframes fadeIn { from{opacity:0;transform:translateY(22px);} to{opacity:1;transform:translateY(0);} }
-    @keyframes btnBoom { 0% { transform: scale(0.65) rotate(-15deg);} 60% { transform: scale(1.18) rotate(8deg);} 100% { transform: scale(1) rotate(0);} }
   </style>
 </head>
 <body>
@@ -275,29 +291,55 @@
   </header>
   <main>
     <!-- BOAS-VINDAS -->
-    <section class="welcome-block" id="welcomeSection">
-      <h1>Bem-vindo!</h1>
-      <p>Você está mais próximo da aprovação.<br>Escolha seu material:</p>
-      <div class="choose-btns">
-        <button class="welcome-btn" id="btnManual">Manual do Aprovado</button>
-        <button class="welcome-btn" id="btnLegis">Legislação Interna TJSP 2025</button>
-      </div>
+    <section class="card-block" id="welcomeSection">
+      <h1 style="font-family:'Poppins',sans-serif;font-size:1.28rem;background:linear-gradient(90deg,var(--roxo2),var(--roxo));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0 0 .45em 0;line-height:1.17;font-weight:800;">Bem-vindo!</h1>
+      <p style="font-size:1.02rem;color:var(--preto);margin-bottom:1.5rem;line-height:1.41;font-family:'Inter',sans-serif;">Você está mais próximo da aprovação.<br>Escolha seu material:</p>
+      <button class="btn-main" id="btnManual">Manual do Aprovado</button>
+      <button class="btn-main" id="btnLegis">Legislação Interna TJSP 2025</button>
     </section>
 
     <!-- Manual do Aprovado -->
+    <section class="content-screen hidden" id="pagina2">
+      <button class="back-btn" id="backFrom2">Voltar ao início</button>
+      <div class="manual-card main">
+        Aprenda a estudar sozinho.<br>Domine seu caminho até a aprovação!
+      </div>
+      <div class="manual-card">
+        <ul>
+          <li>Descubra como organizar seus estudos mesmo começando do zero.</li>
+          <li>Saia do ciclo de dúvidas e incertezas. Torne-se independente.</li>
+          <li>Pare de perder tempo com métodos que não funcionam pra você.</li>
+        </ul>
+      </div>
+      <div class="manual-card quote">
+        “Ninguém ensina de verdade o que você só aprende errando.
+        <b class="destaque">Ou… você pode aprender com quem já errou por você.</b>”
+      </div>
+      <div class="manual-card what-learn">
+        <h2>O que você vai aprender:</h2>
+        <ul>
+          <li><b>Ciclos de estudo</b> otimizados para diferentes rotinas e cargas horárias.</li>
+          <li>Métodos eficientes de <b>revisão</b> para não esquecer o que importa.</li>
+          <li>Como <b>fazer questões</b> na hora certa e na quantidade certa.</li>
+          <li>Estratégia definitiva para estudar <b>Lei Seca</b> sem enrolação.</li>
+          <li>O que muda no <b>Pré e Pós-Edital</b>.</li>
+          <li>As <b>táticas de reta final</b> usadas pelos aprovados.</li>
+          <li>Análise real das <b>bancas</b> que mais aprovam.</li>
+          <li><b>Sacadas e atalhos</b> que só quem passou por tudo revela.</li>
+        </ul>
+      </div>
+      <div class="manual-cta">
+        <b>⏳ Aguarde, o melhor guia para sua aprovação está em produção!</b><br>
+        <span style="font-weight:400;display:block;margin-top:.3em;">
+          <span class="contador-numero" id="contador">0</span> pessoas já manifestaram interesse.
+          <span id="visitas-online" style="margin-left:8px;">👀 0 online agora</span>
+        </span>
+      </div>
+    </section>
+
+    <!-- Página de animação/impacto -->
     <section class="cinema hidden" id="pagina1">
       <button class="back-btn" id="backFrom1">Voltar ao início</button>
-      <div class="glassbreak" id="glassbreak">
-        <svg viewBox="0 0 370 160" fill="none"><g stroke="#b49cf8" stroke-width="2.3" stroke-linecap="round" opacity="0.64">
-        <path d="M185 0 L185 160"/><path d="M0 80 L370 80"/>
-        <path d="M60 10 Q185 80 310 10"/><path d="M20 140 Q185 80 350 140"/>
-        <path d="M95 80 Q185 30 275 80"/><path d="M95 80 Q185 130 275 80"/>
-        <path d="M80 30 Q185 70 290 25"/><path d="M290 130 Q185 100 70 135"/>
-        <path d="M35 90 Q185 50 340 110"/><path d="M340 50 Q185 110 40 45"/>
-        </g></svg>
-      </div>
-      <div class="flashbang" id="flashbang" style="background:#fff;"></div>
-      <div class="fade-black" id="fadeBlack" style="background:#19162a;"></div>
       <div class="cinema-inner">
         <div class="frase-impacto" id="frase0"></div>
         <div class="frase-impacto" id="frase1"></div>
@@ -312,80 +354,50 @@
     </section>
     <section class="hero hidden" id="heroBlock">
       <button class="back-btn" id="backFromHero">Voltar ao início</button>
-      <p>Todo o conteúdo nasceu de</p>
-      <p class="emphasis">anos de experiência real em concursos</p>
-      <p class="emphasis">A diferença entre tentar e aprovar está aqui: praticidade, clareza e método.</p>
-    </section>
-    <section class="content-screen hidden" id="pagina2">
-      <button class="back-btn" id="backFrom2">Voltar ao início</button>
-      <div class="card-efeito mistery">Aprenda a estudar sozinho. <br>Domine seu caminho até a aprovação!</div>
-      <div class="card-efeito"><ul>
-        <li>Descubra como organizar seus estudos mesmo começando do zero.</li>
-        <li>Saia do ciclo de dúvidas e incertezas. Torne-se independente.</li>
-        <li>Pare de perder tempo com métodos que não funcionam pra você.</li>
-      </ul></div>
-      <div class="card-efeito big-quote">“Ninguém ensina de verdade o que você só aprende errando.<span class="destaque">Ou… você pode aprender com quem já errou por você.</span>”</div>
-      <div class="card-efeito topic-section">
-        <h2>O que você vai aprender:</h2>
-        <ul>
-          <li><b>Ciclos de estudo</b> otimizados para diferentes rotinas e cargas horárias.</li>
-          <li>Métodos eficientes de <b>revisão</b> para não esquecer o que importa.</li>
-          <li>Como <b>fazer questões</b> na hora certa e na quantidade certa.</li>
-          <li>Estratégia definitiva para estudar <b>Lei Seca</b> sem enrolação.</li>
-          <li>O que muda no <b>Pré e Pós-Edital</b>.</li>
-          <li>As <b>táticas de reta final</b> usadas pelos aprovados.</li>
-          <li>Análise real das <b>bancas</b> que mais aprovam.</li>
-          <li><b>Sacadas e atalhos</b> que só quem passou por tudo revela.</li>
-        </ul>
-      </div>
-      <div class="cta-aviso">Aguarde, o melhor guia para sua aprovação está em produção!</div>
-      <div class="contador-section">
-        <span>
-          <span class="contador-numero" id="contador">0</span> pessoas já manifestaram interesse.
-          <span id="visitas-online">👀 0 online agora</span>
-        </span>
-      </div>
+      <p style="margin-bottom:.5em;">Todo o conteúdo nasceu de</p>
+      <p style="background:linear-gradient(90deg, var(--roxo2), var(--roxo));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;font-size:1.2em;margin-bottom:.5em;">anos de experiência real em concursos</p>
+      <p style="background:linear-gradient(90deg, var(--roxo2), var(--roxo));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;font-size:1.2em;">A diferença entre tentar e aprovar está aqui: praticidade, clareza e método.</p>
     </section>
 
     <!-- LEGISLAÇÃO INTERNA TJSP 2025 -->
-    <section class="legis-prod-block hidden" id="legislacao">
-      <h2>Abordaremos, de forma esquematizada:</h2>
-      <ul class="legis-list">
-        <li>
-          Resolução TJSP nº 850/2021 (teletrabalho)
-          <button class="amostra-btn">Ver amostra</button>
-        </li>
-        <li>
-          Resolução TJSP nº 963/2025 (governança eproc)
-          <button class="amostra-btn">Ver amostra</button>
-        </li>
-        <li>
-          Lei Complementar nº 1.111/2010
-          <button class="amostra-btn">Ver amostra</button>
-        </li>
-        <li>
-          Regimento Interno do Tribunal de Justiça
-          <button class="amostra-btn">Ver amostra</button>
-        </li>
-        <li>
-          Normas da Corregedoria Geral da Justiça
-          <button class="amostra-btn">Ver amostra</button>
-        </li>
-      </ul>
-      <div class="extra">
+    <section class="content-screen hidden" id="legislacao">
+      <button class="back-btn" id="backFromLegis">Voltar ao início</button>
+      <div class="manual-card main" style="margin-top:.5em;">Abordaremos, de forma esquematizada:</div>
+      <div class="legis-card">
+        Resolução TJSP nº 850/2021 <small>(teletrabalho)</small>
+        <button class="amostra-btn">Ver amostra</button>
+      </div>
+      <div class="legis-card">
+        Resolução TJSP nº 963/2025 <small>(governança eproc)</small>
+        <button class="amostra-btn">Ver amostra</button>
+      </div>
+      <div class="legis-card">
+        Lei Complementar nº 1.111/2010
+        <button class="amostra-btn">Ver amostra</button>
+      </div>
+      <div class="legis-card">
+        Regimento Interno do Tribunal de Justiça
+        <button class="amostra-btn">Ver amostra</button>
+      </div>
+      <div class="legis-card">
+        Normas da Corregedoria Geral da Justiça
+        <button class="amostra-btn">Ver amostra</button>
+      </div>
+      <div class="legis-cta">
         Além de questões <b>INÉDITAS</b> produzidas de forma totalmente estratégica.
       </div>
       <button class="adquirir-btn">Adquirir Legislação Completa</button>
-      <button class="back-btn" id="backFromLegis">Voltar ao início</button>
     </section>
   </main>
   <script>
     document.addEventListener('DOMContentLoaded', function(){
+      // Navegação entre seções
       function showOnly(id) {
         ['welcomeSection','pagina1','heroBlock','pagina2','legislacao'].forEach(i=>document.getElementById(i).classList.add('hidden'));
         document.getElementById(id).classList.remove('hidden');
         window.scrollTo({top:0,behavior:'smooth'});
       }
+      // Botões início
       document.getElementById('btnManual').onclick = ()=>{
         showOnly('pagina1');
         runCinema();
@@ -393,18 +405,17 @@
       document.getElementById('btnLegis').onclick = ()=>{
         showOnly('legislacao');
       };
+      // Voltar
       document.getElementById('backFrom1').onclick = ()=>{ showOnly('welcomeSection'); };
       document.getElementById('backFromHero').onclick = ()=>{ showOnly('welcomeSection'); };
       document.getElementById('backFrom2').onclick = ()=>{ showOnly('welcomeSection'); };
       document.getElementById('backFromLegis').onclick = ()=>{ showOnly('welcomeSection'); };
-
-      // Demo: Clique em "Ver amostra"
+      // Amostras Legislação
       document.querySelectorAll('.amostra-btn').forEach(btn=>{
         btn.onclick = ()=>alert('Em breve! Aqui vai aparecer a amostra desse material.');
       });
       document.querySelector('.adquirir-btn').onclick = ()=>alert('Em breve! Compra direta pelo site ou WhatsApp.');
-
-      // --------- JS ORIGINAL DO CINEMA E SLIDES ---------
+      // --------- CINEMA FRASES ---------
       const frases = [
         "Eu sei que você já sentiu que <b>não aprendia de verdade</b>...",
         "Já tentou <b>vários métodos</b>, mas se sentiu perdido.",
@@ -415,10 +426,7 @@
         "E se existisse um <b>caminho confiável</b> para aprovar?"
       ];
       const els = frases.map((_,i)=>document.getElementById(`frase${i}`));
-      const gb = document.getElementById('glassbreak'),
-            fb = document.getElementById('flashbang'),
-            db = document.getElementById('fadeBlack'),
-            snd = document.getElementById('glassSound'),
+      const snd = document.getElementById('glassSound'),
             sec = document.getElementById('pagina1'),
             btn = document.getElementById('ctaBtn');
       const hero = document.getElementById('heroBlock');
@@ -426,23 +434,19 @@
       const sleep = ms => new Promise(r=>setTimeout(r, ms));
       async function runCinema() {
         for (let i=0; i<els.length; i++) {
-          if (i>0) { db.classList.add('active'); await sleep(250); db.classList.remove('active'); }
-          sec.classList.add('shake');
-          fb.classList.add('active'); await sleep(100); fb.classList.remove('active');
-          gb.classList.add('active'); try{ snd.currentTime=0; snd.play(); }catch(e){}
           let el = els[i]; el.innerHTML = frases[i];
           el.style.opacity = 1;
           await el.animate([
             { opacity:0, transform:'scale(0.65) rotate(-15deg)' },
             { opacity:1, transform:'scale(1.12) rotate(7deg)' },
             { opacity:1, transform:'scale(1) rotate(0)' }
-          ], { duration:870, easing:'cubic-bezier(0.8,-0.17,0.18,1.13)', fill:'forwards' }).finished;
-          sec.classList.remove('shake'); gb.classList.remove('active');
-          await sleep(960 + Math.min(frases[i].length * 13, 750));
+          ], { duration:750, easing:'cubic-bezier(0.8,-0.17,0.18,1.13)', fill:'forwards' }).finished;
+          try{ snd.currentTime=0; snd.play(); }catch(e){}
+          await sleep(850 + Math.min(frases[i].length * 13, 650));
           await el.animate([
             { opacity:1, transform:'scale(1) rotate(0)' },
             { opacity:0, transform:'scale(0.88) rotate(-5deg)' }
-          ], { duration:500, easing:'ease-in', fill:'forwards' }).finished;
+          ], { duration:350, easing:'ease-in', fill:'forwards' }).finished;
           el.style.opacity = 0;
           el.innerHTML = '';
         }
@@ -452,7 +456,7 @@
         sec.style.opacity = 1;
         sec.animate([
           { opacity: 1, filter: 'blur(0)' }, { opacity: 0, filter: 'blur(6px)' }
-        ], { duration: 580, fill: "forwards", easing: "cubic-bezier(0.19,1,0.22,1)" })
+        ], { duration: 540, fill: "forwards", easing: "cubic-bezier(0.19,1,0.22,1)" })
         .onfinish = ()=>{
           sec.classList.add('hidden');
           hero.classList.remove('hidden');
@@ -465,10 +469,8 @@
         };
       });
       function animateCards(){
-        document.querySelectorAll('.card-efeito').forEach((card,ix)=>{
-          setTimeout(()=>{
-            card.classList.add('ativo');
-          }, 140+ix*140);
+        document.querySelectorAll('.manual-card').forEach((card,ix)=>{
+          setTimeout(()=>{card.style.boxShadow="0 16px 40px 0 #cab4f848";}, 100+ix*120);
         });
       }
       function startCounter() {
