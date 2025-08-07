@@ -14,6 +14,8 @@
       --preto: #19162a;
       --soft-shadow: 0 8px 32px rgba(110,75,202,0.15);
       --ease-main: cubic-bezier(0.19,1,0.22,1);
+      --radius-main: 1.3rem;
+      --radius-btn: 2.5rem;
     }
     *, *::before, *::after { box-sizing: border-box; }
     html, body {
@@ -106,19 +108,21 @@
       margin-top: 0.18rem;
     }
     .hidden { display: none !important; }
+
+    /* ---------- BOAS-VINDAS ---------- */
     .welcome-block {
-      max-width: 420px;
+      max-width: 98vw;
       margin: 5vh auto 2.5rem auto;
       background: var(--branco);
-      border-radius: 1.2rem;
+      border-radius: var(--radius-main);
       box-shadow: var(--soft-shadow);
       text-align: center;
-      padding: 2.3rem 1rem 1.4rem 1rem;
+      padding: 2.2rem 1rem 1.2rem 1rem;
       animation: fadeIn 0.7s both;
     }
     .welcome-block h1 {
       font-family: 'Poppins',sans-serif;
-      font-size: 1.42rem;
+      font-size: 1.32rem;
       font-weight: 800;
       background: linear-gradient(90deg,var(--roxo2),var(--roxo));
       -webkit-background-clip: text;
@@ -127,7 +131,7 @@
       line-height: 1.18;
     }
     .welcome-block p {
-      font-size: 1.04rem;
+      font-size: 1.01rem;
       color: var(--preto);
       margin-bottom: 1.8rem;
       line-height: 1.42;
@@ -136,30 +140,30 @@
     .choose-btns {
       display: flex;
       flex-direction: column;
-      gap: 1.1rem;
+      gap: 1.08rem;
       margin-bottom: 0.8rem;
     }
     .welcome-btn {
-      font-size: 1.14rem;
+      font-size: 1.07rem;
       font-family: 'Outfit',sans-serif;
       font-weight: 900;
       background: linear-gradient(90deg,var(--roxo2),var(--roxo));
       color: var(--branco);
       border: none;
-      border-radius: 50px;
+      border-radius: var(--radius-btn);
       box-shadow: 0 4px 18px #cab4f82a;
-      padding: 1.14rem 2rem;
+      padding: 1.08rem 1rem;
       margin: 0 auto;
       width: 100%;
-      max-width: 320px;
-      transition: filter .18s;
+      max-width: 370px;
+      transition: filter .18s, transform .17s;
       cursor: pointer;
       text-align: center;
       letter-spacing: 0.03em;
     }
-    .welcome-btn:hover { filter: brightness(1.13);}
-    .back-btn {
-      margin: 1.4rem auto 0 auto;
+    .welcome-btn:hover { filter: brightness(1.11); transform: scale(1.03);}
+    .back-btn, .amostra-btn, .adquirir-btn {
+      margin: 1.2rem auto 0 auto;
       display: block;
       font-size: 1.01rem;
       background: var(--cinza-bg);
@@ -167,21 +171,32 @@
       font-family: 'Outfit',sans-serif;
       font-weight: 700;
       border: none;
-      border-radius: 2rem;
-      padding: 0.7rem 1.2rem;
+      border-radius: var(--radius-btn);
+      padding: 0.8rem 1.5rem;
       box-shadow: 0 2px 10px #cab4f82a;
       cursor: pointer;
-      transition: background .17s;
+      transition: background .17s, transform .17s;
     }
-    .back-btn:hover { background: #ece1fa;}
+    .back-btn:hover, .amostra-btn:hover, .adquirir-btn:hover { background: #ece1fa; transform: scale(1.05);}
+    .adquirir-btn {
+      background: linear-gradient(90deg,var(--roxo2),var(--roxo));
+      color: #fff;
+      margin-top: 1.3rem;
+      margin-bottom: .7rem;
+      font-size: 1.12rem;
+      font-weight: 800;
+      box-shadow: 0 6px 18px #cab4f82a;
+    }
+    /* ---------- LEGISLAÇÃO ---------- */
     .legis-prod-block {
-      max-width: 420px;
+      max-width: 98vw;
       margin: 4vh auto 2rem auto;
       background: var(--branco);
-      border-radius: 1.2rem;
+      border-radius: var(--radius-main);
       box-shadow: var(--soft-shadow);
-      padding: 2.2rem 1.1rem 1.7rem 1.1rem;
+      padding: 2.1rem 1rem 1.5rem 1rem;
       animation: fadeIn 0.9s both;
+      text-align:center;
     }
     .legis-prod-block h2 {
       font-family: 'Outfit',sans-serif;
@@ -199,19 +214,29 @@
       padding: 0;
       display: flex;
       flex-direction: column;
-      gap: 0.62em;
+      gap: 1.3em;
     }
     .legis-list li {
       background: #f6f1fe;
-      border-radius: 1em;
+      border-radius: 1.1em;
       font-family: 'Inter',sans-serif;
       font-weight: 700;
       color: #593fa0;
-      padding: 0.85em 1em;
+      padding: 1.05em 1em 0.9em 1em;
       font-size: 1.04em;
       box-shadow: 0 2px 10px #cab4f824;
-      display: flex; align-items: center; gap: 0.65em;
-      justify-content: flex-start;
+      display: flex; flex-direction: column; align-items: center; gap: 0.72em;
+    }
+    .legis-list .amostra-btn {
+      margin-top: 0.6em;
+      margin-bottom: 0;
+      width: 90%;
+      background: #ece1fa;
+      color: var(--roxo);
+      font-weight: 800;
+      border-radius: 2rem;
+      font-size: 1.01em;
+      box-shadow: 0 2px 8px #cab4f81a;
     }
     .legis-prod-block .extra {
       margin-top: 1.3em;
@@ -221,7 +246,23 @@
       color: var(--preto);
       text-align: center;
     }
+    /* Ajustes para telas pequenas */
+    @media (max-width: 600px) {
+      .welcome-block, .legis-prod-block { max-width: 99vw; padding: 2.2rem 0.4rem 1.2rem 0.4rem;}
+      .legis-list li {font-size: 1em;}
+      .hero, .content-screen, .cinema {padding: 0;}
+      .back-btn, .adquirir-btn, .amostra-btn {width: 100%; max-width: 370px;}
+    }
+    /* ---------- HERO, CINEMA E CARDS ---------- */
+    .cinema, .hero, .content-screen { width: 100vw; min-height: 84vh; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding: 0;}
+    .cinema-inner { width:100vw; min-height: 82vh; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; z-index:2; padding: 10vh 0 7vh 0;}
+    .frase-impacto { width:96vw; max-width:410px; margin:0 auto 1.1rem auto; background:var(--branco); border-radius:1.45rem; border:2px solid #ece1fa; font-family:'Outfit',sans-serif; font-size:1.13rem; font-weight:900; text-align:center; line-height:1.35; letter-spacing:.01em; padding:1.1rem 0.95rem; box-shadow:0 10px 34px 0 #cab4f83d; filter:drop-shadow(0 6px 18px rgba(189,166,255,0.15)); margin-bottom:0.8rem;}
+    .cta-btn { margin: 2.1vh auto 0 auto; display: block; width: 96vw; max-width: 380px; min-height: 45px; font-size: 1.08rem; padding: 1rem 1.6rem; background: linear-gradient(90deg, var(--roxo2), var(--roxo)); color: var(--branco); font-family: 'Outfit', sans-serif; font-weight: 900; border: none; border-radius: 46px; text-decoration: none; box-shadow: 0 4px 18px #cab4f82a; transition: opacity .6s, transform .6s;}
+    .cta-btn.active { opacity: 1; transform: scale(1); animation: btnBoom 1s ease-out both;}
+    .cta-btn:hover { background-position: 100% 0; transform: scale(1.05);}
+    .card-efeito { width: 98vw; max-width: 445px; background: var(--branco); border-radius: 1.18rem; box-shadow: var(--soft-shadow); padding: 1.15rem 0.82rem 1.01rem 0.82rem; margin-bottom: 1rem;}
     @keyframes fadeIn { from{opacity:0;transform:translateY(22px);} to{opacity:1;transform:translateY(0);} }
+    @keyframes btnBoom { 0% { transform: scale(0.65) rotate(-15deg);} 60% { transform: scale(1.18) rotate(8deg);} 100% { transform: scale(1) rotate(0);} }
   </style>
 </head>
 <body>
@@ -310,40 +351,58 @@
     <section class="legis-prod-block hidden" id="legislacao">
       <h2>Abordaremos, de forma esquematizada:</h2>
       <ul class="legis-list">
-        <li>Resolução TJSP nº 850/2021 (teletrabalho)</li>
-        <li>Resolução TJSP nº 963/2025 (governança eproc)</li>
-        <li>Lei Complementar nº 1.111/2010</li>
-        <li>Regimento Interno do Tribunal de Justiça</li>
-        <li>Normas da Corregedoria Geral da Justiça</li>
+        <li>
+          Resolução TJSP nº 850/2021 (teletrabalho)
+          <button class="amostra-btn">Ver amostra</button>
+        </li>
+        <li>
+          Resolução TJSP nº 963/2025 (governança eproc)
+          <button class="amostra-btn">Ver amostra</button>
+        </li>
+        <li>
+          Lei Complementar nº 1.111/2010
+          <button class="amostra-btn">Ver amostra</button>
+        </li>
+        <li>
+          Regimento Interno do Tribunal de Justiça
+          <button class="amostra-btn">Ver amostra</button>
+        </li>
+        <li>
+          Normas da Corregedoria Geral da Justiça
+          <button class="amostra-btn">Ver amostra</button>
+        </li>
       </ul>
       <div class="extra">
         Além de questões <b>INÉDITAS</b> produzidas de forma totalmente estratégica.
       </div>
+      <button class="adquirir-btn">Adquirir Legislação Completa</button>
       <button class="back-btn" id="backFromLegis">Voltar ao início</button>
     </section>
   </main>
   <script>
     document.addEventListener('DOMContentLoaded', function(){
-      // Troca de telas simples e seguro
       function showOnly(id) {
         ['welcomeSection','pagina1','heroBlock','pagina2','legislacao'].forEach(i=>document.getElementById(i).classList.add('hidden'));
         document.getElementById(id).classList.remove('hidden');
         window.scrollTo({top:0,behavior:'smooth'});
       }
-      // Welcome -> Manual
       document.getElementById('btnManual').onclick = ()=>{
         showOnly('pagina1');
         runCinema();
       };
-      // Welcome -> Legislação
       document.getElementById('btnLegis').onclick = ()=>{
         showOnly('legislacao');
       };
-      // Voltar ao início (sempre para welcome)
       document.getElementById('backFrom1').onclick = ()=>{ showOnly('welcomeSection'); };
       document.getElementById('backFromHero').onclick = ()=>{ showOnly('welcomeSection'); };
       document.getElementById('backFrom2').onclick = ()=>{ showOnly('welcomeSection'); };
       document.getElementById('backFromLegis').onclick = ()=>{ showOnly('welcomeSection'); };
+
+      // Demo: Clique em "Ver amostra"
+      document.querySelectorAll('.amostra-btn').forEach(btn=>{
+        btn.onclick = ()=>alert('Em breve! Aqui vai aparecer a amostra desse material.');
+      });
+      document.querySelector('.adquirir-btn').onclick = ()=>alert('Em breve! Compra direta pelo site ou WhatsApp.');
 
       // --------- JS ORIGINAL DO CINEMA E SLIDES ---------
       const frases = [
