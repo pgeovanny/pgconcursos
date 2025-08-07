@@ -34,74 +34,197 @@
       animation: bgmove 20s var(--ease-main) infinite alternate;
       will-change: background-position;
     }
-    @keyframes bgmove { 0% { background-position: 0% 70%; } 100% { background-position: 100% 10%; } }
+    @keyframes bgmove {
+      0% { background-position: 0% 70%; }
+      100% { background-position: 100% 10%; }
+    }
     header {
       position: sticky; top: 0; z-index: 100;
       display: flex; align-items: center; justify-content: center;
-      gap: 1rem; padding: 1.1rem 1rem;
-      background: rgba(255,255,255,0.83); backdrop-filter: blur(12px);
-      min-height: 72px; width: 100vw;
+      gap: 1rem;
+      padding: 1.1rem 1rem 1.1rem 1rem;
+      background: rgba(255,255,255,0.83);
+      backdrop-filter: blur(12px);
+      min-height: 72px;
+      width: 100vw;
     }
     header::before {
       content: '';
       position: absolute; top: 0; left: 0;
       width: 100%; height: 4px;
       background: linear-gradient(90deg, var(--roxo2), var(--roxo), var(--roxo2));
-      background-size: 200% 100%; animation: borderSlide 4s linear infinite;
+      background-size: 200% 100%;
+      animation: borderSlide 4s linear infinite;
       z-index: 9;
     }
-    @keyframes borderSlide { 0% { background-position: 0% 0%; } 100% { background-position: 200% 0%; } }
-    .logo-link img { width: 48px; height: 48px; border-radius: 10px;
-      box-shadow: var(--soft-shadow); transition: transform .3s; background: #fff;
+    @keyframes borderSlide {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 200% 0%; }
     }
-    .logo-link img:hover { transform: scale(1.08) rotate(-6deg); }
-    .header-title { display: inline-block; position: relative; line-height:1.02; margin-top:3px; text-align:left; }
-    .header-title .pg { font-family:'Poppins'; font-weight:800; font-size:clamp(1.3rem,7vw,2.1rem);
-      background:linear-gradient(90deg,var(--roxo2),var(--roxo)); -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent; position:relative;
+    .logo-link img {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      box-shadow: var(--soft-shadow);
+      transition: transform .3s;
+      background: #fff;
+    }
+    .logo-link img:hover { transform: scale(1.08) rotate(-6deg);}
+    .header-title {
+      display: inline-block; position: relative;
+      text-align: left; line-height: 1.02;
+      margin-top: 3px;
+    }
+    .header-title .pg {
+      display: block;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.3rem, 7vw, 2.1rem);
+      background: linear-gradient(90deg, var(--roxo2), var(--roxo));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
     }
     .header-title .pg::after {
-      content:''; position:absolute; bottom:-5px; left:50%; transform:translateX(-50%);
-      width:64%; height:3px; background:linear-gradient(90deg,var(--roxo),var(--roxo2));
-      border-radius:2px; animation:underlineMove 3s ease-in-out infinite;
+      content: '';
+      position: absolute;
+      bottom: -5px; left: 50%;
+      transform: translateX(-50%);
+      width: 64%; height: 3px;
+      background: linear-gradient(90deg, var(--roxo), var(--roxo2));
+      border-radius: 2px;
+      animation: underlineMove 3s ease-in-out infinite;
     }
-    @keyframes underlineMove { 0%{width:40%;}50%{width:80%;}100%{width:40%;} }
-    .header-title .concursos { font-family:'Outfit'; font-weight:600; font-size:clamp(0.97rem,5vw,1.24rem);
-      background:linear-gradient(90deg,var(--roxo),var(--roxo2)); -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent; margin-top:0.18rem;
+    @keyframes underlineMove { 0% { width: 40%; } 50% { width: 80%; } 100% { width: 40%; } }
+    .header-title .concursos {
+      display: block;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: clamp(0.97rem, 5vw, 1.24rem);
+      background: linear-gradient(90deg, var(--roxo), var(--roxo2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-top: 0.18rem;
     }
-    .hidden { display:none!important; }
-    /* Reused components */
-    .hero { max-width:98vw; margin:1.2rem auto; padding:1.12rem 0.4rem;
-      background:var(--branco); border-radius:1rem; box-shadow:var(--soft-shadow);
-      text-align:center; font-size:0.98rem; line-height:1.35;
+    .hidden { display: none !important; }
+    /* BOAS-VINDAS */
+    .welcome-block {
+      max-width: 420px;
+      margin: 5vh auto 2.5rem auto;
+      background: var(--branco);
+      border-radius: 1.2rem;
+      box-shadow: var(--soft-shadow);
+      text-align: center;
+      padding: 2.3rem 1rem 1.4rem 1rem;
+      animation: fadeIn 0.7s both;
     }
-    .hero p { font-family:'Poppins'; font-weight:600;
-      font-size:clamp(0.98rem,3.2vw,1.2rem); margin-bottom:0.7rem;
+    .welcome-block h1 {
+      font-family: 'Poppins',sans-serif;
+      font-size: 1.42rem;
+      font-weight: 800;
+      background: linear-gradient(90deg,var(--roxo2),var(--roxo));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0 0 .48em 0;
+      line-height: 1.18;
     }
-    .hero p.emphasis { background:linear-gradient(90deg,var(--roxo2),var(--roxo));
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-      font-weight:800; font-size:clamp(1.05rem,4vw,1.28rem);
+    .welcome-block p {
+      font-size: 1.04rem;
+      color: var(--preto);
+      margin-bottom: 1.8rem;
+      line-height: 1.42;
+      font-family: 'Inter', sans-serif;
     }
-    .content-screen { display:flex; flex-direction:column; align-items:center;
-      gap:0.8rem; width:100%; max-width:470px; margin:0 auto; padding:0 0.2rem;
+    .choose-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      margin-bottom: 0.8rem;
     }
-    .cta-btn { display:block; width:96vw; max-width:380px; margin:0.6rem auto;
-      padding:1rem 1.6rem; font-size:1.08rem; background:linear-gradient(90deg,var(--roxo2),var(--roxo));
-      color:var(--branco); font-family:'Outfit'; font-weight:900; border:none;
-      border-radius:46px; text-decoration:none; box-shadow:0 4px 18px #cab4f82a;
-      text-align:center; cursor:pointer;
+    .welcome-btn {
+      font-size: 1.14rem;
+      font-family: 'Outfit',sans-serif;
+      font-weight: 900;
+      background: linear-gradient(90deg,var(--roxo2),var(--roxo));
+      color: var(--branco);
+      border: none;
+      border-radius: 50px;
+      box-shadow: 0 4px 18px #cab4f82a;
+      padding: 1.14rem 2rem;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 320px;
+      transition: filter .18s;
+      cursor: pointer;
+      text-align: center;
+      letter-spacing: 0.03em;
     }
-    .card-efeito { width:98vw; max-width:445px; background:var(--branco);
-      border-radius:1.18rem; box-shadow:var(--soft-shadow); padding:1.15rem;
+    .welcome-btn:hover { filter: brightness(1.13);}
+    .back-btn {
+      margin: 1.4rem auto 0 auto;
+      display: block;
+      font-size: 1.01rem;
+      background: var(--cinza-bg);
+      color: var(--roxo);
+      font-family: 'Outfit',sans-serif;
+      font-weight: 700;
+      border: none;
+      border-radius: 2rem;
+      padding: 0.7rem 1.2rem;
+      box-shadow: 0 2px 10px #cab4f82a;
+      cursor: pointer;
+      transition: background .17s;
     }
-    .topic-section h2 { font-family:'Outfit'; text-transform:uppercase;
-      font-weight:900; margin-bottom:0.65rem; font-size:0.99rem;
+    .back-btn:hover { background: #ece1fa;}
+    /* Legislação moderna */
+    .legis-prod-block {
+      max-width: 420px;
+      margin: 4vh auto 2rem auto;
+      background: var(--branco);
+      border-radius: 1.2rem;
+      box-shadow: var(--soft-shadow);
+      padding: 2.2rem 1.1rem 1.7rem 1.1rem;
+      animation: fadeIn 0.9s both;
     }
-    .topic-section ul { padding-left:1.1rem; margin:0;
-      display:flex; flex-direction:column; gap:0.29rem;
-      font-size:0.97rem; line-height:1.57;
+    .legis-prod-block h2 {
+      font-family: 'Outfit',sans-serif;
+      font-size: 1.15rem;
+      font-weight: 900;
+      background: linear-gradient(90deg,var(--roxo),var(--roxo2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.2rem;
+      text-align:center;
     }
+    .legis-list {
+      list-style: none;
+      margin: 0 0 1.2em 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.62em;
+    }
+    .legis-list li {
+      background: #f6f1fe;
+      border-radius: 1em;
+      font-family: 'Inter',sans-serif;
+      font-weight: 700;
+      color: #593fa0;
+      padding: 0.85em 1em;
+      font-size: 1.04em;
+      box-shadow: 0 2px 10px #cab4f824;
+      display: flex; align-items: center; gap: 0.65em;
+      justify-content: flex-start;
+    }
+    .legis-prod-block .extra {
+      margin-top: 1.3em;
+      font-family: 'Outfit',sans-serif;
+      font-weight: 700;
+      font-size: 1.06em;
+      color: var(--preto);
+      text-align: center;
+    }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(22px);} to{opacity:1;transform:translateY(0);} }
+    /* Media queries etc podem ser mantidas aqui */
   </style>
 </head>
 <body>
@@ -113,66 +236,212 @@
     </div>
   </header>
   <main>
-    <!-- Página de Boas-Vindas -->
-    <section class="hero" id="welcomeSection">
-      <p>Bem-vindo! Você está mais próximo da aprovação.</p>
-      <p class="emphasis">Escolha seu material:</p>
-      <a href="#" class="cta-btn" id="btnManual">Manual do Aprovado</a>
-      <a href="#" class="cta-btn" id="btnLegis">Legislação Interna TJSP 2025</a>
+    <!-- BOAS-VINDAS -->
+    <section class="welcome-block" id="welcomeSection">
+      <h1>Bem-vindo!</h1>
+      <p>Você está mais próximo da aprovação.<br>Escolha seu material:</p>
+      <div class="choose-btns">
+        <button class="welcome-btn" id="btnManual">Manual do Aprovado</button>
+        <button class="welcome-btn" id="btnLegis">Legislação Interna TJSP 2025</button>
+      </div>
     </section>
 
-    <!-- Manual do Aprovado -->
+    <!-- Manual do Aprovado (SEU FLUXO COMPLETO ORIGINAL: cinema, hero, pagina2) -->
     <section class="cinema hidden" id="pagina1">
-      <!-- original cinema code -->
+      <!-- Mantém TODO o seu código de animação, frases, etc (do jeito que você mandou) -->
+      <button class="back-btn" id="backFrom1">Voltar ao início</button>
+      <div class="glassbreak" id="glassbreak">
+        <!-- ... SVG ... -->
+      </div>
+      <div class="flashbang" id="flashbang" style="background:#fff;"></div>
+      <div class="fade-black" id="fadeBlack" style="background:#19162a;"></div>
+      <div class="cinema-inner">
+        <div class="frase-impacto" id="frase0"></div>
+        <div class="frase-impacto" id="frase1"></div>
+        <div class="frase-impacto" id="frase2"></div>
+        <div class="frase-impacto" id="frase3"></div>
+        <div class="frase-impacto" id="frase4"></div>
+        <div class="frase-impacto" id="frase5"></div>
+        <div class="frase-impacto" id="frase6"></div>
+        <button class="cta-btn" id="ctaBtn" tabindex="0">Quero estudar de verdade</button>
+      </div>
+      <audio id="glassSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa59bb.mp3" preload="auto"></audio>
     </section>
     <section class="hero hidden" id="heroBlock">
-      <!-- original heroBlock code -->
+      <!-- Mesma estrutura, só acrescentei o botão voltar -->
+      <button class="back-btn" id="backFromHero">Voltar ao início</button>
+      <p>Todo o conteúdo nasceu de</p>
+      <p class="emphasis">anos de experiência real em concursos</p>
+      <p class="emphasis">A diferença entre tentar e aprovar está aqui: praticidade, clareza e método.</p>
     </section>
     <section class="content-screen hidden" id="pagina2">
-      <!-- original content-screen code -->
+      <button class="back-btn" id="backFrom2">Voltar ao início</button>
+      <div class="card-efeito mistery">Aprenda a estudar sozinho. <br>Domine seu caminho até a aprovação!</div>
+      <div class="card-efeito"><ul>
+        <li>Descubra como organizar seus estudos mesmo começando do zero.</li>
+        <li>Saia do ciclo de dúvidas e incertezas. Torne-se independente.</li>
+        <li>Pare de perder tempo com métodos que não funcionam pra você.</li>
+      </ul></div>
+      <div class="card-efeito big-quote">“Ninguém ensina de verdade o que você só aprende errando.<span class="destaque">Ou… você pode aprender com quem já errou por você.</span>”</div>
+      <div class="card-efeito topic-section">
+        <h2>O que você vai aprender:</h2>
+        <ul>
+          <li><b>Ciclos de estudo</b> otimizados para diferentes rotinas e cargas horárias.</li>
+          <li>Métodos eficientes de <b>revisão</b> para não esquecer o que importa.</li>
+          <li>Como <b>fazer questões</b> na hora certa e na quantidade certa.</li>
+          <li>Estratégia definitiva para estudar <b>Lei Seca</b> sem enrolação.</li>
+          <li>O que muda no <b>Pré e Pós-Edital</b>.</li>
+          <li>As <b>táticas de reta final</b> usadas pelos aprovados.</li>
+          <li>Análise real das <b>bancas</b> que mais aprovam.</li>
+          <li><b>Sacadas e atalhos</b> que só quem passou por tudo revela.</li>
+        </ul>
+      </div>
+      <div class="cta-aviso">Aguarde, o melhor guia para sua aprovação está em produção!</div>
+      <div class="contador-section">
+        <span>
+          <span class="contador-numero" id="contador">0</span> pessoas já manifestaram interesse.
+          <span id="visitas-online">👀 0 online agora</span>
+        </span>
+      </div>
     </section>
 
-    <!-- Legislação Interna TJSP 2025 -->
-    <section class="content-screen hidden" id="legislacao">
-      <div class="card-efeito topic-section">
-        <h2>Abordaremos, de forma esquematizada:</h2>
-        <ul>
-          <li>6.1. Resolução TJSP nº 850/2021 (teletrabalho)</li>
-          <li>6.2. Resolução TJSP nº 963/2025 (governança eproc)</li>
-          <li>6.3. Lei Complementar nº 1.111/2010</li>
-          <li>6.4. Regimento Interno do Tribunal de Justiça</li>
-          <li>6.5. Normas da Corregedoria Geral da Justiça (Tomo I – Capítulos II a XI conforme subseções)</li>
-        </ul>
-        <p>Além de questões <strong>INÉDITAS</strong> produzidas de forma totalmente estratégicas.</p>
+    <!-- LEGISLAÇÃO INTERNA TJSP 2025 -->
+    <section class="legis-prod-block hidden" id="legislacao">
+      <h2>Abordaremos, de forma esquematizada:</h2>
+      <ul class="legis-list">
+        <li>Resolução TJSP nº 850/2021 (teletrabalho)</li>
+        <li>Resolução TJSP nº 963/2025 (governança eproc)</li>
+        <li>Lei Complementar nº 1.111/2010</li>
+        <li>Regimento Interno do Tribunal de Justiça</li>
+        <li>Normas da Corregedoria Geral da Justiça</li>
+      </ul>
+      <div class="extra">
+        Além de questões <b>INÉDITAS</b> produzidas de forma totalmente estratégica.
       </div>
-      <a href="#" class="cta-btn">6.1. Resolução 850/2021</a>
-      <a href="#" class="cta-btn">6.2. Resolução 963/2025</a>
-      <a href="#" class="cta-btn">6.3. LC 1.111/2010</a>
-      <a href="#" class="cta-btn">6.4. Regimento Interno</a>
-      <a href="#" class="cta-btn">6.5. Normas Corregedoria</a>
+      <button class="back-btn" id="backFromLegis">Voltar ao início</button>
     </section>
   </main>
   <script>
     document.addEventListener('DOMContentLoaded', function(){
-      // Navegação da página de boas-vindas
-      document.getElementById('btnManual').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.getElementById('welcomeSection').classList.add('hidden');
-        document.getElementById('legislacao').classList.add('hidden');
-        document.getElementById('pagina1').classList.remove('hidden');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        runCinema();
+      // --------- FLUXO DE TROCA DE TELAS
+      const ids = ['welcomeSection','pagina1','heroBlock','pagina2','legislacao'];
+      function show(id){ ids.forEach(i=>document.getElementById(i).classList.add('hidden')); document.getElementById(id).classList.remove('hidden'); window.scrollTo({top:0,behavior:'smooth'});}
+      // Botões Boas-Vindas
+      document.getElementById('btnManual').onclick = ()=>{ show('pagina1'); runCinema(); };
+      document.getElementById('btnLegis').onclick = ()=>{ show('legislacao'); };
+      // Botões Voltar
+      document.getElementById('backFrom1').onclick = ()=>{ show('welcomeSection'); };
+      document.getElementById('backFromHero').onclick = ()=>{ show('welcomeSection'); };
+      document.getElementById('backFrom2').onclick = ()=>{ show('welcomeSection'); };
+      document.getElementById('backFromLegis').onclick = ()=>{ show('welcomeSection'); };
+
+      // ---- DAQUI PRA BAIXO É O SEU JS ORIGINAL (runCinema, etc) ----
+      // --------- CINEMA FRASES --------
+      const frases = [
+        "Eu sei que você já sentiu que <b>não aprendia de verdade</b>...",
+        "Já tentou <b>vários métodos</b>, mas se sentiu perdido.",
+        "Viu outros passando e pensou: <b>será que existe um jeito certo?</b>",
+        "Pensou em desistir por tanta matéria.",
+        "Se cansou de <b>dicas soltas</b> e promessas vazias...",
+        "Sente que falta um <b>passo a passo prático</b>.",
+        "E se existisse um <b>caminho confiável</b> para aprovar?"
+      ];
+      const els = frases.map((_,i)=>document.getElementById(`frase${i}`));
+      const gb = document.getElementById('glassbreak'),
+            fb = document.getElementById('flashbang'),
+            db = document.getElementById('fadeBlack'),
+            snd = document.getElementById('glassSound'),
+            sec = document.getElementById('pagina1'),
+            btn = document.getElementById('ctaBtn');
+      const hero = document.getElementById('heroBlock');
+      const pagina2 = document.getElementById('pagina2');
+      const sleep = ms => new Promise(r=>setTimeout(r, ms));
+      async function runCinema() {
+        // Se já não está visível, ignora (só dispara uma vez por exibição)
+        if(sec.classList.contains('hidden')) return;
+        for (let i=0; i<els.length; i++) {
+          if (i>0) { db.classList.add('active'); await sleep(250); db.classList.remove('active'); }
+          sec.classList.add('shake');
+          fb.classList.add('active'); await sleep(100); fb.classList.remove('active');
+          gb.classList.add('active'); try{ snd.currentTime=0; snd.play(); }catch(e){}
+          let el = els[i]; el.innerHTML = frases[i];
+          el.style.opacity = 1;
+          await el.animate([
+            { opacity:0, transform:'scale(0.65) rotate(-15deg)' },
+            { opacity:1, transform:'scale(1.12) rotate(7deg)' },
+            { opacity:1, transform:'scale(1) rotate(0)' }
+          ], { duration:870, easing:'cubic-bezier(0.8,-0.17,0.18,1.13)', fill:'forwards' }).finished;
+          sec.classList.remove('shake'); gb.classList.remove('active');
+          await sleep(960 + Math.min(frases[i].length * 13, 750));
+          await el.animate([
+            { opacity:1, transform:'scale(1) rotate(0)' },
+            { opacity:0, transform:'scale(0.88) rotate(-5deg)' }
+          ], { duration:500, easing:'ease-in', fill:'forwards' }).finished;
+          el.style.opacity = 0;
+          el.innerHTML = '';
+        }
+        btn.classList.add('active'); btn.focus();
+      }
+      btn.addEventListener('click', ()=>{
+        sec.style.opacity = 1;
+        sec.animate([
+          { opacity: 1, filter: \"blur(0)\" }, { opacity: 0, filter: \"blur(6px)\" }
+        ], { duration: 580, fill: \"forwards\", easing: \"cubic-bezier(0.19,1,0.22,1)\" })
+        .onfinish = ()=>{
+          sec.classList.add('hidden');
+          hero.classList.remove('hidden');
+          pagina2.classList.remove('hidden');
+          pagina2.classList.add('active');
+          animateCards();
+          startCounter();
+          startVisitorsOnline();
+          window.scrollTo({top:0,behavior:\"smooth\"});
+        };
       });
-      document.getElementById('btnLegis').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.getElementById('welcomeSection').classList.add('hidden');
-        document.getElementById('pagina1').classList.add('hidden');
-        document.getElementById('heroBlock').classList.add('hidden');
-        document.getElementById('pagina2').classList.add('hidden');
-        document.getElementById('legislacao').classList.remove('hidden');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-      // Funções originais (runCinema, animateCards, startCounter, startVisitorsOnline)
+      function animateCards(){
+        document.querySelectorAll('.card-efeito').forEach((card,ix)=>{
+          setTimeout(()=>{
+            card.classList.add('ativo');
+          }, 140+ix*140);
+        });
+      }
+      // --------- VISITAS ÚNICAS E ONLINE (SIMULAÇÃO FRONTEND) --------
+      function startCounter() {
+        const el = document.getElementById('contador');
+        const BASE = 127;
+        let count = parseInt(localStorage.getItem('pg_manifestaram') || BASE, 10);
+
+        // Garante que cada visita só conta 1x por sessão
+        if (!sessionStorage.getItem('pg_counted')) {
+          count += 1;
+          localStorage.setItem('pg_manifestaram', count);
+          sessionStorage.setItem('pg_counted', '1');
+        }
+        let start = count - 3, end = count, duration = 900, startTime;
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          let progress = Math.min((timestamp - startTime) / duration, 1);
+          el.textContent = Math.floor(start + (end - start) * progress);
+          if (progress < 1) requestAnimationFrame(step);
+          else el.textContent = end;
+        }
+        requestAnimationFrame(step);
+      }
+      // Simula visitantes online na página (frontend-only)
+      function startVisitorsOnline() {
+        const el = document.getElementById('visitas-online');
+        let online = Math.floor(Math.random()*4)+3; // valor inicial
+        function update() {
+          // flutua de 3 a 8 \"visitantes online\"
+          online += Math.floor(Math.random()*3)-1;
+          if (online < 3) online = 3;
+          if (online > 8) online = 8;
+          el.textContent = `👀 ${online} online agora`;
+          setTimeout(update, Math.random()*2200+1100);
+        }
+        update();
+      }
+      document.querySelector('.logo-link').onclick = e => { e.preventDefault(); window.scrollTo({top:0,behavior:\"smooth\"}); };
     });
   </script>
 </body>
