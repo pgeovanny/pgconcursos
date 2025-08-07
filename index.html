@@ -112,7 +112,7 @@
     .hidden { display: none !important; }
 
     /* ---------- CARDS/SECTIONS PADRÃO ---------- */
-    .card-block, .manual-card, .legis-card, .manual-cta, .hero, .frase-impacto {
+    .card-block, .manual-card, .legis-card, .manual-cta, .hero-main, .frase-impacto {
       background: var(--branco);
       border-radius: var(--radius-main);
       box-shadow: var(--soft-shadow);
@@ -127,13 +127,41 @@
       position: relative;
       z-index: 1;
     }
-    .manual-card.main, .hero {
-      font-size: 1.19em;
-      font-weight: 800;
-      background: linear-gradient(96deg, #fff, #f7f0ff 60%, #ede7fa 100%);
+    .hero-main {
       text-align: center;
-      margin-top: .7em;
+      background: linear-gradient(98deg, #fff, #f7f0ff 60%, #ede7fa 100%);
       font-family: 'Outfit',sans-serif;
+      font-weight: 600;
+      margin-top: 1.2em;
+      margin-bottom: 1.1em;
+      font-size: 1.13em;
+      line-height: 1.45;
+    }
+    .hero-main .main-title {
+      font-family: 'Outfit',sans-serif;
+      font-weight: 900;
+      font-size: 1.12em;
+      color: var(--preto);
+      margin-bottom: .5em;
+      letter-spacing: .01em;
+      text-transform: uppercase;
+    }
+    .hero-main .main-highlight {
+      font-family: 'Outfit',sans-serif;
+      font-size: 1.11em;
+      font-weight: 800;
+      color: var(--roxo);
+      letter-spacing: 0.01em;
+      margin-bottom: .5em;
+      text-transform: none;
+    }
+    .hero-main .main-difference {
+      font-family: 'Outfit',sans-serif;
+      font-size: 1.09em;
+      font-weight: 700;
+      color: var(--roxo2);
+      margin-bottom: 0;
+      text-transform: none;
     }
     .manual-card ul, .legis-card ul {
       text-align: left;
@@ -276,8 +304,10 @@
     /* Ajustes para telas pequenas */
     @media (max-width: 600px) {
       header { min-height: 62px;}
-      .manual-card, .manual-cta, .legis-card, .content-screen, .hero, .card-block { max-width: 99vw; padding: 1.01em 0.47em;}
+      .manual-card, .manual-cta, .legis-card, .content-screen, .hero-main, .card-block { max-width: 99vw; padding: 1.01em 0.47em;}
       .back-btn, .btn-main, .adquirir-btn, .amostra-btn, .cta-btn { max-width: 99vw;}
+      .hero-main { font-size: 1em;}
+      .manual-card.what-learn h2 { font-size: 1em;}
     }
   </style>
 </head>
@@ -298,7 +328,18 @@
       <button class="btn-main" id="btnLegis">Legislação Interna TJSP 2025</button>
     </section>
 
-    <!-- Manual do Aprovado -->
+    <!-- MANUAL DO APROVADO: HERO -->
+    <section class="hero-main hidden" id="heroMainManual">
+      <button class="back-btn" id="backFromHero">Voltar ao início</button>
+      <span class="main-title">
+        Todo o conteúdo nasceu de <span class="main-highlight">anos de experiência real em concursos.</span>
+      </span>
+      <span class="main-difference">
+        A diferença entre tentar e aprovar está aqui: <b>praticidade, clareza e método.</b>
+      </span>
+    </section>
+
+    <!-- Manual do Aprovado: Conteúdo principal -->
     <section class="content-screen hidden" id="pagina2">
       <button class="back-btn" id="backFrom2">Voltar ao início</button>
       <div class="manual-card main">
@@ -352,12 +393,6 @@
       </div>
       <audio id="glassSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa59bb.mp3" preload="auto"></audio>
     </section>
-    <section class="hero hidden" id="heroBlock">
-      <button class="back-btn" id="backFromHero">Voltar ao início</button>
-      <p style="margin-bottom:.5em;">Todo o conteúdo nasceu de</p>
-      <p style="background:linear-gradient(90deg, var(--roxo2), var(--roxo));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;font-size:1.2em;margin-bottom:.5em;">anos de experiência real em concursos</p>
-      <p style="background:linear-gradient(90deg, var(--roxo2), var(--roxo));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;font-size:1.2em;">A diferença entre tentar e aprovar está aqui: praticidade, clareza e método.</p>
-    </section>
 
     <!-- LEGISLAÇÃO INTERNA TJSP 2025 -->
     <section class="content-screen hidden" id="legislacao">
@@ -393,17 +428,23 @@
     document.addEventListener('DOMContentLoaded', function(){
       // Navegação entre seções
       function showOnly(id) {
-        ['welcomeSection','pagina1','heroBlock','pagina2','legislacao'].forEach(i=>document.getElementById(i).classList.add('hidden'));
+        ['welcomeSection','pagina1','heroMainManual','heroBlock','pagina2','legislacao'].forEach(i=>{
+          if(document.getElementById(i)) document.getElementById(i).classList.add('hidden');
+        });
         document.getElementById(id).classList.remove('hidden');
         window.scrollTo({top:0,behavior:'smooth'});
       }
       // Botões início
       document.getElementById('btnManual').onclick = ()=>{
-        showOnly('pagina1');
-        runCinema();
+        showOnly('heroMainManual');
       };
       document.getElementById('btnLegis').onclick = ()=>{
         showOnly('legislacao');
+      };
+      // Hero Manual -> conteúdo Manual
+      document.getElementById('heroMainManual').onclick = function(e) {
+        if(e.target.classList.contains('back-btn')) { showOnly('welcomeSection'); }
+        else { showOnly('pagina2'); }
       };
       // Voltar
       document.getElementById('backFrom1').onclick = ()=>{ showOnly('welcomeSection'); };
@@ -429,7 +470,7 @@
       const snd = document.getElementById('glassSound'),
             sec = document.getElementById('pagina1'),
             btn = document.getElementById('ctaBtn');
-      const hero = document.getElementById('heroBlock');
+      const hero = document.getElementById('heroMainManual');
       const pagina2 = document.getElementById('pagina2');
       const sleep = ms => new Promise(r=>setTimeout(r, ms));
       async function runCinema() {
