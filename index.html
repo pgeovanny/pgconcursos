@@ -1,177 +1,644 @@
-<!-- LEGISLAÇÃO INTERNA TJSP 2025 -->
-<section class="content-screen hidden" id="legislacao">
-  <button class="back-btn" id="backFromLegis">Voltar ao início</button>
-  <div class="manual-card main legis-hero">
-    <span class="legis-hero-title">
-      Para você <b>gabaritar a Legislação Interna do TJSP 2025</b>
-    </span>
-    <span class="legis-hero-sub">
-      Esquemas visuais, tabelas e questões inéditas para você <b>dominar a VUNESP</b>.
-    </span>
-  </div>
-  <div class="legis-card">
-    <div class="legis-title"><b>Resolução TJSP nº 850/2021</b> <span style="font-size:0.95em; font-weight:500; color:#855ae1;">(teletrabalho)</span></div>
-    <button class="amostra-btn">Ver amostra</button>
-  </div>
-  <div class="legis-card">
-    <div class="legis-title"><b>Resolução TJSP nº 963/2025</b> <span style="font-size:0.95em; font-weight:500; color:#855ae1;">(governança eproc)</span></div>
-    <button class="amostra-btn">Ver amostra</button>
-  </div>
-  <div class="legis-card">
-    <div class="legis-title"><b>Lei Complementar nº 1.111/2010</b></div>
-    <button class="amostra-btn">Ver amostra</button>
-  </div>
-  <div class="legis-card" id="regimentoCard">
-    <div class="legis-title"><b>Regimento Interno do Tribunal de Justiça</b></div>
-    <button class="amostra-btn" id="btnAmostraRegimento">Ver amostra</button>
-  </div>
-  <div class="legis-card">
-    <div class="legis-title"><b>Normas da Corregedoria Geral da Justiça</b></div>
-    <button class="amostra-btn">Ver amostra</button>
-  </div>
-  <div class="legis-cta">
-    Além de <b>questões INÉDITAS</b> produzidas de forma totalmente estratégica.<br>
-    <button class="adquirir-btn">Quero a Legislação Completa</button>
-  </div>
-</section>
-
-<!-- Modal de Amostra + Avaliação -->
-<div id="modalAmostra" class="modal-amostra hidden">
-  <div class="modal-amostra-content">
-    <button class="close-modal" id="closeModalAmostra">&times;</button>
-    <h2 style="margin-bottom:.7em;font-family:'Outfit',sans-serif;font-weight:900;">Amostra do Regimento Interno</h2>
-    <a href="https://drive.google.com/file/d/1Q0C2esYWSg0nhU5VvI_3qUODr1HjS24_/view?usp=sharing" target="_blank" class="amostra-btn" style="max-width:300px;margin-bottom:1.2em;">Abrir Amostra (PDF)</a>
-    <div id="avaliacaoRegimento">
-      <div style="font-size:1.06em;font-weight:700;margin-bottom:0.6em;">O que achou da amostra?</div>
-      <div class="like-dislike-btns">
-        <button class="like-btn" id="btnLike">&#128077;<span id="likeText"></span></button>
-        <button class="dislike-btn" id="btnDislike">&#128078;<span id="dislikeText"></span></button>
-      </div>
-      <div id="avaliacaoMsg" style="font-size:1em;font-weight:600;margin-top:.85em;"></div>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+  <title>PG Concursos Públicos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Outfit:wght@600;900&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --roxo: #7c46c5;
+      --roxo2: #bda6ff;
+      --cinza-bg: #f3f0fa;
+      --cinza2: #e6d9fa;
+      --branco: #fff;
+      --preto: #19162a;
+      --soft-shadow: 0 8px 32px rgba(110,75,202,0.13);
+      --ease-main: cubic-bezier(0.19,1,0.22,1);
+      --radius-main: 1.3rem;
+      --radius-btn: 2.5rem;
+      --boxmax: 450px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100vw; min-height: 100vh;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      font-family: 'Inter', 'Outfit', Arial, sans-serif;
+      background: var(--cinza-bg);
+      color: var(--preto);
+      perspective: 1200px;
+      font-size: 16px;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, #d8cfff, #ece5fc 55%, #fff);
+      z-index: -1;
+      animation: bgmove 20s var(--ease-main) infinite alternate;
+      will-change: background-position;
+    }
+    @keyframes bgmove {
+      0% { background-position: 0% 70%; }
+      100% { background-position: 100% 10%; }
+    }
+    header {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: center;
+      gap: 1rem;
+      padding: 1.1rem 1rem 1.1rem 1rem;
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(14px);
+      min-height: 72px;
+      width: 100vw;
+    }
+    header::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 4px;
+      background: linear-gradient(90deg, var(--roxo2), var(--roxo), var(--roxo2));
+      background-size: 200% 100%;
+      animation: borderSlide 4s linear infinite;
+      z-index: 9;
+    }
+    @keyframes borderSlide {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 200% 0%; }
+    }
+    .logo-link img {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      box-shadow: var(--soft-shadow);
+      transition: transform .3s;
+      background: #fff;
+    }
+    .logo-link img:hover { transform: scale(1.08) rotate(-6deg);}
+    .header-title {
+      display: inline-block; position: relative;
+      text-align: left; line-height: 1.02;
+      margin-top: 3px;
+    }
+    .header-title .pg {
+      display: block;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.3rem, 7vw, 2.1rem);
+      background: linear-gradient(90deg, var(--roxo2), var(--roxo));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+    }
+    .header-title .pg::after {
+      content: '';
+      position: absolute;
+      bottom: -5px; left: 50%;
+      transform: translateX(-50%);
+      width: 64%; height: 3px;
+      background: linear-gradient(90deg, var(--roxo), var(--roxo2));
+      border-radius: 2px;
+      animation: underlineMove 3s ease-in-out infinite;
+    }
+    @keyframes underlineMove { 0% { width: 40%; } 50% { width: 80%; } 100% { width: 40%; } }
+    .header-title .concursos {
+      display: block;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: clamp(0.97rem, 5vw, 1.24rem);
+      background: linear-gradient(90deg, var(--roxo), var(--roxo2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-top: 0.18rem;
+    }
+    .hidden { display: none !important; }
+    .card-block, .manual-card, .legis-card, .manual-cta, .hero-main, .frase-impacto {
+      background: var(--branco);
+      border-radius: var(--radius-main);
+      box-shadow: var(--soft-shadow);
+      max-width: var(--boxmax);
+      width: 97vw;
+      margin: 0 auto 1.05em auto;
+      padding: 1.22em 1.08em 1.22em 1.08em;
+      font-size: 1.07em;
+      color: var(--preto);
+      font-family: 'Inter', 'Outfit', Arial, sans-serif;
+      transition: box-shadow .19s;
+      position: relative;
+      z-index: 1;
+    }
+    .manual-card .destaque, .legis-card .destaque {
+      display: block;
+      color: var(--roxo);
+      font-weight: 900;
+      margin-top: .22em;
+    }
+    .manual-cta, .legis-cta {
+      background: linear-gradient(93deg,#cab4f8 15%,#ede7fa 100%);
+      color: #45247d;
+      border-radius: 1.3em;
+      box-shadow: 0 6px 22px #cab4f841;
+      font-size: 1.04em;
+      padding: 1.2em 1em 1.09em 1em;
+      margin: 1.3em auto 0.2em auto;
+      font-family: 'Outfit',sans-serif;
+      max-width: var(--boxmax);
+      width: 98vw;
+      text-align: center;
+      font-weight: 600;
+    }
+    .btn-main, .back-btn, .amostra-btn, .adquirir-btn, .cta-btn {
+      margin: 1.1rem auto 0 auto;
+      display: block;
+      font-size: 1.07rem;
+      background: linear-gradient(90deg,var(--roxo2),var(--roxo));
+      color: #fff;
+      font-family: 'Outfit',sans-serif;
+      font-weight: 800;
+      border: none;
+      border-radius: var(--radius-btn);
+      box-shadow: 0 2px 10px #cab4f82a;
+      padding: 1em 1.6em;
+      cursor: pointer;
+      transition: filter .17s, background .17s, transform .18s;
+      width: 99%;
+      max-width: var(--boxmax);
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+    .btn-main:hover, .back-btn:hover, .amostra-btn:hover, .adquirir-btn:hover, .cta-btn:hover {
+      filter: brightness(1.11); transform: scale(1.03);
+    }
+    .back-btn {
+      background: linear-gradient(90deg,#e1d4ff 55%,#cab4f8 100%);
+      color: var(--roxo);
+      font-weight: 900;
+      margin-top: 1.15em;
+      margin-bottom: 0.45em;
+      font-size: 1.07em;
+    }
+    .amostra-btn {
+      margin: 1em auto 0 auto;
+      background: #ece1fa;
+      color: var(--roxo);
+      font-weight: 800;
+      border-radius: 2rem;
+      font-size: 1.03em;
+      box-shadow: 0 2px 8px #cab4f81a;
+      width: 93%;
+      padding: 0.82em 0.1em;
+      text-decoration: none;
+      transition: background 0.19s, color 0.18s;
+    }
+    .amostra-btn:visited {
+      color: var(--roxo);
+    }
+    .amostra-btn[target="_blank"]:after {
+      content: ' ↗';
+      font-size: 0.85em;
+      vertical-align: middle;
+      opacity: .72;
+    }
+    .adquirir-btn {
+      background: linear-gradient(90deg,var(--roxo2),var(--roxo));
+      color: #fff;
+      margin-top: 1.4em;
+      margin-bottom: .7em;
+      font-size: 1.13em;
+      font-weight: 900;
+      box-shadow: 0 6px 18px #cab4f82a;
+      width: 97%;
+    }
+    .content-screen, .cinema, .hero {
+      width: 100vw; min-height: 88vh; display: flex; flex-direction: column; align-items: center; gap: 1.08em;
+      background: #ede7fa;
+      padding: 1.8em 0 2em 0;
+    }
+    .cinema-inner { width:100vw; min-height: 82vh; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; z-index:2; padding: 10vh 0 7vh 0;}
+    .frase-impacto { padding: 1.15em 0.98em;}
+    .legis-hero {
+      margin-bottom: 1.1em;
+      background: linear-gradient(99deg, #fff 70%, #eae0fd 100%);
+      box-shadow: 0 6px 30px 0 #cab4f84a;
+      text-align: center;
+      padding: 1.35em 1.05em 1.15em 1.05em;
+    }
+    .legis-hero-title {
+      font-size: 1.14em; font-family:'Outfit',sans-serif; font-weight:900; color:var(--roxo); display:block; margin-bottom:.15em; text-align:center; letter-spacing:0.01em;
+    }
+    .legis-hero-sub {
+      font-size: 1.02em; color:#5f43b7; font-family:'Inter',sans-serif; display:block; text-align:center; margin-top:.19em; margin-bottom:.2em; font-weight:600;
+    }
+    .legis-title {
+      font-size:1.07em; font-weight:700; color:var(--preto); margin-bottom:.13em;
+    }
+    .legis-card {
+      background: #fff;
+      border-radius: var(--radius-main);
+      margin: 1em auto 0.6em auto;
+      box-shadow: 0 8px 26px 0 #cab4f83d;
+      padding: 1.13em 1.12em 1em 1.12em;
+      font-size: 1.05em;
+      color: var(--preto);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: .38em;
+      position: relative;
+      transition: box-shadow .18s;
+    }
+    .legis-card:hover { box-shadow:0 18px 32px 0 #cab4f87b;}
+    .legis-card .amostra-btn {
+      margin-top: .7em;
+      width: 100%;
+    }
+    @media (max-width: 600px) {
+      header { min-height: 62px;}
+      .manual-card, .manual-cta, .legis-card, .content-screen, .hero-main, .card-block { max-width: 99vw; padding: 1.01em 0.47em;}
+      .back-btn, .btn-main, .adquirir-btn, .amostra-btn, .cta-btn { max-width: 99vw;}
+      .hero-main { font-size: 1em;}
+      .manual-card.what-learn h2 { font-size: 1em;}
+      .legis-hero-title { font-size: 1.01em;}
+    }
+    /* Modal estilos */
+    .modal-amostra {
+      position: fixed; z-index: 9999; inset: 0; background: rgba(50,32,90,0.32);
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity .21s;
+    }
+    .modal-amostra.hidden { display: none !important; }
+    .modal-amostra-content {
+      background: #fff;
+      border-radius: 1.6em;
+      box-shadow: 0 16px 60px 0 #cab4f88c;
+      padding: 2.2em 1.4em 2em 1.4em;
+      min-width: 320px;
+      max-width: 96vw;
+      width: 340px;
+      text-align: center;
+      position: relative;
+      animation: popIn .28s cubic-bezier(0.66,0,0.33,1.06);
+    }
+    @keyframes popIn {
+      0%{ transform:scale(0.85); opacity:0;}
+      100%{ transform:scale(1); opacity:1;}
+    }
+    .close-modal {
+      position: absolute; right: 1.2em; top: 1.12em;
+      background: none; border: none; color: #764bcb; font-size: 2.0em; font-weight: 700;
+      cursor: pointer; opacity: 0.82; transition: opacity .18s;
+    }
+    .close-modal:hover { opacity:1; }
+    .like-dislike-btns {
+      display: flex; justify-content: center; gap: 1.7em; margin-top: 0.1em;
+    }
+    .like-btn, .dislike-btn {
+      font-size: 2.1em;
+      background: #f2ebfd;
+      color: #7c46c5;
+      border: none;
+      border-radius: 50%;
+      width: 56px; height: 56px;
+      box-shadow: 0 2px 7px #cab4f825;
+      cursor: pointer;
+      outline: none;
+      transition: background .17s, transform .18s;
+      position: relative;
+    }
+    .like-btn.liked, .dislike-btn.disliked {
+      background: linear-gradient(90deg, #bda6ff, #7c46c5 90%);
+      color: #fff;
+      font-weight: 900;
+      transform: scale(1.11) rotate(-6deg);
+    }
+    .like-btn:active, .dislike-btn:active { transform: scale(0.98);}
+    #avaliacaoMsg { min-height: 1.2em; }
+    .placar {
+      margin-top: 1.2em;
+      font-size: 1.02em;
+      color: #764bcb;
+      font-family: 'Outfit',sans-serif;
+      font-weight: 800;
+      display: flex;
+      justify-content: center;
+      gap: 2.5em;
+    }
+    .placar .sim, .placar .nao {
+      display: flex;
+      align-items: center;
+      gap: 0.35em;
+      font-size: 1.15em;
+      font-weight: 900;
+    }
+    .placar .sim { color: #22bb55;}
+    .placar .nao { color: #d05c5c;}
+  </style>
+</head>
+<body>
+  <header>
+    <a href="#" class="logo-link"><img src="https://i.postimg.cc/jdRnCJ86/1000115773.webp" alt="Logo PG"></a>
+    <div class="header-title">
+      <span class="pg">PG</span>
+      <span class="concursos">Concursos Públicos</span>
     </div>
-  </div>
-</div>
+  </header>
+  <main>
+    <!-- BOAS-VINDAS -->
+    <section class="card-block" id="welcomeSection">
+      <h1 style="font-family:'Poppins',sans-serif;font-size:1.28rem;background:linear-gradient(90deg,var(--roxo2),var(--roxo));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0 0 .45em 0;line-height:1.17;font-weight:800;">Bem-vindo!</h1>
+      <p style="font-size:1.02rem;color:var(--preto);margin-bottom:1.5rem;line-height:1.41;font-family:'Inter',sans-serif;">Você está mais próximo da aprovação.<br>Escolha seu material:</p>
+      <button class="btn-main" id="btnManual">Manual do Aprovado</button>
+      <button class="btn-main" id="btnLegis">Legislação Interna TJSP 2025</button>
+    </section>
 
-<!-- CSS extra para modal e botões -->
-<style>
-  .modal-amostra {
-    position: fixed; z-index: 9999; inset: 0; background: rgba(50,32,90,0.32);
-    display: flex; align-items: center; justify-content: center;
-    transition: opacity .21s;
-  }
-  .modal-amostra.hidden { display: none !important; }
-  .modal-amostra-content {
-    background: #fff;
-    border-radius: 1.6em;
-    box-shadow: 0 16px 60px 0 #cab4f88c;
-    padding: 2.2em 1.4em 2em 1.4em;
-    min-width: 320px;
-    max-width: 96vw;
-    width: 340px;
-    text-align: center;
-    position: relative;
-    animation: popIn .28s cubic-bezier(0.66,0,0.33,1.06);
-  }
-  @keyframes popIn {
-    0%{ transform:scale(0.85); opacity:0;}
-    100%{ transform:scale(1); opacity:1;}
-  }
-  .close-modal {
-    position: absolute; right: 1.2em; top: 1.12em;
-    background: none; border: none; color: #764bcb; font-size: 2.0em; font-weight: 700;
-    cursor: pointer; opacity: 0.82; transition: opacity .18s;
-  }
-  .close-modal:hover { opacity:1; }
-  .like-dislike-btns {
-    display: flex; justify-content: center; gap: 1.7em; margin-top: 0.1em;
-  }
-  .like-btn, .dislike-btn {
-    font-size: 2.1em;
-    background: #f2ebfd;
-    color: #7c46c5;
-    border: none;
-    border-radius: 50%;
-    width: 56px; height: 56px;
-    box-shadow: 0 2px 7px #cab4f825;
-    cursor: pointer;
-    outline: none;
-    transition: background .17s, transform .18s;
-    position: relative;
-  }
-  .like-btn.liked, .dislike-btn.disliked {
-    background: linear-gradient(90deg, #bda6ff, #7c46c5 90%);
-    color: #fff;
-    font-weight: 900;
-    transform: scale(1.11) rotate(-6deg);
-  }
-  .like-btn:active, .dislike-btn:active { transform: scale(0.98);}
-  #avaliacaoMsg { min-height: 1.2em; }
-</style>
+    <!-- MANUAL DO APROVADO: CINEMA -->
+    <section class="cinema hidden" id="pagina1">
+      <button class="back-btn" id="backFrom1">Voltar ao início</button>
+      <div class="cinema-inner">
+        <div class="frase-impacto" id="frase0"></div>
+        <div class="frase-impacto" id="frase1"></div>
+        <div class="frase-impacto" id="frase2"></div>
+        <div class="frase-impacto" id="frase3"></div>
+        <div class="frase-impacto" id="frase4"></div>
+        <div class="frase-impacto" id="frase5"></div>
+        <div class="frase-impacto" id="frase6"></div>
+        <button class="cta-btn" id="ctaBtn" tabindex="0">Quero estudar de verdade</button>
+      </div>
+      <audio id="glassSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa59bb.mp3" preload="auto"></audio>
+    </section>
 
-<!-- JS para modal e avaliação -->
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-  // Modal lógica
-  const modal = document.getElementById('modalAmostra');
-  const btnModal = document.getElementById('btnAmostraRegimento');
-  const closeModal = document.getElementById('closeModalAmostra');
-  // Avaliação
-  const likeBtn = document.getElementById('btnLike');
-  const dislikeBtn = document.getElementById('btnDislike');
-  const avaliacaoMsg = document.getElementById('avaliacaoMsg');
+    <!-- Manual do Aprovado: Conteúdo principal -->
+    <section class="content-screen hidden" id="pagina2">
+      <button class="back-btn" id="backFrom2">Voltar ao início</button>
+      <div class="manual-card main">
+        Aprenda a estudar sozinho.<br>Domine seu caminho até a aprovação!
+      </div>
+      <div class="manual-card">
+        <ul>
+          <li>Descubra como organizar seus estudos mesmo começando do zero.</li>
+          <li>Saia do ciclo de dúvidas e incertezas. Torne-se independente.</li>
+          <li>Pare de perder tempo com métodos que não funcionam pra você.</li>
+        </ul>
+      </div>
+      <div class="manual-card quote">
+        “Ninguém ensina de verdade o que você só aprende errando.
+        <b class="destaque">Ou… você pode aprender com quem já errou por você.</b>”
+      </div>
+      <div class="manual-card what-learn">
+        <h2>O que você vai aprender:</h2>
+        <ul>
+          <li><b>Ciclos de estudo</b> otimizados para diferentes rotinas e cargas horárias.</li>
+          <li>Métodos eficientes de <b>revisão</b> para não esquecer o que importa.</li>
+          <li>Como <b>fazer questões</b> na hora certa e na quantidade certa.</li>
+          <li>Estratégia definitiva para estudar <b>Lei Seca</b> sem enrolação.</li>
+          <li>O que muda no <b>Pré e Pós-Edital</b>.</li>
+          <li>As <b>táticas de reta final</b> usadas pelos aprovados.</li>
+          <li>Análise real das <b>bancas</b> que mais aprovam.</li>
+          <li><b>Sacadas e atalhos</b> que só quem passou por tudo revela.</li>
+        </ul>
+      </div>
+      <div class="manual-cta">
+        <b>⏳ Aguarde, o melhor guia para sua aprovação está em produção!</b><br>
+        <span style="font-weight:400;display:block;margin-top:.3em;">
+          <span class="contador-numero" id="contador">0</span> pessoas já manifestaram interesse.
+          <span id="visitas-online" style="margin-left:8px;">👀 0 online agora</span>
+        </span>
+      </div>
+    </section>
 
-  // Estado: salvar no localStorage
-  const key = 'regimentoAvaliacao';
-  function setAvaliacao(val) {
-    localStorage.setItem(key, val);
-    showAvaliacao();
-  }
-  function getAvaliacao() {
-    return localStorage.getItem(key);
-  }
-  function showAvaliacao() {
-    const val = getAvaliacao();
-    if(val === 'like') {
-      likeBtn.classList.add('liked');
-      dislikeBtn.classList.remove('disliked');
-      avaliacaoMsg.innerHTML = 'Obrigado pelo feedback! 🎉';
-    } else if(val === 'dislike') {
-      dislikeBtn.classList.add('disliked');
-      likeBtn.classList.remove('liked');
-      avaliacaoMsg.innerHTML = 'Vamos trabalhar para melhorar! 💡';
-    } else {
-      likeBtn.classList.remove('liked');
-      dislikeBtn.classList.remove('disliked');
-      avaliacaoMsg.innerHTML = '';
-    }
-  }
-  if(btnModal) {
-    btnModal.onclick = function(e){
-      e.preventDefault();
-      modal.classList.remove('hidden');
+    <!-- LEGISLAÇÃO INTERNA TJSP 2025 -->
+    <section class="content-screen hidden" id="legislacao">
+      <button class="back-btn" id="backFromLegis">Voltar ao início</button>
+      <div class="manual-card main legis-hero">
+        <span class="legis-hero-title">
+          Para você <b>gabaritar a Legislação Interna do TJSP 2025</b>
+        </span>
+        <span class="legis-hero-sub">
+          Esquemas visuais, tabelas e questões inéditas para você <b>dominar a VUNESP</b>.
+        </span>
+      </div>
+      <div class="legis-card">
+        <div class="legis-title"><b>Resolução TJSP nº 850/2021</b> <span style="font-size:0.95em; font-weight:500; color:#855ae1;">(teletrabalho)</span></div>
+        <button class="amostra-btn">Ver amostra</button>
+      </div>
+      <div class="legis-card">
+        <div class="legis-title"><b>Resolução TJSP nº 963/2025</b> <span style="font-size:0.95em; font-weight:500; color:#855ae1;">(governança eproc)</span></div>
+        <button class="amostra-btn">Ver amostra</button>
+      </div>
+      <div class="legis-card">
+        <div class="legis-title"><b>Lei Complementar nº 1.111/2010</b></div>
+        <button class="amostra-btn">Ver amostra</button>
+      </div>
+      <div class="legis-card" id="regimentoCard">
+        <div class="legis-title"><b>Regimento Interno do Tribunal de Justiça</b></div>
+        <button class="amostra-btn" id="btnAmostraRegimento">Ver amostra</button>
+      </div>
+      <div class="legis-card">
+        <div class="legis-title"><b>Normas da Corregedoria Geral da Justiça</b></div>
+        <button class="amostra-btn">Ver amostra</button>
+      </div>
+      <div class="legis-cta">
+        Além de <b>questões INÉDITAS</b> produzidas de forma totalmente estratégica.<br>
+        <button class="adquirir-btn">Quero a Legislação Completa</button>
+      </div>
+    </section>
+
+    <!-- Modal de Amostra + Avaliação -->
+    <div id="modalAmostra" class="modal-amostra hidden">
+      <div class="modal-amostra-content">
+        <button class="close-modal" id="closeModalAmostra">&times;</button>
+        <h2 style="margin-bottom:.7em;font-family:'Outfit',sans-serif;font-weight:900;">Amostra do Regimento Interno</h2>
+        <a href="https://drive.google.com/file/d/1Q0C2esYWSg0nhU5VvI_3qUODr1HjS24_/view?usp=sharing" target="_blank" class="amostra-btn" style="max-width:300px;margin-bottom:1.2em;">Abrir Amostra (PDF)</a>
+        <div id="avaliacaoRegimento">
+          <div style="font-size:1.06em;font-weight:700;margin-bottom:0.6em;">O que achou da amostra?</div>
+          <div class="like-dislike-btns">
+            <button class="like-btn" id="btnLike">&#128077;<span id="likeText"></span></button>
+            <button class="dislike-btn" id="btnDislike">&#128078;<span id="dislikeText"></span></button>
+          </div>
+          <div id="avaliacaoMsg" style="font-size:1em;font-weight:600;margin-top:.85em;"></div>
+          <div class="placar">
+            <span class="sim">👍 <span id="totalLikes">0</span></span>
+            <span class="nao">👎 <span id="totalDislikes">0</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      // Função para navegação das seções
+      function showOnly(id) {
+        ['welcomeSection','pagina1','pagina2','legislacao'].forEach(i=>{
+          if(document.getElementById(i)) document.getElementById(i).classList.add('hidden');
+        });
+        document.getElementById(id).classList.remove('hidden');
+        window.scrollTo({top:0,behavior:'smooth'});
+      }
+      // INÍCIO
+      document.getElementById('btnManual').onclick = ()=>{
+        showOnly('pagina1');
+        runCinema();
+      };
+      document.getElementById('btnLegis').onclick = ()=>{
+        showOnly('legislacao');
+      };
+      // Cinema > Manual do Aprovado (cards)
+      document.getElementById('ctaBtn').onclick = ()=>{
+        showOnly('pagina2');
+        animateCards();
+        startCounter();
+        startVisitorsOnline();
+      };
+      // Voltar
+      document.getElementById('backFrom1').onclick = ()=>{ showOnly('welcomeSection'); };
+      document.getElementById('backFrom2').onclick = ()=>{ showOnly('welcomeSection'); };
+      document.getElementById('backFromLegis').onclick = ()=>{ showOnly('welcomeSection'); };
+
+      // -------- Modal Amostra + Avaliação com Placar ---------
+      const modal = document.getElementById('modalAmostra');
+      const btnModal = document.getElementById('btnAmostraRegimento');
+      const closeModal = document.getElementById('closeModalAmostra');
+      const likeBtn = document.getElementById('btnLike');
+      const dislikeBtn = document.getElementById('btnDislike');
+      const avaliacaoMsg = document.getElementById('avaliacaoMsg');
+      const totalLikesSpan = document.getElementById('totalLikes');
+      const totalDislikesSpan = document.getElementById('totalDislikes');
+      // Chaves do localStorage (p/ multi-device, use backend)
+      const avalKey = 'regimentoAvaliacao';
+      const likesKey = 'regimentoLikes';
+      const dislikesKey = 'regimentoDislikes';
+
+      function getCount(key) {
+        return parseInt(localStorage.getItem(key) || "0", 10);
+      }
+      function setCount(key, val) {
+        localStorage.setItem(key, String(val));
+      }
+      function setAvaliacao(val) {
+        if (getAvaliacao()) return; // já votou, não vota de novo
+        localStorage.setItem(avalKey, val);
+        // Incrementa placar
+        if (val === "like") setCount(likesKey, getCount(likesKey)+1);
+        else if (val === "dislike") setCount(dislikesKey, getCount(dislikesKey)+1);
+        showAvaliacao();
+      }
+      function getAvaliacao() {
+        return localStorage.getItem(avalKey);
+      }
+      function showAvaliacao() {
+        const val = getAvaliacao();
+        if(val === 'like') {
+          likeBtn.classList.add('liked');
+          dislikeBtn.classList.remove('disliked');
+          avaliacaoMsg.innerHTML = 'Obrigado pelo feedback! 🎉';
+        } else if(val === 'dislike') {
+          dislikeBtn.classList.add('disliked');
+          likeBtn.classList.remove('liked');
+          avaliacaoMsg.innerHTML = 'Vamos trabalhar para melhorar! 💡';
+        } else {
+          likeBtn.classList.remove('liked');
+          dislikeBtn.classList.remove('disliked');
+          avaliacaoMsg.innerHTML = '';
+        }
+        // Atualiza placar visível
+        totalLikesSpan.textContent = getCount(likesKey);
+        totalDislikesSpan.textContent = getCount(dislikesKey);
+      }
+      if(btnModal) {
+        btnModal.onclick = function(e){
+          e.preventDefault();
+          modal.classList.remove('hidden');
+          showAvaliacao();
+        }
+      }
+      closeModal.onclick = ()=>{ modal.classList.add('hidden'); };
+      modal.onclick = function(e){ if(e.target===modal) modal.classList.add('hidden'); };
+      likeBtn.onclick = function(){ setAvaliacao('like'); };
+      dislikeBtn.onclick = function(){ setAvaliacao('dislike'); };
       showAvaliacao();
-    }
-  }
-  closeModal.onclick = ()=>{ modal.classList.add('hidden'); };
-  modal.onclick = function(e){ if(e.target===modal) modal.classList.add('hidden'); };
 
-  likeBtn.onclick = function(){
-    setAvaliacao('like');
-  };
-  dislikeBtn.onclick = function(){
-    setAvaliacao('dislike');
-  };
-  showAvaliacao();
+      // Outros botões de amostra (mantém alert)
+      document.querySelectorAll('.legis-card').forEach(function(card){
+        const title = card.querySelector('.legis-title')?.innerText || '';
+        const btn = card.querySelector('.amostra-btn');
+        if(btn && !btn.hasAttribute('id') && !btn.hasAttribute('href')) {
+          btn.onclick = ()=>alert('Em breve! Aqui vai aparecer a amostra desse material.');
+        }
+      });
+      document.querySelector('.adquirir-btn').onclick = ()=>alert('Em breve! Compra direta pelo site ou WhatsApp.');
 
-  // Outros botões de amostra (mantém alert)
-  document.querySelectorAll('.legis-card').forEach(function(card){
-    const title = card.querySelector('.legis-title')?.innerText || '';
-    const btn = card.querySelector('.amostra-btn');
-    // Só adiciona alerta para os que não têm modal/link
-    if(btn && !btn.hasAttribute('id') && !btn.hasAttribute('href')) {
-      btn.onclick = ()=>alert('Em breve! Aqui vai aparecer a amostra desse material.');
-    }
-  });
-  document.querySelector('.adquirir-btn').onclick = ()=>alert('Em breve! Compra direta pelo site ou WhatsApp.');
-});
-</script>
+      // --------- CINEMA FRASES ---------
+      const frases = [
+        "Eu sei que você já sentiu que <b>não aprendia de verdade</b>...",
+        "Já tentou <b>vários métodos</b>, mas se sentiu perdido.",
+        "Viu outros passando e pensou: <b>será que existe um jeito certo?</b>",
+        "Pensou em desistir por tanta matéria.",
+        "Se cansou de <b>dicas soltas</b> e promessas vazias...",
+        "Sente que falta um <b>passo a passo prático</b>.",
+        "E se existisse um <b>caminho confiável</b> para aprovar?"
+      ];
+      const els = frases.map((_,i)=>document.getElementById(`frase${i}`));
+      const snd = document.getElementById('glassSound'),
+            btn = document.getElementById('ctaBtn');
+      const sleep = ms => new Promise(r=>setTimeout(r, ms));
+      async function runCinema() {
+        for (let i=0; i<els.length; i++) {
+          let el = els[i]; el.innerHTML = frases[i];
+          el.style.opacity = 1;
+          await el.animate([
+            { opacity:0, transform:'scale(0.65) rotate(-15deg)' },
+            { opacity:1, transform:'scale(1.12) rotate(7deg)' },
+            { opacity:1, transform:'scale(1) rotate(0)' }
+          ], { duration:750, easing:'cubic-bezier(0.8,-0.17,0.18,1.13)', fill:'forwards' }).finished;
+          try{ snd.currentTime=0; snd.play(); }catch(e){}
+          await sleep(850 + Math.min(frases[i].length * 13, 650));
+          await el.animate([
+            { opacity:1, transform:'scale(1) rotate(0)' },
+            { opacity:0, transform:'scale(0.88) rotate(-5deg)' }
+          ], { duration:350, easing:'ease-in', fill:'forwards' }).finished;
+          el.style.opacity = 0;
+          el.innerHTML = '';
+        }
+        btn.classList.add('active'); btn.focus();
+      }
+      // Contador e visitantes no Manual
+      function animateCards(){
+        document.querySelectorAll('.manual-card').forEach((card,ix)=>{
+          setTimeout(()=>{card.style.boxShadow="0 16px 40px 0 #cab4f848";}, 100+ix*120);
+        });
+      }
+      function startCounter() {
+        const el = document.getElementById('contador');
+        const BASE = 127;
+        let count = parseInt(localStorage.getItem('pg_manifestaram') || BASE, 10);
+        if (!sessionStorage.getItem('pg_counted')) {
+          count += 1;
+          localStorage.setItem('pg_manifestaram', count);
+          sessionStorage.setItem('pg_counted', '1');
+        }
+        let start = count - 3, end = count, duration = 900, startTime;
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          let progress = Math.min((timestamp - startTime) / duration, 1);
+          el.textContent = Math.floor(start + (end - start) * progress);
+          if (progress < 1) requestAnimationFrame(step);
+          else el.textContent = end;
+        }
+        requestAnimationFrame(step);
+      }
+      function startVisitorsOnline() {
+        const el = document.getElementById('visitas-online');
+        let online = Math.floor(Math.random()*4)+3;
+        function update() {
+          online += Math.floor(Math.random()*3)-1;
+          if (online < 3) online = 3;
+          if (online > 8) online = 8;
+          el.textContent = `👀 ${online} online agora`;
+          setTimeout(update, Math.random()*2200+1100);
+        }
+        update();
+      }
+      document.querySelector('.logo-link').onclick = e => { e.preventDefault(); window.scrollTo({top:0,behavior:"smooth"}); };
+    });
+  </script>
+</body>
+</html>
