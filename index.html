@@ -243,7 +243,7 @@
       </div>
     </section>
 
-    <!-- Manual do Aprovado (SEU FLUXO COMPLETO ORIGINAL: cinema, hero, pagina2) -->
+    <!-- Manual do Aprovado -->
     <section class="cinema hidden" id="pagina1">
       <button class="back-btn" id="backFrom1">Voltar ao início</button>
       <div class="glassbreak" id="glassbreak">
@@ -326,9 +326,7 @@
     document.addEventListener('DOMContentLoaded', function(){
       // Troca de telas simples e seguro
       function showOnly(id) {
-        // Esconde tudo
         ['welcomeSection','pagina1','heroBlock','pagina2','legislacao'].forEach(i=>document.getElementById(i).classList.add('hidden'));
-        // Mostra só o que pediu
         document.getElementById(id).classList.remove('hidden');
         window.scrollTo({top:0,behavior:'smooth'});
       }
@@ -347,8 +345,7 @@
       document.getElementById('backFrom2').onclick = ()=>{ showOnly('welcomeSection'); };
       document.getElementById('backFromLegis').onclick = ()=>{ showOnly('welcomeSection'); };
 
-      // =============== SEU JS ORIGINAL MANTIDO ===============
-      // --------- CINEMA FRASES --------
+      // --------- JS ORIGINAL DO CINEMA E SLIDES ---------
       const frases = [
         "Eu sei que você já sentiu que <b>não aprendia de verdade</b>...",
         "Já tentou <b>vários métodos</b>, mas se sentiu perdido.",
@@ -395,8 +392,8 @@
       btn.addEventListener('click', ()=>{
         sec.style.opacity = 1;
         sec.animate([
-          { opacity: 1, filter: \"blur(0)\" }, { opacity: 0, filter: \"blur(6px)\" }
-        ], { duration: 580, fill: \"forwards\", easing: \"cubic-bezier(0.19,1,0.22,1)\" })
+          { opacity: 1, filter: 'blur(0)' }, { opacity: 0, filter: 'blur(6px)' }
+        ], { duration: 580, fill: "forwards", easing: "cubic-bezier(0.19,1,0.22,1)" })
         .onfinish = ()=>{
           sec.classList.add('hidden');
           hero.classList.remove('hidden');
@@ -405,7 +402,7 @@
           animateCards();
           startCounter();
           startVisitorsOnline();
-          window.scrollTo({top:0,behavior:\"smooth\"});
+          window.scrollTo({top:0,behavior:"smooth"});
         };
       });
       function animateCards(){
@@ -415,7 +412,6 @@
           }, 140+ix*140);
         });
       }
-      // --------- VISITAS ÚNICAS E ONLINE (SIMULAÇÃO FRONTEND) --------
       function startCounter() {
         const el = document.getElementById('contador');
         const BASE = 127;
@@ -447,7 +443,7 @@
         }
         update();
       }
-      document.querySelector('.logo-link').onclick = e => { e.preventDefault(); window.scrollTo({top:0,behavior:\"smooth\"}); };
+      document.querySelector('.logo-link').onclick = e => { e.preventDefault(); window.scrollTo({top:0,behavior:"smooth"}); };
     });
   </script>
 </body>
