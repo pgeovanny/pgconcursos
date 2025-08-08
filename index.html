@@ -1,167 +1,347 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manual do Aprovado - TJSP</title>
-  <style>
-    body {font-family: 'Outfit', sans-serif; margin:0; background:#fff; color:#333;}
-    .hidden {display:none;}
-    .btn-main, .back-btn, .amostra-btn, .adquirir-btn, .cta-btn {
-      background:#6c4ae1; color:#fff; padding:10px 16px; border:none; border-radius:8px;
-      cursor:pointer; font-weight:600; transition:0.3s;
-    }
-    .btn-main:hover, .back-btn:hover, .amostra-btn:hover, .adquirir-btn:hover, .cta-btn:hover {
-      background:#5532c1;
-    }
-    .welcome-section, .content-screen, .cinema {padding:20px; text-align:center;}
-    .manual-card {background:#f8f6ff; padding:15px; margin:10px auto; border-radius:12px; max-width:700px;}
-    .manual-card.main {font-size:1.2em; font-weight:700;}
-    .manual-card.quote {font-style:italic;}
-    .manual-card.what-learn ul {text-align:left;}
-    .legis-card {background:#f4f4f4; padding:12px; margin:12px auto; border-radius:8px; max-width:700px;}
-    .legis-title {font-size:1.05em; margin-bottom:8px;}
-    .legis-hero {margin-bottom:20px;}
-    .modal-amostra {position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:1000;}
-    .modal-amostra-content {background:#fff; padding:20px; border-radius:10px; max-width:500px; width:90%; text-align:center;}
-    .close-modal {position:absolute; top:10px; right:20px; background:none; border:none; font-size:1.5em; cursor:pointer;}
-    .like-dislike-btns button {margin:0 5px; padding:8px 12px; border:none; border-radius:6px; cursor:pointer; font-size:1.1em;}
-    .like-btn {background:#d4f4d2;}
-    .dislike-btn {background:#f4d2d2;}
-    .placar {margin-top:10px; font-size:1.1em; display:flex; justify-content:center; gap:20px;}
-    .liked {outline:2px solid green;}
-    .disliked {outline:2px solid red;}
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" />
+<title>PG Concursos Públicos</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Outfit:wght@600;900&family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --roxo:#7c46c5;--roxo2:#bda6ff;--cinza-bg:#f3f0fa;--branco:#fff;--preto:#19162a;
+    --soft-shadow:0 8px 32px rgba(110,75,202,.15);--ease:cubic-bezier(.19,1,.22,1);
+    --radius:1.3rem;--btnr:46px;--boxmax:470px;
+  }
+  *,*:before,*:after{box-sizing:border-box}
+  html,body{margin:0;padding:0;width:100vw;min-height:100vh;overflow-x:hidden;scroll-behavior:smooth;font-family:Inter,Outfit,Arial,sans-serif;background:var(--cinza-bg);color:var(--preto)}
+  body:before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 60% 40%,#d8cfff,#ece5fc 55%,#fff);z-index:-1;animation:bgmove 20s var(--ease) infinite alternate}
+  @keyframes bgmove{0%{background-position:0% 70%}100%{background-position:100% 10%}}
+  header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:center;gap:1rem;padding:1.1rem;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);min-height:72px;width:100vw}
+  header:before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--roxo2),var(--roxo),var(--roxo2));background-size:200% 100%;animation:borderSlide 4s linear infinite}
+  @keyframes borderSlide{0%{background-position:0 0}100%{background-position:200% 0}}
+  .logo-link img{width:48px;height:48px;border-radius:10px;box-shadow:var(--soft-shadow);transition:transform .3s;background:#fff}
+  .logo-link img:hover{transform:scale(1.08) rotate(-6deg)}
+  .header-title{line-height:1.02;margin-top:3px}
+  .header-title .pg{display:block;font-family:Poppins,sans-serif;font-weight:800;font-size:clamp(1.3rem,7vw,2.1rem);background:linear-gradient(90deg,var(--roxo2),var(--roxo));-webkit-background-clip:text;-webkit-text-fill-color:transparent;position:relative}
+  .header-title .pg:after{content:'';position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:64%;height:3px;background:linear-gradient(90deg,var(--roxo),var(--roxo2));border-radius:2px;animation:underlineMove 3s ease-in-out infinite}
+  @keyframes underlineMove{0%{width:40%}50%{width:80%}100%{width:40%}}
+  .header-title .concursos{display:block;font-family:Outfit,sans-serif;font-weight:600;font-size:clamp(.97rem,5vw,1.24rem);background:linear-gradient(90deg,var(--roxo),var(--roxo2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-top:.18rem}
+  .hidden{display:none!important}
+
+  /* blocos padrão */
+  .card,.manual-card,.legis-card,.manual-cta,.hero-main,.frase-impacto{
+    background:var(--branco);border-radius:var(--radius);box-shadow:var(--soft-shadow);
+    max-width:var(--boxmax);width:97vw;margin:.8rem auto; padding:1.1rem .95rem;
+  }
+  .btn,.back-btn,.amostra-btn,.adquirir-btn,.cta-btn{
+    display:block;margin:1rem auto 0 auto;font-size:1.05rem;background:linear-gradient(90deg,var(--roxo2),var(--roxo));color:#fff;font-family:Outfit,sans-serif;font-weight:900;border:none;border-radius:var(--btnr);box-shadow:0 2px 10px #cab4f82a;padding:1rem 1.4rem;cursor:pointer;transition:filter .17s,transform .18s;width:99%;max-width:var(--boxmax);text-align:center
+  }
+  .btn:hover,.back-btn:hover,.amostra-btn:hover,.adquirir-btn:hover,.cta-btn:hover{filter:brightness(1.08);transform:scale(1.03)}
+  .back-btn{background:linear-gradient(90deg,#e1d4ff 55%,#cab4f8 100%);color:var(--roxo);font-weight:900}
+
+  /* welcome */
+  #welcomeSection.card{padding:1.2rem}
+  #welcomeSection h1{font-family:Poppins,sans-serif;font-size:1.28rem;background:linear-gradient(90deg,var(--roxo2),var(--roxo));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:.2rem 0 .45rem}
+  #welcomeSection p{margin:.2rem 0 1.1rem;color:#333}
+
+  /* cinema */
+  .cinema{display:flex;flex-direction:column;align-items:center;gap:.6rem;padding:1.6rem 0 2rem}
+  .cinema-inner{display:flex;flex-direction:column;align-items:center;padding:8vh 0 5vh}
+  .frase-impacto{font-family:Outfit,sans-serif;font-weight:900;font-size:1.07rem;text-align:center;line-height:1.35;border:2px solid #ece1fa;box-shadow:0 10px 34px 0 #cab4f83d}
+  .cta-btn{background-size:200% 100%}
+  .cta-btn.active{animation:btnBoom 1s ease-out both}
+  @keyframes btnBoom{0%{transform:scale(.65) rotate(-15deg)}60%{transform:scale(1.18) rotate(8deg)}100%{transform:scale(1) rotate(0)}}
+
+  /* hero do manual (bloco de autoridade no topo do manual) */
+  .hero-main{background:linear-gradient(98deg,#fff,#f7f0ff 60%,#ede7fa 100%);text-align:center;font-family:Outfit,sans-serif;font-weight:700}
+  .hero-main .main-title{font-weight:900;text-transform:uppercase}
+  .hero-main .main-highlight{color:var(--roxo);font-weight:900}
+
+  /* manual cards */
+  .manual-card.main{font-family:Outfit,sans-serif;font-weight:900;text-align:center}
+  .manual-card ul{padding-left:1.1rem;margin:0;line-height:1.62}
+  .manual-card.quote{background:#f7f4ff;border-left:5px solid var(--roxo2)}
+  .manual-card.what-learn h2{font-family:Outfit,sans-serif;background:linear-gradient(90deg,var(--roxo2),var(--roxo));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;margin:.1rem 0 .7rem}
+
+  .manual-cta{background:linear-gradient(93deg,#cab4f8 15%,#ede7fa 100%);text-align:center;font-family:Outfit,sans-serif;color:#45247d}
+
+  /* legislação */
+  .legis-hero{background:linear-gradient(99deg,#fff 70%,#eae0fd 100%);text-align:center}
+  .legis-hero-title{font-family:Outfit,sans-serif;font-weight:900;color:var(--roxo)}
+  .legis-hero-sub{color:#5f43b7}
+  .legis-card{display:flex;flex-direction:column;gap:.5rem}
+  .legis-title{font-weight:800}
+
+  .amostra-btn{background:#ece1fa;color:var(--roxo);font-weight:900;width:93%;text-decoration:none}
+  .adquirir-btn{margin-top:1.1rem}
+
+  /* modal */
+  .modal{position:fixed;inset:0;background:rgba(25,22,42,.55);display:flex;align-items:center;justify-content:center;z-index:9999}
+  .modal.hidden{display:none!important}
+  .modal-box{background:#fff;border-radius:1.4rem;box-shadow:0 16px 60px 0 #cab4f88c;padding:1.6rem 1.2rem 1.2rem;min-width:320px;width:min(92vw,420px);text-align:center;position:relative;animation:pop .28s cubic-bezier(.66,0,.33,1.06)}
+  @keyframes pop{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
+  .modal .close{position:absolute;top:.6rem;right:.9rem;background:none;border:none;font-size:1.8rem;color:#764bcb;cursor:pointer}
+  .like-wrap{display:flex;justify-content:center;gap:1rem;margin:.6rem 0}
+  .vote{font-size:1.4rem;background:#f2ebfd;color:#7c46c5;border:none;border-radius:50%;width:52px;height:52px;cursor:pointer;box-shadow:0 2px 7px #cab4f825}
+  .vote.liked{background:linear-gradient(90deg,#bda6ff,#7c46c5);color:#fff}
+  .vote.disliked{background:linear-gradient(90deg,#ffb6b6,#d05c5c);color:#fff}
+  .placar{display:flex;justify-content:center;gap:2rem;margin-top:.4rem;font-family:Outfit,sans-serif;font-weight:800}
+  .placar .ok{color:#22bb55}.placar .no{color:#d05c5c}
+
+  /* responsivo */
+  @media (max-width:600px){
+    .manual-card,.manual-cta,.legis-card,.card,.hero-main{max-width:99vw;padding:1rem .6rem}
+    .btn,.amostra-btn,.adquirir-btn,.back-btn,.cta-btn{max-width:99vw}
+  }
+</style>
 </head>
 <body>
+  <header>
+    <a href="#" class="logo-link"><img src="https://i.postimg.cc/jdRnCJ86/1000115773.webp" alt="Logo PG"></a>
+    <div class="header-title">
+      <span class="pg">PG</span>
+      <span class="concursos">Concursos Públicos</span>
+    </div>
+  </header>
+
   <main>
-    <!-- Tela inicial -->
-    <section class="welcome-section" id="welcomeSection">
-      <h1>Bem-vindo</h1>
-      <button class="btn-main" id="btnManual">Manual do Aprovado</button>
-      <button class="btn-main" id="btnLegis">Legislação Interna TJSP 2025</button>
+    <!-- BOAS-VINDAS -->
+    <section class="card" id="welcomeSection">
+      <h1>Bem-vindo!</h1>
+      <p>Você está mais próximo da aprovação. Escolha seu material:</p>
+      <button class="btn" id="btnManual">Manual do Aprovado</button>
+      <button class="btn" id="btnLegis">Legislação Interna TJSP 2025</button>
     </section>
 
-    <!-- Manual do Aprovado - cinema -->
+    <!-- MANUAL DO APROVADO: CINEMA -->
     <section class="cinema hidden" id="pagina1">
       <button class="back-btn" id="backFrom1">Voltar ao início</button>
-      <div id="frase0"></div><div id="frase1"></div><div id="frase2"></div>
-      <div id="frase3"></div><div id="frase4"></div><div id="frase5"></div><div id="frase6"></div>
-      <button class="cta-btn" id="ctaBtn">Quero estudar de verdade</button>
+      <div class="cinema-inner">
+        <div class="frase-impacto" id="frase0"></div>
+        <div class="frase-impacto" id="frase1"></div>
+        <div class="frase-impacto" id="frase2"></div>
+        <div class="frase-impacto" id="frase3"></div>
+        <div class="frase-impacto" id="frase4"></div>
+        <div class="frase-impacto" id="frase5"></div>
+        <div class="frase-impacto" id="frase6"></div>
+        <button class="cta-btn" id="ctaBtn">Quero estudar de verdade</button>
+      </div>
+      <audio id="glassSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa59bb.mp3" preload="auto"></audio>
     </section>
 
-    <!-- Manual do Aprovado - conteúdo -->
-    <section class="content-screen hidden" id="pagina2">
+    <!-- MANUAL DO APROVADO: CONTEÚDO -->
+    <section class="hidden" id="pagina2" style="display:flex;flex-direction:column;align-items:center;padding:1.2rem 0 2rem">
       <button class="back-btn" id="backFrom2">Voltar ao início</button>
-      <div class="manual-card main">Aprenda a estudar sozinho. Domine seu caminho até a aprovação!</div>
+
+      <section class="hero-main card" id="heroMainManual">
+        <span class="main-title">TODO O CONTEÚDO NASCEU DE <span class="main-highlight">anos de experiência real em concursos.</span></span><br/>
+        <span class="main-difference">A diferença entre tentar e aprovar está aqui: <b>praticidade, clareza e método.</b></span>
+      </section>
+
+      <div class="manual-card main">Aprenda a estudar sozinho.<br/>Domine seu caminho até a aprovação!</div>
       <div class="manual-card">
         <ul>
           <li>Descubra como organizar seus estudos mesmo começando do zero.</li>
-          <li>Saia do ciclo de dúvidas e incertezas.</li>
+          <li>Saia do ciclo de dúvidas e incertezas. Torne-se independente.</li>
+          <li>Pare de perder tempo com métodos que não funcionam pra você.</li>
         </ul>
       </div>
-      <div class="manual-card quote">“Ou… você pode aprender com quem já errou por você.”</div>
+      <div class="manual-card quote">“Ninguém ensina de verdade o que você só aprende errando. <b class="destaque">Ou… você pode aprender com quem já errou por você.</b>”</div>
+      <div class="manual-card what-learn">
+        <h2>O que você vai aprender:</h2>
+        <ul>
+          <li><b>Ciclos de estudo</b> otimizados para diferentes rotinas e cargas horárias.</li>
+          <li>Métodos eficientes de <b>revisão</b> para não esquecer o que importa.</li>
+          <li>Como <b>fazer questões</b> na hora certa e na quantidade certa.</li>
+          <li>Estratégia definitiva para estudar <b>Lei Seca</b> sem enrolação.</li>
+          <li>O que muda no <b>Pré e Pós-Edital</b>.</li>
+          <li>As <b>táticas de reta final</b> usadas pelos aprovados.</li>
+          <li>Análise real das <b>bancas</b> que mais aprovam.</li>
+          <li><b>Sacadas e atalhos</b> que só quem passou por tudo revela.</li>
+        </ul>
+      </div>
+      <div class="manual-cta">
+        <b>⏳ Aguarde, o melhor guia para sua aprovação está em produção!</b><br/>
+        <span style="font-weight:400;display:block;margin-top:.3em;">
+          <span class="contador-numero" id="contador">0</span> pessoas já manifestaram interesse.
+          <span id="visitas-online" style="margin-left:8px;">👀 0 online agora</span>
+        </span>
+      </div>
     </section>
 
-    <!-- Legislação Interna -->
-    <section class="content-screen hidden" id="legislacao">
+    <!-- LEGISLAÇÃO -->
+    <section class="hidden" id="legislacao" style="display:flex;flex-direction:column;align-items:center;padding:1.2rem 0 2rem">
       <button class="back-btn" id="backFromLegis">Voltar ao início</button>
-      <div class="manual-card main legis-hero">
-        Abordaremos, de forma esquematizada e estratégica, tudo para você gabaritar a Legislação Interna do TJSP 2025!<br>
-        Esquemas visuais, tabelas e questões inéditas para você dominar a VUNESP.
+      <div class="card legis-hero">
+        <div class="legis-hero-title">Para você <b>gabaritar a Legislação Interna do TJSP 2025</b></div>
+        <div class="legis-hero-sub">Esquemas visuais, tabelas e questões inéditas para você <b>dominar a VUNESP</b>.</div>
       </div>
+
       <div class="legis-card">
-        <div class="legis-title"><b>Resolução TJSP nº 850/2021</b> (teletrabalho)</div>
-        <button class="amostra-btn" id="btnAmostra850">Ver amostra</button>
+        <div class="legis-title">Resolução TJSP nº 850/2021 <span style="color:#855ae1;font-weight:600">(teletrabalho)</span></div>
+        <button class="amostra-btn" id="open850">Ver amostra</button>
       </div>
-      <div class="legis-card" id="regimentoCard">
-        <div class="legis-title"><b>Regimento Interno do Tribunal de Justiça</b></div>
-        <button class="amostra-btn" id="btnAmostraRegimento">Ver amostra</button>
-      </div>
+
       <div class="legis-card">
-        <div class="legis-title"><b>Normas da Corregedoria Geral</b></div>
+        <div class="legis-title">Resolução TJSP nº 963/2025 <span style="color:#855ae1;font-weight:600">(governança eproc)</span></div>
         <button class="amostra-btn">Ver amostra</button>
       </div>
+
+      <div class="legis-card">
+        <div class="legis-title">Lei Complementar nº 1.111/2010</div>
+        <button class="amostra-btn">Ver amostra</button>
+      </div>
+
+      <div class="legis-card">
+        <div class="legis-title">Regimento Interno do Tribunal de Justiça</div>
+        <button class="amostra-btn" id="openReg">Ver amostra</button>
+      </div>
+
+      <div class="legis-card">
+        <div class="legis-title">Normas da Corregedoria Geral da Justiça</div>
+        <button class="amostra-btn">Ver amostra</button>
+      </div>
+
+      <div class="manual-cta">
+        Além de <b>questões INÉDITAS</b> produzidas de forma totalmente estratégica.<br/>
+        <button class="adquirir-btn">Quero a Legislação Completa</button>
+      </div>
     </section>
-
-    <!-- Modal Resolução 850 -->
-    <div id="modal850" class="modal-amostra hidden">
-      <div class="modal-amostra-content">
-        <button class="close-modal" data-target="modal850">&times;</button>
-        <h2>Amostra da Resolução TJSP nº 850/2021</h2>
-        <a href="https://drive.google.com/file/d/11CneJoDcoBX1Td5WovvnLZUP75DKzd0q/view?usp=sharing" target="_blank" class="amostra-btn">Abrir Amostra (PDF)</a>
-        <div>
-          <p>O que achou da amostra?</p>
-          <button class="like-btn" data-like="850">👍</button>
-          <button class="dislike-btn" data-dislike="850">👎</button>
-          <div class="placar"><span>👍 <span id="likes850">0</span></span> <span>👎 <span id="dislikes850">0</span></span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal Regimento -->
-    <div id="modalReg" class="modal-amostra hidden">
-      <div class="modal-amostra-content">
-        <button class="close-modal" data-target="modalReg">&times;</button>
-        <h2>Amostra do Regimento Interno</h2>
-        <a href="https://drive.google.com/file/d/1Q0C2esYWSg0nhU5VvI_3qUODr1HjS24_/view?usp=sharing" target="_blank" class="amostra-btn">Abrir Amostra (PDF)</a>
-        <div>
-          <p>O que achou da amostra?</p>
-          <button class="like-btn" data-like="reg">👍</button>
-          <button class="dislike-btn" data-dislike="reg">👎</button>
-          <div class="placar"><span>👍 <span id="likesreg">0</span></span> <span>👎 <span id="dislikesreg">0</span></span></div>
-        </div>
-      </div>
-    </div>
   </main>
 
-  <script>
-    const showOnly = id => {
-      ['welcomeSection','pagina1','pagina2','legislacao'].forEach(sec=>{
-        document.getElementById(sec)?.classList.add('hidden');
-      });
-      document.getElementById(id).classList.remove('hidden');
-    };
+  <!-- MODAL: Resolução 850/2021 -->
+  <section class="modal hidden" id="modal850">
+    <div class="modal-box">
+      <button class="close" data-close="modal850">&times;</button>
+      <h2 style="margin:.2rem 0 .8rem;font-family:Outfit;font-weight:900;">Amostra — Resolução 850/2021</h2>
+      <a class="amostra-btn" href="https://drive.google.com/file/d/11CneJoDcoBX1Td5WovvnLZUP75DKzd0q/view?usp=sharing" target="_blank" style="max-width:320px;margin:.6rem auto 1rem;">Abrir Amostra (PDF)</a>
+      <div style="font-weight:700;margin:.5rem 0 .4rem">O que achou da amostra?</div>
+      <div class="like-wrap">
+        <button class="vote" data-like="850">👍</button>
+        <button class="vote" data-dislike="850">👎</button>
+      </div>
+      <div id="msg850" style="min-height:1.2em;font-weight:600"></div>
+      <div class="placar"><span class="ok">👍 <span id="likes850">0</span></span><span class="no">👎 <span id="dislikes850">0</span></span></div>
+    </div>
+  </section>
 
-    // Navegação
-    document.getElementById('btnManual').onclick=()=>showOnly('pagina1');
-    document.getElementById('btnLegis').onclick=()=>showOnly('legislacao');
-    document.getElementById('ctaBtn').onclick=()=>showOnly('pagina2');
-    document.getElementById('backFrom1').onclick=()=>showOnly('welcomeSection');
-    document.getElementById('backFrom2').onclick=()=>showOnly('welcomeSection');
-    document.getElementById('backFromLegis').onclick=()=>showOnly('welcomeSection');
+  <!-- MODAL: Regimento Interno -->
+  <section class="modal hidden" id="modalReg">
+    <div class="modal-box">
+      <button class="close" data-close="modalReg">&times;</button>
+      <h2 style="margin:.2rem 0 .8rem;font-family:Outfit;font-weight:900;">Amostra — Regimento Interno</h2>
+      <a class="amostra-btn" href="https://drive.google.com/file/d/1Q0C2esYWSg0nhU5VvI_3qUODr1HjS24_/view?usp=sharing" target="_blank" style="max-width:320px;margin:.6rem auto 1rem;">Abrir Amostra (PDF)</a>
+      <div style="font-weight:700;margin:.5rem 0 .4rem">O que achou da amostra?</div>
+      <div class="like-wrap">
+        <button class="vote" data-like="reg">👍</button>
+        <button class="vote" data-dislike="reg">👎</button>
+      </div>
+      <div id="msgreg" style="min-height:1.2em;font-weight:600"></div>
+      <div class="placar"><span class="ok">👍 <span id="likesreg">0</span></span><span class="no">👎 <span id="dislikesreg">0</span></span></div>
+    </div>
+  </section>
 
-    // Abrir modais
-    document.getElementById('btnAmostra850').onclick=()=>document.getElementById('modal850').classList.remove('hidden');
-    document.getElementById('btnAmostraRegimento').onclick=()=>document.getElementById('modalReg').classList.remove('hidden');
+<script>
+document.addEventListener('DOMContentLoaded', ()=>{
+  /* navegação de seções */
+  const showOnly = id=>{
+    ['welcomeSection','pagina1','pagina2','legislacao'].forEach(k=>document.getElementById(k)?.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+  document.getElementById('btnManual').onclick=()=>{showOnly('pagina1'); runCinema();};
+  document.getElementById('btnLegis').onclick=()=>showOnly('legislacao');
+  document.getElementById('backFrom1').onclick=()=>showOnly('welcomeSection');
+  document.getElementById('backFrom2').onclick=()=>showOnly('welcomeSection');
+  document.getElementById('backFromLegis').onclick=()=>showOnly('welcomeSection');
+  document.getElementById('ctaBtn').onclick=()=>{showOnly('pagina2'); startCounter(); startVisitorsOnline();};
 
-    // Fechar modais
-    document.querySelectorAll('.close-modal').forEach(btn=>{
-      btn.onclick=()=>document.getElementById(btn.dataset.target).classList.add('hidden');
-    });
+  /* alert nos que não têm amostra */
+  document.querySelectorAll('#legislacao .legis-card .amostra-btn').forEach(b=>{
+    if(!b.id){ b.onclick=()=>alert('Em breve! Aqui vai aparecer a amostra desse material.'); }
+  });
 
-    // Curtir/Descurtir
-    function setupVotes(key) {
-      const likeBtn=document.querySelector(`[data-like="${key}"]`);
-      const dislikeBtn=document.querySelector(`[data-dislike="${key}"]`);
-      const likesSpan=document.getElementById(`likes${key}`);
-      const dislikesSpan=document.getElementById(`dislikes${key}`);
+  /* modais abrir/fechar */
+  const open850 = document.getElementById('open850');
+  const openReg = document.getElementById('openReg');
+  open850.onclick=()=>document.getElementById('modal850').classList.remove('hidden');
+  openReg.onclick=()=>document.getElementById('modalReg').classList.remove('hidden');
+  document.querySelectorAll('.modal .close').forEach(c=>c.onclick=()=>document.getElementById(c.dataset.close).classList.add('hidden'));
+  document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{ if(e.target===m) m.classList.add('hidden'); }));
 
-      let likes=parseInt(localStorage.getItem(`likes_${key}`)||0);
-      let dislikes=parseInt(localStorage.getItem(`dislikes_${key}`)||0);
+  /* votos por modal (localStorage) */
+  function setupVotes(key){
+    const likeBtn=document.querySelector(`.vote[data-like="${key}"]`);
+    const dislikeBtn=document.querySelector(`.vote[data-dislike="${key}"]`);
+    const likeSpan=document.getElementById(`likes${key}`);
+    const dislikeSpan=document.getElementById(`dislikes${key}`);
+    const msg=document.getElementById(`msg${key}`);
 
-      likesSpan.textContent=likes;
-      dislikesSpan.textContent=dislikes;
+    const votedKey=`voted_${key}`, likesKey=`likes_${key}`, dislikesKey=`dislikes_${key}`;
+    let likes=parseInt(localStorage.getItem(likesKey)||'0',10);
+    let dislikes=parseInt(localStorage.getItem(dislikesKey)||'0',10);
+    likeSpan.textContent=likes; dislikeSpan.textContent=dislikes;
 
-      likeBtn.onclick=()=>{
-        likes++; localStorage.setItem(`likes_${key}`,likes); likesSpan.textContent=likes;
-      };
-      dislikeBtn.onclick=()=>{
-        dislikes++; localStorage.setItem(`dislikes_${key}`,dislikes); dislikesSpan.textContent=dislikes;
-      };
+    function paint(){
+      const v=localStorage.getItem(votedKey);
+      likeBtn.classList.toggle('liked', v==='like');
+      dislikeBtn.classList.toggle('disliked', v==='dislike');
+      msg.textContent = v==='like' ? 'Obrigado pelo feedback! 🎉' : v==='dislike' ? 'Vamos melhorar! 💡' : '';
     }
-    setupVotes('850');
-    setupVotes('reg');
-  </script>
+    function vote(type){
+      if(localStorage.getItem(votedKey)) return; // 1 voto por dispositivo
+      if(type==='like'){ likes++; localStorage.setItem(likesKey,likes); likeSpan.textContent=likes; localStorage.setItem(votedKey,'like'); }
+      else { dislikes++; localStorage.setItem(dislikesKey,dislikes); dislikeSpan.textContent=dislikes; localStorage.setItem(votedKey,'dislike'); }
+      paint();
+    }
+    likeBtn.onclick=()=>vote('like');
+    dislikeBtn.onclick=()=>vote('dislike');
+    paint();
+  }
+  setupVotes('850');
+  setupVotes('reg');
+
+  /* cinema */
+  const frases=[
+    "Eu sei que você já sentiu que <b>não aprendia de verdade</b>...",
+    "Já tentou <b>vários métodos</b>, mas se sentiu perdido.",
+    "Viu outros passando e pensou: <b>será que existe um jeito certo?</b>",
+    "Pensou em desistir por tanta matéria.",
+    "Se cansou de <b>dicas soltas</b> e promessas vazias...",
+    "Sente que falta um <b>passo a passo prático</b>.",
+    "E se existisse um <b>caminho confiável</b> para aprovar?"
+  ];
+  const els=frases.map((_,i)=>document.getElementById(`frase${i}`));
+  const snd=document.getElementById('glassSound');
+  const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+  async function runCinema(){
+    for(let i=0;i<els.length;i++){
+      let el=els[i]; el.innerHTML=frases[i]; el.style.opacity=1;
+      await el.animate([{opacity:0,transform:'scale(.65) rotate(-15deg)'},{opacity:1,transform:'scale(1.12) rotate(7deg)'},{opacity:1,transform:'scale(1) rotate(0)'}],{duration:780,easing:'cubic-bezier(0.8,-0.17,0.18,1.13)',fill:'forwards'}).finished;
+      try{ snd.currentTime=0; snd.play(); }catch(e){}
+      await sleep(880+Math.min(frases[i].length*12,640));
+      await el.animate([{opacity:1,transform:'scale(1)'},{opacity:0,transform:'scale(.88) rotate(-5deg)'}],{duration:360,easing:'ease-in',fill:'forwards'}).finished;
+      el.style.opacity=0; el.innerHTML='';
+    }
+    document.getElementById('ctaBtn').classList.add('active');
+  }
+
+  /* contador e visitantes do manual */
+  function startCounter(){
+    const el=document.getElementById('contador'); if(!el) return;
+    const BASE=127; let count=parseInt(localStorage.getItem('pg_manifestaram')||BASE,10);
+    if(!sessionStorage.getItem('pg_counted')){count++;localStorage.setItem('pg_manifestaram',count);sessionStorage.setItem('pg_counted','1');}
+    let start=count-3,end=count,duration=900,startTime;
+    function step(t){ if(!startTime) startTime=t; let p=Math.min((t-startTime)/duration,1); el.textContent=Math.floor(start+(end-start)*p); if(p<1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  function startVisitorsOnline(){
+    const el=document.getElementById('visitas-online'); if(!el) return;
+    let online=Math.floor(Math.random()*4)+3;
+    (function loop(){ online+=Math.floor(Math.random()*3)-1; if(online<3) online=3; if(online>8) online=8;
+      el.textContent=`👀 ${online} online agora`; setTimeout(loop,Math.random()*2200+1100);
+    })();
+  }
+});
+</script>
 </body>
 </html>
